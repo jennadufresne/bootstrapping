@@ -9,6 +9,9 @@ output:
 course: STA 6257 - Advance Statistical Modeling
 bibliography: references.bib # file contains bibtex for references
 always_allow_html: true # this allows to get PDF with HTML features
+nocite: | 
+  @chavez_2022
+  @worldbank
 ---
 
 ```{r setup, include=FALSE}
@@ -20,8 +23,8 @@ library(knitr)
 ## Data Description
 
 The dataset we will be using to explore Bootstrapping is the "Causes of Death -
-Our World in Data" dataset from kaggle. The causes of death dataset was also
-expanded with population data from the world bank.
+Our World in Data" dataset from kaggle [@chavez_2022]. The causes of death 
+dataset was also expanded with population data from the world bank [@worldbank].
 
 The raw data contains a multitude of death statistics broken down by the 
 continent, region, country, and territory. The statistics for cause of death
