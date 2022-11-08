@@ -15,6 +15,8 @@ nocite: |
   @introduction
   @assumptions
   @withr
+  @chavez_2022
+  @worldbank
 ---
 
 ## Literature Review
@@ -133,6 +135,145 @@ are discussed in the conclusion. Based on the results of this experiment, the
 values found are very similar among the original and bootstrap samples, although 
 the confidence intervals for the bootstrap samples are often wider. Some 
 advantages to bootstrapping are also listed.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+library(tidyverse)
+library(knitr)
+```
+
+## Data Description
+
+The dataset we will be using to explore Bootstrapping is the "Causes of Death -
+Our World in Data" dataset from kaggle [@chavez_2022]. The causes of death 
+dataset was also expanded with population data from the world bank [@worldbank].
+
+The raw data contains a multitude of death statistics broken down by the 
+continent, region, country, and territory. The statistics for cause of death
+are given in number of deaths and split up by the cause of death. Data is
+presented over the span of multiple years. The population dataset from the
+world bank is a list of countries, regions, and territories but contains the
+population for each year from 1960 to 2021 where available.
+
+To get more meaningful numbers, the population for each year 1990 through 2019
+was populated into the causes of death dataset. In order to perform a more
+predictable experiment, the causes of death dataset was cleaned by first removing
+all non-country entries. The number of executions and terrorism deaths columns
+were also removed due to a lack of data for the majority of countries. As a
+final note, the Vatican and Liechtenstein are the two countries that did not
+have cause of death statistics available in the dataset.
+
+The columns in the cleaned dataset are as follows:
+
+```{r echo=FALSE}
+Name <- c('Entity', 
+          'Population', 
+          'Code', 
+          'Year', 
+          'Deaths_Meningitis', 
+          'Deaths_Neoplasms',
+          'Deaths_FireHeatHotSubstances', 
+          'Deaths_Malaria', 
+          'Deaths_Drowning', 
+          'Deaths_InterpersonalViolence', 
+          'Deaths_HIVAIDS', 
+          'Deaths_DrugUseDisorders',
+          'Deaths_Tuberculosis', 
+          'Deaths_RoadInjuries', 
+          'Deaths_MaternalDisorders', 
+          'Deaths_LowerRespiratoryInfections',
+          'Deaths_NeonatalDisorders',
+          'Deaths_AlcoholUseDisorders',
+          'Deaths_ExposureToForcesOfNature',
+          'Deaths_DiarrhealDiseases',
+          'Deaths_EnvironmentalHeatAndColdExposure',
+          'Deaths_NutritionalDeficiencies',
+          'Deaths_Selfharm',
+          'Deaths_ConflictAndTerrorism',
+          'Deaths_DiabetesMellitus',
+          'Deaths_Poisonings',
+          'Deaths_ProteinEnergyMalnutrition',
+          'Deaths_CardiovascularDiseases',
+          'Deaths_ChronicKidneyDisease',
+          'Deaths_ChronicRespiratoryDiseases',
+          'Deaths_CirrhosisOtherChronicLiverDiseases',
+          'Deaths_DigestiveDiseases',
+          'Deaths_AcuteHepatitis',
+          'Deaths_AlzheimersDiseaseOtherDementias',
+          'Deaths_ParkinsonsDisease')
+Description <- c('Name of Country',                    
+                 'Population of Country at Specific Year',                    
+                 'Three Letter Country Code',                    
+                 'Year for Causes of Deaths',              
+                 'Number of Deaths Caused by Meningitis',                
+                 'Number of Deaths Caused by Neoplasms',         
+                 'Number of Deaths Caused by Fire, Heat, or Hot Substances',                
+                 'Number of Deaths Caused by Malaria',      
+                 'Number of Deaths Caused by Drowning',                
+                 'Number of Deaths Caused by Interpersonal Violence',      
+                 'Number of Deaths Caused by HIV/AIDS',                
+                 'Number of Deaths Caused by Drug Use Disorders',      
+                 'Number of Deaths Caused by Tuberculosis',                
+                 'Number of Deaths Caused by Road Injuries',      
+                 'Number of Deaths Caused by Maternal Disorders',                
+                 'Number of Deaths Caused by Lower Respiratory Infections',      
+                 'Number of Deaths Caused by Neonatal Disorders',                
+                 'Number of Deaths Caused by Alcohol Use Disorders',      
+                 'Number of Deaths Caused by Exposure to Forces of Nature',                
+                 'Number of Deaths Caused by Diarrheal Diseases',      
+                 'Number of Deaths Caused by Environmental Heat and Cold Exposure',                
+                 'Number of Deaths Caused by Nutritional Deficiencies',      
+                 'Number of Deaths Caused by Self-Harm',                
+                 'Number of Deaths Caused by Conflict and Terrorism',      
+                 'Number of Deaths Caused by Diabetes Mellitus',                
+                 'Number of Deaths Caused by Poisoning',      
+                 'Number of Deaths Caused by Protein Energy Malnutrition',                
+                 'Number of Deaths Caused by Cardiovascular Diseases',      
+                 'Number of Deaths Caused by Chronic Kidney Disease',                
+                 'Number of Deaths Caused by Chronic Respiratory Diseases',      
+                 'Number of Deaths Caused by Cirrhosis or Other Chronic Liver Diseases',                
+                 'Number of Deaths Caused by Digestive Diseases',      
+                 'Number of Deaths Caused by Acute Hepatitis',                
+                 'Number of Deaths Caused by Alzheimers Disease or Other Dementias',      
+                 'Number of Deaths Caused by Parkinsons Disease')                        
+Type <- c('Nominal',  
+          'Discrete',   
+          'Nominal',
+          'Nominal',   
+          'Discrete',  
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete',
+          'Discrete')
+variable_data <- data.frame(Name, Description, Type)
+kable(variable_data)
+```
 
 ## Introduction
 
