@@ -1632,8 +1632,31 @@ Perez</h4>
 
 <div id="data-description" class="section level2">
 <h2>Data Description</h2>
-<p>Something about the data here.</p>
-<table>
+<p>The dataset we will be using to explore Bootstrapping is the “Causes
+of Death - Our World in Data” dataset from kaggle. The causes of death
+dataset was also expanded with population data from the world bank.</p>
+<p>The raw data contains a multitude of death statistics broken down by
+the continent, region, country, and territory. The statistics for cause
+of death are given in number of deaths and split up by the cause of
+death. Data is presented over the span of multiple years. The population
+dataset from the world bank is a list of countries, regions, and
+territories but contains the population for each year from 1960 to 2021
+where available.</p>
+<p>To get more meaningful numbers, the population for each year 1990
+through 2019 was populated into the causes of death dataset. In order to
+perform a more predictable experiment, the causes of death dataset was
+cleaned by first removing all non-country entries. The number of
+executions and terrorism deaths columns were also removed due to a lack
+of data for the majority of countries. As a final note, the Vatican and
+Liechtenstein are the two countries that did not have cause of death
+statistics available in the dataset.</p>
+<p>The columns in the cleaned dataset are as follows:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="35%" />
+<col width="57%" />
+<col width="7%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Name</th>
@@ -1643,84 +1666,188 @@ Perez</h4>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">year</td>
-<td align="left">Year of the car</td>
+<td align="left">Entity</td>
+<td align="left">Name of Country</td>
+<td align="left">Nominal</td>
+</tr>
+<tr class="even">
+<td align="left">Population</td>
+<td align="left">Population of Country at Specific Year</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="odd">
+<td align="left">Code</td>
+<td align="left">Three Letter Country Code</td>
+<td align="left">Nominal</td>
+</tr>
+<tr class="even">
+<td align="left">Year</td>
+<td align="left">Year for Causes of Deaths</td>
+<td align="left">Nominal</td>
+</tr>
+<tr class="odd">
+<td align="left">Deaths_Meningitis</td>
+<td align="left">Number of Deaths Caused by Meningitis</td>
 <td align="left">Discrete</td>
 </tr>
 <tr class="even">
-<td align="left">make</td>
-<td align="left">Make of the car</td>
-<td align="left">Nominal</td>
+<td align="left">Deaths_Neoplasms</td>
+<td align="left">Number of Deaths Caused by Neoplasms</td>
+<td align="left">Discrete</td>
 </tr>
 <tr class="odd">
-<td align="left">model</td>
-<td align="left">Model of the car</td>
-<td align="left">Nominal</td>
-</tr>
-<tr class="even">
-<td align="left">trim</td>
-<td align="left">Trim level of the car</td>
-<td align="left">Nominal</td>
-</tr>
-<tr class="odd">
-<td align="left">body</td>
-<td align="left">Body type of the car</td>
-<td align="left">Nominal</td>
-</tr>
-<tr class="even">
-<td align="left">transmission</td>
-<td align="left">Type of transmission in car</td>
-<td align="left">Nominal</td>
-</tr>
-<tr class="odd">
-<td align="left">vin</td>
-<td align="left">Vehicle identification number</td>
+<td align="left">Deaths_FireHeatHotSubstances</td>
+<td align="left">Number of Deaths Caused by Fire, Heat, or Hot
+Substances</td>
 <td align="left">Discrete</td>
 </tr>
 <tr class="even">
-<td align="left">state</td>
-<td align="left">State vehicle was sold in</td>
-<td align="left">Nominal</td>
+<td align="left">Deaths_Malaria</td>
+<td align="left">Number of Deaths Caused by Malaria</td>
+<td align="left">Discrete</td>
 </tr>
 <tr class="odd">
-<td align="left">condition</td>
-<td align="left">Rating of the condition of the car</td>
-<td align="left">Ordinal</td>
+<td align="left">Deaths_Drowning</td>
+<td align="left">Number of Deaths Caused by Drowning</td>
+<td align="left">Discrete</td>
 </tr>
 <tr class="even">
-<td align="left">odometer</td>
-<td align="left">Number of miles on car at sale</td>
-<td align="left">Continuous</td>
+<td align="left">Deaths_InterpersonalViolence</td>
+<td align="left">Number of Deaths Caused by Interpersonal Violence</td>
+<td align="left">Discrete</td>
 </tr>
 <tr class="odd">
-<td align="left">color</td>
-<td align="left">Exterior color of the car</td>
-<td align="left">Nominal</td>
+<td align="left">Deaths_HIVAIDS</td>
+<td align="left">Number of Deaths Caused by HIV/AIDS</td>
+<td align="left">Discrete</td>
 </tr>
 <tr class="even">
-<td align="left">interior</td>
-<td align="left">Interior color of the car</td>
-<td align="left">Nominal</td>
+<td align="left">Deaths_DrugUseDisorders</td>
+<td align="left">Number of Deaths Caused by Drug Use Disorders</td>
+<td align="left">Discrete</td>
 </tr>
 <tr class="odd">
-<td align="left">seller</td>
-<td align="left">Selling party name</td>
-<td align="left">Nominal</td>
+<td align="left">Deaths_Tuberculosis</td>
+<td align="left">Number of Deaths Caused by Tuberculosis</td>
+<td align="left">Discrete</td>
 </tr>
 <tr class="even">
-<td align="left">mmr</td>
-<td align="left">Manheim Market Report value</td>
-<td align="left">Continuous</td>
+<td align="left">Deaths_RoadInjuries</td>
+<td align="left">Number of Deaths Caused by Road Injuries</td>
+<td align="left">Discrete</td>
 </tr>
 <tr class="odd">
-<td align="left">sellingprice</td>
-<td align="left">Final sale price</td>
-<td align="left">Continuous</td>
+<td align="left">Deaths_MaternalDisorders</td>
+<td align="left">Number of Deaths Caused by Maternal Disorders</td>
+<td align="left">Discrete</td>
 </tr>
 <tr class="even">
-<td align="left">saledate</td>
-<td align="left">Date of sale</td>
-<td align="left">Ordinal</td>
+<td align="left">Deaths_LowerRespiratoryInfections</td>
+<td align="left">Number of Deaths Caused by Lower Respiratory
+Infections</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="odd">
+<td align="left">Deaths_NeonatalDisorders</td>
+<td align="left">Number of Deaths Caused by Neonatal Disorders</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="even">
+<td align="left">Deaths_AlcoholUseDisorders</td>
+<td align="left">Number of Deaths Caused by Alcohol Use Disorders</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="odd">
+<td align="left">Deaths_ExposureToForcesOfNature</td>
+<td align="left">Number of Deaths Caused by Exposure to Forces of
+Nature</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="even">
+<td align="left">Deaths_DiarrhealDiseases</td>
+<td align="left">Number of Deaths Caused by Diarrheal Diseases</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="odd">
+<td align="left">Deaths_EnvironmentalHeatAndColdExposure</td>
+<td align="left">Number of Deaths Caused by Environmental Heat and Cold
+Exposure</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="even">
+<td align="left">Deaths_NutritionalDeficiencies</td>
+<td align="left">Number of Deaths Caused by Nutritional
+Deficiencies</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="odd">
+<td align="left">Deaths_Selfharm</td>
+<td align="left">Number of Deaths Caused by Self-Harm</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="even">
+<td align="left">Deaths_ConflictAndTerrorism</td>
+<td align="left">Number of Deaths Caused by Conflict and Terrorism</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="odd">
+<td align="left">Deaths_DiabetesMellitus</td>
+<td align="left">Number of Deaths Caused by Diabetes Mellitus</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="even">
+<td align="left">Deaths_Poisonings</td>
+<td align="left">Number of Deaths Caused by Poisoning</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="odd">
+<td align="left">Deaths_ProteinEnergyMalnutrition</td>
+<td align="left">Number of Deaths Caused by Protein Energy
+Malnutrition</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="even">
+<td align="left">Deaths_CardiovascularDiseases</td>
+<td align="left">Number of Deaths Caused by Cardiovascular Diseases</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="odd">
+<td align="left">Deaths_ChronicKidneyDisease</td>
+<td align="left">Number of Deaths Caused by Chronic Kidney Disease</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="even">
+<td align="left">Deaths_ChronicRespiratoryDiseases</td>
+<td align="left">Number of Deaths Caused by Chronic Respiratory
+Diseases</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="odd">
+<td align="left">Deaths_CirrhosisOtherChronicLiverDiseases</td>
+<td align="left">Number of Deaths Caused by Cirrhosis or Other Chronic
+Liver Diseases</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="even">
+<td align="left">Deaths_DigestiveDiseases</td>
+<td align="left">Number of Deaths Caused by Digestive Diseases</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="odd">
+<td align="left">Deaths_AcuteHepatitis</td>
+<td align="left">Number of Deaths Caused by Acute Hepatitis</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="even">
+<td align="left">Deaths_AlzheimersDiseaseOtherDementias</td>
+<td align="left">Number of Deaths Caused by Alzheimers Disease or Other
+Dementias</td>
+<td align="left">Discrete</td>
+</tr>
+<tr class="odd">
+<td align="left">Deaths_ParkinsonsDisease</td>
+<td align="left">Number of Deaths Caused by Parkinsons Disease</td>
+<td align="left">Discrete</td>
 </tr>
 </tbody>
 </table>
