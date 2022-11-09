@@ -136,6 +136,24 @@ values found are very similar among the original and bootstrap samples, although
 the confidence intervals for the bootstrap samples are often wider. Some 
 advantages to bootstrapping are also listed.
 
+Bootstrapping. CORP-MIDS1 (MDS). (2022, July 11). Retrieved October 24, 2022, 
+from https://www.mastersindatascience.org/learning/machine-learning-algorithms/bootstrapping/
+In the article, Bootstrapping, it first begins with a statement from Benjamin Zimmer. 
+He believes the origin of bootstrapping was impossible to do. This idea evolved 
+from a man trying to jump a fence by the force of pulling up on his bootstraps. 
+Fortunately, statistically bootstrapping is possible. Bootstrapping is taking a 
+population, creating a small collection of data by using replacement and randomly 
+resampling to analyze. The idea of replacement is very important when discussing 
+bootstrapping. When replacement happens in bootstrapping it means every item that 
+is drawn from the population, the same item exists in the sample. The importance behind 
+sampling and replacement is when each sample or subset is made there will be statistical 
+measurements made on each set or on all the sets together. Once the measurements are done 
+the data is ready to plot. After the data is plotted analysis can be done. Furthermore, 
+inferences can be made on the population as a whole. As the article continues, it dives 
+in to the importance of machine learning and how to implement bootstrapping in python. 
+To further understand bootstrapping the article gives an example and states advantages 
+and disadvantages.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 library(tidyverse)
