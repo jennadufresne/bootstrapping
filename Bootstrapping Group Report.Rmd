@@ -154,6 +154,30 @@ dives in to the importance of machine learning and how to implement bootstrappin
 in python. To further understand bootstrapping the article gives an example and 
 states advantages and disadvantages.
 
+In the journal, Bootstrapping - An Introduction And Its Applications In Statistics
+bootstrapping is known as a resampling technique to understand sampling distribution 
+estimators, compute standard error, and find confidence intervals. Bootstrapping 
+measures bias, variance, confidence intervals, prediction errors, ect. And sets it to 
+sample estimators. The concept behind bootstrapping is inferencing a population from 
+sample data, resampling the data and then making inferences about the sample based of 
+the resampled data. To further comprehend, say researchers are interested in finding 
+the average population of the whole world. That population is on a huge scale. With 
+bootstrapping, the whole population can be broken down to a smaller sample size. Once 
+resampling is done with replacement it allows researchers to create multiple samples. 
+After testing is done on the samples, inferences can be made about the world population. 
+As the article continues, it discusses the different bootstrap schemes in statistics. 
+The first scheme is a parametric bootstrap approach. In this approach, the method requires 
+a sample size of ’n' with replacement. Then, the last step is repeated until the number 
+of samples are met. The data of each sample is fitted. Next, each sample is estimated 
+and final analysis is made about the data. The next topic is bootstrapping pairs. This 
+is used when regression function or error variance is not constant. Another example is 
+regressors of non fixed variables. In bootstrapping pairs, the data is sampled in pairs
+(x,y), known as the original data, ’n'. The population ’n’ are sampled with replacement 
+‘p’ times, then the model is fitted. Lastly, the analysis of ‘p’ samples is done. However, 
+there are a lot of different bootstrap schemes in statistics those are just a few examples. 
+When understanding bootstrapping there is a common theme: resampling and making assumptions 
+of a population based off samples.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 library(tidyverse)
