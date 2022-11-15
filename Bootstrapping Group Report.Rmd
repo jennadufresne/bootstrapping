@@ -166,12 +166,23 @@ The dataset we will be using to explore Bootstrapping is the "Causes of Death -
 Our World in Data" dataset from kaggle [@chavez_2022]. The causes of death 
 dataset was also expanded with population data from the world bank [@worldbank].
 
+```{r}
+# Import the data
+bootstrapping_data_cleaned = read.csv('bootstrapping_data_cleaned.csv', 
+                                      stringsAsFactors = TRUE)
+```
+
 The raw data contains a multitude of death statistics broken down by the 
 continent, region, country, and territory. The statistics for cause of death
 are given in number of deaths and split up by the cause of death. Data is
 presented over the span of multiple years. The population dataset from the
 world bank is a list of countries, regions, and territories but contains the
 population for each year from 1960 to 2021 where available.
+
+```{r}
+# Display a sample of the data
+head(bootstrapping_data_cleaned)
+```
 
 To get more meaningful numbers, the population for each year 1990 through 2019
 was populated into the causes of death dataset. In order to perform a more
@@ -293,12 +304,100 @@ variable_data <- data.frame(Name, Description, Type)
 kable(variable_data)
 ```
 
+In order to fit our data into our experiments below we will need to further
+modify the dataset. The first thing we want to do is add a new column that is
+sum of all causes of death columns, or the total number of reported deaths. 
+Second, we will extract only the data from the most recent year, in the case of 
+this dataset it is 2019. Next, we are only going to look at a subset of the 
+available causes of death. To make things easy we will select the most common 
+causes of death, cardiovascular diseases and neoplasms (new and abnormal growth 
+of tissue in some part of the body). Lastly, to normalize the data between 
+countries, we will use the population to obtain the rate of death caused by 
+cardiovascular diseases and neoplasms.
+
+```{r}
+# Create the total number of reported deaths column
+bootstrapping_data_cleaned$Number_Of_Deaths <- rowSums(bootstrapping_data_cleaned[,(5:35)])
+
+# Filter down the data to just include 2019 and just the columns we want
+boot_data = bootstrapping_data_cleaned[bootstrapping_data_cleaned$Year == '2019', 
+                                       c('Entity', 'Population', 
+                                         'Number_Of_Deaths', 'Deaths_Neoplasms',
+                                         'Deaths_CardiovascularDiseases')]
+
+# Create the rates columns
+boot_data$Deaths_CardiovascularDiseasesRate <- boot_data$Deaths_CardiovascularDiseases / boot_data$Number_Of_Deaths
+boot_data$Deaths_NeoplasmsRate <- boot_data$Deaths_Neoplasms / boot_data$Number_Of_Deaths
+boot_data$Deaths_CardiovascularDiseasesPopulationRate <- boot_data$Deaths_CardiovascularDiseases / boot_data$Population
+boot_data$Deaths_NeoplasmsPopulationRate <- boot_data$Deaths_Neoplasms / boot_data$Population
+```
+
+Now that we have all the data needed to move forward we can find population 
+descriptive statistics that will be useful in comparing against our estimated
+population statistics from the bootstrapping method. We can also visualize
+the data to check that it follows a normal distribution using a histogram.
+
+```{r}
+# Find cardiovascular disease rate statistics
+boot_means <- boot_data %>% summarize(mean_cardiovasculardiseasesrate = mean(Deaths_CardiovascularDiseasesRate),
+                                      mean_neoplasmsrate = mean(Deaths_NeoplasmsRate),
+                                      sd_cardiovasculardiseasesrate = sd(Deaths_CardiovascularDiseasesRate),
+                                      sd_neoplasmsrate = sd(Deaths_NeoplasmsRate))
+
+```
+
+We find that the average rate of deaths caused by cardiovascular diseases across
+the entire population is `r round(boot_means$mean_cardiovasculardiseasesrate, 4)`,
+or `r round(boot_means$mean_cardiovasculardiseasesrate * 100, 2)`%, with a 
+standard deviation of `r round(boot_means$sd_cardiovasculardiseasesrate, 4)`, or
+`r round(boot_means$sd_cardiovasculardiseasesrate * 100, 2)`%.
+
+We find that the average rate of deaths caused by neoplasms across the entire 
+population is `r round(boot_means$mean_neoplasmsrate, 4)`, or 
+`r round(boot_means$mean_neoplasmsrate * 100, 2)`%, with a standard deviation of 
+`r round(boot_means$sd_neoplasmsrate, 4)`, or
+`r round(boot_means$sd_neoplasmsrate * 100, 2)`%.
+
+```{r}
+# Display a histogram of the cardiovascular diseases rate
+ggplot(boot_data, aes(x = Deaths_CardiovascularDiseasesRate)) +
+geom_histogram()
+```
+
+```{r}
+# Display a histogram of the neoplasms rate
+ggplot(boot_data, aes(x = Deaths_NeoplasmsRate)) +
+geom_histogram()
+```
+
+Visualizing the histograms for both the cardiovascular disease death rate and 
+the neoplasms death rate it looks like both may follow a normal distribution.
+Further hypothesis tests would have to be done to validate that they do follow
+normal distributions. For our purposes, the visualization is good enough.
+
 ## Introduction
 
 ## Methods
 
 ### Statistical Modeling
 
+The first experiment we will look at using bootstrapping is finding confidence
+intervals for a Normal mean. In this experiment
+
 ### Conlusion
 
 ## References
+
+
+
+
+
+
+
+
+
+
+
+
+
+
