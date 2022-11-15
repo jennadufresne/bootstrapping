@@ -17,6 +17,7 @@ nocite: |
   @withr
   @chavez_2022
   @worldbank
+  @mastersindata
 ---
 
 ## Literature Review
@@ -136,23 +137,22 @@ values found are very similar among the original and bootstrap samples, although
 the confidence intervals for the bootstrap samples are often wider. Some 
 advantages to bootstrapping are also listed.
 
-Bootstrapping. CORP-MIDS1 (MDS). (2022, July 11). Retrieved October 24, 2022, 
-from https://www.mastersindatascience.org/learning/machine-learning-algorithms/bootstrapping/
-In the article, Bootstrapping, it first begins with a statement from Benjamin Zimmer. 
-He believes the origin of bootstrapping was impossible to do. This idea evolved 
-from a man trying to jump a fence by the force of pulling up on his bootstraps. 
-Fortunately, statistically bootstrapping is possible. Bootstrapping is taking a 
-population, creating a small collection of data by using replacement and randomly 
-resampling to analyze. The idea of replacement is very important when discussing 
-bootstrapping. When replacement happens in bootstrapping it means every item that 
-is drawn from the population, the same item exists in the sample. The importance behind 
-sampling and replacement is when each sample or subset is made there will be statistical 
-measurements made on each set or on all the sets together. Once the measurements are done 
-the data is ready to plot. After the data is plotted analysis can be done. Furthermore, 
-inferences can be made on the population as a whole. As the article continues, it dives 
-in to the importance of machine learning and how to implement bootstrapping in python. 
-To further understand bootstrapping the article gives an example and states advantages 
-and disadvantages.
+In the article, Bootstrapping [@mastersindata], it first begins with a statement 
+from Benjamin Zimmer. He believes the origin of bootstrapping was impossible to 
+do. This idea evolved from a man trying to jump a fence by the force of pulling 
+up on his bootstraps. Fortunately, statistically bootstrapping is possible. 
+Bootstrapping is taking a population, creating a small collection of data by 
+using replacement and randomly resampling to analyze. The idea of replacement is 
+very important when discussing bootstrapping. When replacement happens in 
+bootstrapping it means every item that is drawn from the population, the same 
+item exists in the sample. The importance behind sampling and replacement is 
+when each sample or subset is made there will be statistical measurements made 
+on each set or on all the sets together. Once the measurements are done the data 
+is ready to plot. After the data is plotted analysis can be done. Furthermore, 
+inferences can be made on the population as a whole. As the article continues, 
+dives in to the importance of machine learning and how to implement bootstrapping 
+in python. To further understand bootstrapping the article gives an example and 
+states advantages and disadvantages.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
@@ -166,12 +166,23 @@ The dataset we will be using to explore Bootstrapping is the "Causes of Death -
 Our World in Data" dataset from kaggle [@chavez_2022]. The causes of death 
 dataset was also expanded with population data from the world bank [@worldbank].
 
+```{r}
+# Import the data
+bootstrapping_data_cleaned = read.csv('bootstrapping_data_cleaned.csv', 
+                                      stringsAsFactors = TRUE)
+```
+
 The raw data contains a multitude of death statistics broken down by the 
 continent, region, country, and territory. The statistics for cause of death
 are given in number of deaths and split up by the cause of death. Data is
 presented over the span of multiple years. The population dataset from the
 world bank is a list of countries, regions, and territories but contains the
 population for each year from 1960 to 2021 where available.
+
+```{r}
+# Display a sample of the data
+head(bootstrapping_data_cleaned)
+```
 
 To get more meaningful numbers, the population for each year 1990 through 2019
 was populated into the causes of death dataset. In order to perform a more
@@ -293,12 +304,285 @@ variable_data <- data.frame(Name, Description, Type)
 kable(variable_data)
 ```
 
+In order to fit our data into our experiments below we will need to further
+modify the dataset. The first thing we want to do is add a new column that is
+sum of all causes of death columns, or the total number of reported deaths. 
+Second, we will extract only the data from the most recent year, in the case of 
+this dataset it is 2019. Next, we are only going to look at a subset of the 
+available causes of death. To make things easy we will select the most common 
+causes of death, cardiovascular diseases and neoplasms (new and abnormal growth 
+of tissue in some part of the body). Lastly, to normalize the data between 
+countries, we will use the population to obtain the rate of death caused by 
+cardiovascular diseases and neoplasms.
+
+```{r}
+# Create the total number of reported deaths column
+bootstrapping_data_cleaned$Number_Of_Deaths <- rowSums(bootstrapping_data_cleaned[,(5:35)])
+
+# Filter down the data to just include 2019 and just the columns we want
+boot_data = bootstrapping_data_cleaned[bootstrapping_data_cleaned$Year == '2019', 
+                                       c('Entity', 'Population', 
+                                         'Number_Of_Deaths', 'Deaths_Neoplasms',
+                                         'Deaths_CardiovascularDiseases')]
+
+# Create the rates columns
+boot_data$Deaths_CardiovascularDiseasesRate <- boot_data$Deaths_CardiovascularDiseases / boot_data$Number_Of_Deaths
+boot_data$Deaths_NeoplasmsRate <- boot_data$Deaths_Neoplasms / boot_data$Number_Of_Deaths
+boot_data$Deaths_CardiovascularDiseasesPopulationRate <- boot_data$Deaths_CardiovascularDiseases / boot_data$Population
+boot_data$Deaths_NeoplasmsPopulationRate <- boot_data$Deaths_Neoplasms / boot_data$Population
+```
+
+Now that we have all the data needed to move forward we can find population 
+descriptive statistics that will be useful in comparing against our estimated
+population statistics from the bootstrapping method. We can also visualize
+the data to check that it follows a normal distribution using a histogram.
+
+```{r}
+# Find cardiovascular disease rate statistics
+boot_means <- boot_data %>% summarize(mean_cardiovasculardiseasesrate = mean(Deaths_CardiovascularDiseasesRate),
+                                      mean_neoplasmsrate = mean(Deaths_NeoplasmsRate),
+                                      sd_cardiovasculardiseasesrate = sd(Deaths_CardiovascularDiseasesRate),
+                                      sd_neoplasmsrate = sd(Deaths_NeoplasmsRate))
+
+```
+
+We find that the average rate of deaths caused by cardiovascular diseases across
+the entire population is `r round(boot_means$mean_cardiovasculardiseasesrate, 4)`,
+or `r round(boot_means$mean_cardiovasculardiseasesrate * 100, 2)`%, with a 
+standard deviation of `r round(boot_means$sd_cardiovasculardiseasesrate, 4)`, or
+`r round(boot_means$sd_cardiovasculardiseasesrate * 100, 2)`%.
+
+We find that the average rate of deaths caused by neoplasms across the entire 
+population is `r round(boot_means$mean_neoplasmsrate, 4)`, or 
+`r round(boot_means$mean_neoplasmsrate * 100, 2)`%, with a standard deviation of 
+`r round(boot_means$sd_neoplasmsrate, 4)`, or
+`r round(boot_means$sd_neoplasmsrate * 100, 2)`%.
+
+```{r}
+# Display a histogram of the cardiovascular diseases rate
+ggplot(boot_data, aes(x = Deaths_CardiovascularDiseasesRate)) +
+geom_histogram()
+```
+
+```{r}
+# Display a histogram of the neoplasms rate
+ggplot(boot_data, aes(x = Deaths_NeoplasmsRate)) +
+geom_histogram()
+```
+
+Visualizing the histograms for both the cardiovascular disease death rate and 
+the neoplasms death rate it looks like both may follow a normal distribution.
+Further hypothesis tests would have to be done to validate that they do follow
+normal distributions. For our purposes, the visualization is good enough.
+
 ## Introduction
 
 ## Methods
 
+The bootstrapping method is fairly simple to understand but results in a variety
+of useful applications. Bootstrapping is a method of resampling that uses
+random sampling with replacement to mirror the sampling process and allows
+us to make inferences about the entire population based on just a sample from
+the full population. In order to utilize the bootstrapping method, the first
+step is to create $n$ number of new random samples from the current sample
+by allowing replacement. This means that every observation in the sample has
+the same probability of showing up in the new sample with every replacement.
+There are a variety of different types of bootstrapping that determine how
+to create the new samples. In the Monte Carlo method for case resampling, the
+new samples must have the exact size as the original sample. Bayesian bootstrap
+creates new samples by re-weighting the original sample. The smooth bootstrap
+adds random noise to each observation. The parametric bootstrap fits a parametric
+model to the original sample, where the new observations are pulled from the
+model. These are just the surface of what bootstrapping methods are available. 
+Once the new sample(s) are created, you can analyze each sample like you
+would the original sample to gather information about how it performs. Finally,
+you can make assumptions about the entire population based on the results of
+the multiple samples. In our modeling, we will be using the Monte Carlo method 
+for case resampling as it's the easiest to visualize and understand what is 
+happening during the process. We will also use $n = 1000$ to give a good balance 
+of the bootstrapping method and performance, although it can be scaled up to 
+hundreds of thousands of samples. 
+
 ### Statistical Modeling
+
+#### Estimating Population Mean and Standard Deviation
+
+The first experiment we will apply the bootstrapping method is finding the
+confidence intervals for the population mean and standard deviation. In order
+to accomplish this task we need to follow the steps of the bootstrapping
+method. Since we currently have an entire population worth of data, we will
+take a sample of the population, $n = 20$. In this example we will also be looking
+at only the cardiovascular diseases death rate.
+
+```{r}
+# Create our initial sample
+boot_initial_sample <- sample(1:nrow(boot_data), 20, replace = FALSE)
+```
+
+Now that we have our original sample we can use bootstrapping case resampling
+with the Monte Carlo method (new samples are the exact size as the original sample) 
+to find 1,000 new samples using replacement. For each new sample created we
+will save the mean and standard deviation.
+
+```{r}
+# Create vectors to store new sample means and standard deviations
+boot_estimated_means <- rep()
+boot_estimated_sds <- rep()
+# Create 1,000 new samples and save the means and standard deviations
+for (x in 1:1000) {
+  boot_new_sample <- sample(boot_initial_sample, 20, replace = TRUE)
+  boot_estimated_means <- append(boot_estimated_means,
+                                 pull(summarize(boot_data[boot_new_sample,], mean(Deaths_CardiovascularDiseasesRate))))
+  boot_estimated_sds <- append(boot_estimated_sds, 
+                               pull(summarize(boot_data[boot_new_sample,], sd(Deaths_CardiovascularDiseasesRate))))
+}
+```
+
+```{r}
+# Display some estimated means
+head(boot_estimated_means)
+```
+
+```{r}
+# Display some estimated standard deviations
+head(boot_estimated_sds)
+```
+
+Finally, now that we have the mean and standard deviations for all 1,000 samples
+creating using bootstrapping, we can trim the top and bottom 2.5% to find our
+95% confidence interval for the population mean and standard deviation.
+
+```{r}
+# Sort the estimated means from smallest to largest
+boot_estimated_means <- sort(boot_estimated_means)
+# Sort the estimated standard deviations from smallest to largest
+boot_estimated_sds <- sort(boot_estimated_sds)
+# Trim the top and bottom 2.5%
+start = length(boot_estimated_means) * 0.025
+end = length(boot_estimated_means) * 0.975
+boot_estimated_means <- boot_estimated_means[start:end]
+boot_estimated_sds <- boot_estimated_sds[start:end]
+```
+
+Now, by retrieving the first and last element in both the mean and standard
+deviation vectors we will find our 95% estimated population intervals. The
+95% confidence interval for the population mean is 
+[`r round(boot_estimated_means[1], 4)`, `r round(boot_estimated_means[length(boot_estimated_means)], 4)`]
+or [`r round(boot_estimated_means[1] * 100, 2)`%, `r round(boot_estimated_means[length(boot_estimated_means)] * 100, 2)`%].
+The 95% confidence interval for the population standard deviation is 
+[`r round(boot_estimated_sds[1], 4)`, `r round(boot_estimated_sds[length(boot_estimated_sds)], 4)`]
+or [`r round(boot_estimated_sds[1] * 100, 2)`%, `r round(boot_estimated_sds[length(boot_estimated_sds)] * 100, 2)`%].
+
+```{r}
+# Display a histogram of the cardiovascular diseases deaths estimated population
+# means rate
+ggplot() +
+geom_histogram(aes(boot_estimated_means))
+```
+
+#### Constructing Confidence Intervals on Regression Parameters
+
+The next experiment we will apply the bootstrapping method to is finding the
+confidence intervals for the regression parameters in a simple linear regression 
+model to determine how variable a model is. Again, we will follow the steps of 
+the bootstrapping method to achieve these results. To make things easier, we 
+will use the sample initial sample created in the first experiment. For the 
+model we will see if the deaths rate of neoplasms can be used to predict the 
+deaths rate of cardiovascular diseases.
+
+Again, we will use the Monte Carlo method to create $n = 1000$ new samples that
+are the exact size of the initial sample. For each one of these samples we will
+fit a simple linear regression model and save the coefficient and regression 
+parameter.
+
+```{r}
+# Create vectors to store new intercepts and regression parameters
+boot_estimated_intercepts <- rep()
+boot_estimated_regressionparameters <- rep()
+# Create 1,000 new samples and save the means and standard deviations
+for (x in 1:1000) {
+  boot_new_reg_sample <- sample(boot_initial_sample, 20, replace = TRUE)
+  boot_new_lm <- lm(Deaths_CardiovascularDiseasesRate ~ Deaths_NeoplasmsRate,
+                    boot_data[boot_new_sample,])
+  boot_estimated_intercepts <- append(boot_estimated_intercepts, 
+                                      boot_new_lm$coefficients[1])
+  boot_estimated_regressionparameters <- append(boot_estimated_regressionparameters, 
+                                                boot_new_lm$coefficients[2])
+}
+```
+
+Lastly, using the intercepts and regression parameters found we can construct
+our confidence intervals.
+
+```{r}
+# Sort the estimated means from smallest to largest
+boot_estimated_intercepts <- sort(boot_estimated_intercepts)
+# Sort the estimated standard deviations from smallest to largest
+boot_estimated_regressionparameters <- sort(boot_estimated_regressionparameters)
+# Trim the top and bottom 2.5%
+start = length(boot_estimated_intercepts) * 0.025
+end = length(boot_estimated_intercepts) * 0.975
+boot_estimated_intercepts <- boot_estimated_intercepts[start:end]
+boot_estimated_regressionparameters <- boot_estimated_regressionparameters[start:end]
+```
+
+Now, by retrieving the first and last element in both the intercept and 
+regression parameter vectors we will find our 95% estimated population 
+intervals. The 95% confidence interval for the intercept is 
+[`r round(boot_estimated_intercepts[1], 4)`, `r round(boot_estimated_intercepts[length(boot_estimated_intercepts)], 4)`].
+The 95% confidence interval for the regression parameter is 
+[`r round(boot_estimated_regressionparameters[1], 4)`, `r round(boot_estimated_regressionparameters[length(boot_estimated_regressionparameters)], 4)`].
 
 ### Conlusion
 
+Based on the results from the first experiment, estimating the population 
+mean and standard deviation using the bootstrapping method, we can see that
+the true population mean and standard deviation either fall within the 95% 
+confidence interval or are close to it. In this case the true population mean
+was `r round(boot_means$mean_cardiovasculardiseasesrate * 100, 2)`% and our 
+confidence interval was [`r round(boot_estimated_means[1] * 100, 2)`%, `r round(boot_estimated_means[length(boot_estimated_means)] * 100, 2)`%].
+Due to the nature of bootstrapping, the results may not always be perfect. Since
+there is replacement, while unlikely, it's entirely possible that the smallest
+value could be chosen to fill every single new sample. This would result in a
+much lower estimated population mean than the true population mean. Similarly,
+we bootstrapped for the estimate population standard deviation and ended up
+with the 95% confidence interval [`r round(boot_estimated_sds[1] * 100, 2)`%, `r round(boot_estimated_sds[length(boot_estimated_sds)] * 100, 2)`%]
+while the true population standard deviation is `r round(boot_means$sd_cardiovasculardiseasesrate * 100, 2)`%.
+
+In the second experiment we simulated 1,000 simple linear regression models using
+new samples created using the bootstrapping method to create a confidence interval
+for the regression intercept and parameter to ultimately see if there is much
+variability in the model. Our 95% confidence interval for the intercept is
+[`r round(boot_estimated_intercepts[1], 4)`, `r round(boot_estimated_intercepts[length(boot_estimated_intercepts)], 4)`].
+Our 95% confidence interval for the regression parameter is 
+[`r round(boot_estimated_regressionparameters[1], 4)`, `r round(boot_estimated_regressionparameters[length(boot_estimated_regressionparameters)], 4)`].
+We can see that the intervals are either the same number or extremely small. 
+This tells us that the model has very little variability, or it is not easily
+influenced by changing values. We can create the same simple linear regression
+model using the full population data to see that the intercept and parameter 
+are very close or identical to the bootstrapping intervals. Increasing the size
+of our initial sample may increase the variability of the model.
+
+```{r}
+boot_lm <- lm(Deaths_CardiovascularDiseasesRate ~ Deaths_NeoplasmsRate,
+              boot_data)
+```
+
+Fitting a model to the full dataset gives us a intercept of `r round(boot_lm$coefficients[1], 4)`
+and a parameter value of `r round(boot_lm$coefficients[2], 4)`.
+
 ## References
+
+
+
+
+
+
+
+
+
+
+
+
+
+
