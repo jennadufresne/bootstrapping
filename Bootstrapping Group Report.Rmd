@@ -397,6 +397,9 @@ normal distributions. For our purposes, the visualization is good enough.
 
 ## Introduction
 
+In this analysis, we develop and test two experiments with bootstrapping, a resampling method 
+particularly useful when estimating the variance of the sample median. 
+
 ## Methods
 
 The bootstrapping method is fairly simple to understand but results in a variety
