@@ -150,9 +150,29 @@ when each sample or subset is made there will be statistical measurements made
 on each set or on all the sets together. Once the measurements are done the data 
 is ready to plot. After the data is plotted analysis can be done. Furthermore, 
 inferences can be made on the population as a whole. As the article continues, 
-dives in to the importance of machine learning and how to implement bootstrapping 
-in python. To further understand bootstrapping the article gives an example and 
-states advantages and disadvantages.
+dives in to the importance of machine learning and how to implement 
+bootstrapping in python. To further understand bootstrapping the article gives 
+an example and states advantages and disadvantages.
+
+In the article, Advanced statistics: Bootstrapping confidence intervals for 
+statistics with “difficult” distributions explains the steps in bootstrapping to
+estimate confidence intervals for the two software packages, SAS and Stata. In 
+1979 bootstrapping was first introduced as a statistical technique allowing 
+researchers to make inferences from data without making assumptions about 
+distributions. In this case there are two distributions to take into account: 
+probability function (normal, binomial, or Poisson) or distribution of 
+statistics (median) calculated from the data. While estimating the confidence
+intervals using bootstrapping the article givesthe following steps: first, 
+sample space is found with replacement with the same number of variables in the
+original data set. Then, step one is preformed until researchers are satisfied 
+with the number of data sets. The following step is deciding the descriptive 
+statistic and computing it on each data set. Next, a confidence interval is 
+calculated from the collection of values. After all these steps are done, there 
+are multiple different options for computing the confidence intervals. For 
+example, the normal approximation method, percentile method, bias-corrected 
+method and approximate bootstrapping confidence method. Throughout the article 
+it states different examples on determining confidence intervals around various 
+statical distribution and using software to help make inferences about it.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
