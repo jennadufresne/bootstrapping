@@ -106,24 +106,156 @@ We find that the average rate of deaths caused by cardiovascular diseases across
 # Create a histogram of the cardiovascular diseases death rate
 cardioHistogram <- ggplot(boot_data, aes(x = Deaths_CardiovascularDiseasesRate)) +
                    xlab('Cardiovascular Diseases Death Rate') +
+                   ylab('Count') +
                    geom_histogram()
 
 # Create a histogram of the interpersonal violence death rate
-violenceHistogram <- ggplot(boot_data, aes(x = Deaths_InterpersonalViolence / Number_Of_Deaths)) +
-                     xlab('Interpersonal Violence Death Rate') +
-                     geom_histogram()
+violenceHistogram <- ggplot(boot_data, aes(x = Deaths_InterpersonalViolence, y = Population)) +
+                     scale_x_log10() +
+                     scale_y_log10() +
+                     xlab('Interpersonal Violence Deaths (log 10)') +
+                     ylab('Population (log 10)') +
+                     geom_point() 
 
-# Display histograms side by side
+# Display plots side by side
 grid.arrange(cardioHistogram, violenceHistogram, ncol = 2)
 ```
 
-Based on the histograms for the cardiovascular diseases death rate and the interpersonal violence death rate, it appears that the death rate for cardiovascular diseases may follow a normal distribution. The interpersonal violence death rate does not appear to follow a normal distribution.
+Based on the histogram for the cardiovascular diseases death rate, it appears that the death rate for cardiovascular diseases may follow a normal distribution. The plot for interpersonal violence shows that there may be a relationship between the number of deaths caused by interpersonal violence and the population of the country.
 
 ### Statistical Modeling
 
+We will look at two applications of Bootstrapping, both using the Monte Carlo method (new samples are the exact size as the original sample). The first application is estimating the population mean and standard deviation of the cardiovascular diseases death rate. Second, we will create confidence intervals on regression parameters for a simple linear regression that estimates the interpersonal violence deaths on the population of a country.
+
 #### Estimating Population Mean and Standard Deviation
 
-#### Construction Confidence Intervals on Regression Parameters
+Here we are going to be estimating the population mean and standard deviation using the Bootstrap method. Since we currently have an entire population worth of data, we will take a sample of the population, $n = 20$ so we can perform Bootstrap re-sampling.
+
+```{r}
+# Create our initial sample
+boot_initial_sample <- sample(1:nrow(boot_data), 20, replace = FALSE)
+```
+
+Now that we have our original sample we can use Bootstrap case re-sampling with the Monte Carlo method to find 1,000 new samples using replacement. For each new sample created we will save the mean and standard deviation.
+
+```{r}
+# Create vectors to store new sample means and standard deviations
+boot_estimated_means <- rep()
+boot_estimated_sds <- rep()
+# Create 1,000 new samples and save the means and standard deviations
+for (x in 1:1000) {
+  boot_new_sample <- sample(boot_initial_sample, 20, replace = TRUE)
+  boot_estimated_means <- append(boot_estimated_means,
+                                 pull(summarize(boot_data[boot_new_sample,], mean(Deaths_CardiovascularDiseasesRate))))
+  boot_estimated_sds <- append(boot_estimated_sds, 
+                               pull(summarize(boot_data[boot_new_sample,], sd(Deaths_CardiovascularDiseasesRate))))
+}
+```
+
+```{r}
+# Display some estimated means
+head(boot_estimated_means)
+
+# Display some estimated standard deviations
+head(boot_estimated_sds)
+```
+
+Now that we have the mean and standard deviations for all 1,000 samples creating using Bootstrapping, we can trim the top and bottom 2.5% to find our 95% confidence interval for the population mean and standard deviation.
+
+```{r}
+# Sort the estimated means from smallest to largest
+boot_estimated_means <- sort(boot_estimated_means)
+# Sort the estimated standard deviations from smallest to largest
+boot_estimated_sds <- sort(boot_estimated_sds)
+# Trim the top and bottom 2.5%
+start = length(boot_estimated_means) * 0.025
+end = length(boot_estimated_means) * 0.975
+boot_estimated_means <- boot_estimated_means[start:end]
+boot_estimated_sds <- boot_estimated_sds[start:end]
+```
+
+Now, by retrieving the first and last element in both the mean and standard deviation vectors we will find our 95% estimated population intervals. The 95% confidence interval for the population mean is \[`r round(boot_estimated_means[1], 4)`, `r round(boot_estimated_means[length(boot_estimated_means)], 4)`\] or \[`r round(boot_estimated_means[1] * 100, 2)`%, `r round(boot_estimated_means[length(boot_estimated_means)] * 100, 2)`%\]. The 95% confidence interval for the population standard deviation is \[`r round(boot_estimated_sds[1], 4)`, `r round(boot_estimated_sds[length(boot_estimated_sds)], 4)`\] or \[`r round(boot_estimated_sds[1] * 100, 2)`%, `r round(boot_estimated_sds[length(boot_estimated_sds)] * 100, 2)`%\].
+
+```{r}
+# Display a histogram of the cardiovascular diseases deaths estimated population means rate
+ggplot() +
+geom_histogram(aes(boot_estimated_means))
+```
+
+#### Finding Variablility of Regression Model
+
+The next experiment is finding the variability for a simple linear regression model. We will use the initial sample created in the first experiment as the initial sample for this experiment as well. For the model, we will see if the population of a country can be used to predict the deaths caused by interpersonal violence in 2019. Again, we will create 1,000 new samples. For each one of the new samples we will fit a simple linear regression model and save the coefficient and regression parameter.
+
+```{r}
+# Create vectors to store new intercepts and regression parameters
+boot_estimated_intercepts <- rep()
+boot_estimated_regressionparameters <- rep()
+# Create 1,000 new samples and save the means and standard deviations
+for (x in 1:1000) {
+  boot_new_reg_sample <- sample(boot_initial_sample, 20, replace = TRUE)
+  boot_new_lm <- lm(Deaths_InterpersonalViolence ~ Population,
+                    boot_data[boot_new_reg_sample,])
+  boot_estimated_intercepts <- append(boot_estimated_intercepts, 
+                                      boot_new_lm$coefficients[1])
+  boot_estimated_regressionparameters <- append(boot_estimated_regressionparameters, 
+                                                boot_new_lm$coefficients[2])
+}
+```
+
+Now we can compare the full population model, sample model, and Bootstrapping model against eachother.
+
+```{r}
+# Create population model
+pop_lm <- lm(Deaths_InterpersonalViolence ~ Population, boot_data)
+# Create initial sample model
+sample_lm <- lm(Deaths_InterpersonalViolence ~ Population, boot_data[boot_initial_sample,])
+# Find Bootstrapping average values
+boot_lm_intercept <- mean(boot_estimated_intercepts) 
+boot_lm_x1 <- mean(boot_estimated_regressionparameters)
+```
+
+|             | Population                 | Sample                        | Bootstrap             |
+|----------------|-------------------|---------------------|----------------|
+| (Intercept) | `r pop_lm$coefficients[1]` | `r sample_lm$coefficients[1]` | `r boot_lm_intercept` |
+| x           | `r pop_lm$coefficients[2]` | `r sample_lm$coefficients[2]` | `r boot_lm_x1`        |
+
+```{r}
+# Plot the data, population model, sample model, and final Bootstrap model (average of all models)
+final_plot <- ggplot(aes(x = Population, y = Deaths_InterpersonalViolence), data = boot_data) +
+              geom_point() +
+              geom_abline(intercept = coef(pop_lm)[1], slope = coef(pop_lm)[2], color= 'blue') +
+              geom_abline(intercept = coef(sample_lm)[1], slope = coef(sample_lm)[2], color = 'green') +
+              geom_abline(intercept = mean(boot_estimated_intercepts), slope = mean(boot_estimated_regressionparameters), color = 'red') +
+              xlab('Population') + 
+              ylab('Interpersonal Violence Deaths') +
+              ggtitle('Regression Comparison') +
+              labs(color = "Model")
+# Add all Bootstrap models
+for (x in 1:length(boot_estimated_intercepts)) {
+  final_plot <- final_plot + geom_abline(intercept = boot_estimated_intercepts[x], slope = boot_estimated_regressionparameters[x], alpha = 0.025)
+}
+# Display final plot
+final_plot
+```
+
+```{r}
+# Create a histogram of the intercepts found from the Bootstrap method
+interceptHistogram <- ggplot() + 
+                      aes(boot_estimated_intercepts) +
+                      geom_histogram() +
+                      ylab("Count") +
+                      xlab("Bootstrap Intercepts")
+
+# Create a histogram of the regression parameter found from the Bootstrap method
+parameterHistogram <- ggplot() + 
+                      aes(boot_estimated_regressionparameters) +
+                      geom_histogram() +
+                      ylab("Count") +
+                      xlab("Bootstrap Regression Parameters")
+
+# Display plots side by side
+grid.arrange(interceptHistogram, parameterHistogram, ncol = 2)
+```
 
 ### Conclusion
 
