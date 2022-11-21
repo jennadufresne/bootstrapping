@@ -1,10 +1,17 @@
 ---
 title: "Bootstrapping"
 title-block-banner: true
-author: "Caelan Bryan, Jenna Dufresne, Jamielee Jimenez Perez"
-date: last-modified
+author: 
+  - Caelan Bryan
+  - Jenna Dufresne 
+  - Jamielee Jimenez Perez
+date: '`r Sys.Date()`'
+format: 
+  html:
+    code-overflow: wrap
+    code-tools: true
+course: STA 6257 - Advanced Statistical Modeling
 bibliography: references.bib 
-always_allow_html: true
 nocite: | 
   @efron1
   @efron2
@@ -16,7 +23,7 @@ nocite: |
   @mastersindata
 ---
 
-## Introduction {#sec-introduction}
+## Introduction
 
 Bootstrap Methods: Another Look at the Jackknife [@efron1] is credited as being the creation of bootstrapping by author B. Efron. It starts by explaining that bootstrapping is a step above the jackknife method, and that the jackknife is a linear expansion for estimating the bootstrap. Starting in the introduction, it is stated that the bootstrap is shown to estimate the variance of the sample median, which is an area that the jackknife fails at. It is also mentioned that the bootstrap does well at estimating the error rates in certain problems, which outperforms other non-parametric estimation methods. The problem attempting to be solved is estimating the sampling distribution based on the observed data. The idea behind the bootstrap method is listed in three parts. First, construct the sample probability distribution. Second, draw a random sample of size n. Lastly, approximate the sampling distribution by the bootstrap distribution. It is mentioned that that the difficult part of bootstrapping is calculating the bootstrap distribution and three methods are given to accomplish this; direct Monte Carlo approximations, and Taylor series expansion methods. A few applications are listed. These include estimating the median, error rate estimation in discrimination analysis, relationship with the jackknife, Wilcoxon's statistic, and regression models. Finally, a list of some remarks regarding the bootstrap method are listed. Some important ideas listed are that the calculation of the bootstrap distribution using the Monte Carl method is easy to implement on the computer and that the bootstrap and jackknife provide approximate frequency statements and not approximate likelihood statements.
 
@@ -59,7 +66,7 @@ particularly useful when estimating the variance of the sample median.
 
 The bootstrapping method is fairly simple to understand but results in a variety of useful applications. Bootstrapping is a method of re-sampling that uses random sampling with replacement to mirror the sampling process and allows us to make inferences about the entire population based on just a sample from the full population. In order to utilize the bootstrapping method, the first step is to create $n$ number of new random samples from the current sample by allowing replacement. This means that every observation in the sample has the same probability of showing up in the new sample with every replacement. There are a variety of different types of bootstrapping that determine how to create the new samples. In the Monte Carlo method for case re-sampling, the new samples must have the exact size as the original sample. Bayesian bootstrap creates new samples by re-weighting the original sample. The smooth bootstrap adds random noise to each observation. The parametric bootstrap fits a parametric model to the original sample, where the new observations are pulled from the model. These are just the surface of what bootstrapping methods are available. Once the new sample(s) are created, you can analyze each sample like you would the original sample to gather information about how it performs. Finally, you can make assumptions about the entire population based on the results of the multiple samples. In our modeling, we will be using the Monte Carlo method for case re-sampling as it's the easiest to visualize and understand what is happening during the process. We will also use $n = 1000$ to give a good balance of the bootstrapping method and performance, although it can be scaled up to hundreds of thousands of samples.
 
-## Analysis and Results {#sec-analysis-and-results}
+## Analysis and Results 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
@@ -68,13 +75,29 @@ library(knitr)
 library(gridExtra)
 ```
 
-### Data and Visualization {#sec-data-and-visualization}
+### Data and Visualization 
 
-The dataset we will be using to explore Bootstrapping is the "Causes of Death - Our World in Data" dataset from Kaggle [@chavez_2022] which was expanded with the World Bank population dataset [@worldbank]. The "Causes of Death - Our World in Data" dataset contains thirty three causes of death broken down by continent, region, country, and territory and by the year of reporting. The World Bank population dataset contains population numbers for multiple years also broken down by continent, region, country, and territory. The populations from the population dataset were added into the causes of death dataset to allow us to get a rate of death, or percentage of total population, for each cause of death.
+#### Initial Data Sets
 
-To complete our original dataset, all rows that did not correspond to countries were removed. The number of executions and terrorism columns were also removed from the original causes of death dataset due to a lack of data for the majority of countries.
+The dataset being used to explore Bootstrapping is the 
+"Causes of Death - Our World in Data" dataset from Kaggle [@chavez_2022] which 
+was expanded with the World Bank population dataset [@worldbank]. The 
+"Causes of Death - Our World in Data" dataset contains thirty three causes of 
+death broken down by continent, region, country, and territory and by the year 
+of reporting. The World Bank population dataset contains population numbers for 
+multiple years also broken down by continent, region, country, and territory. 
+The populations from the population dataset were added into the causes of death 
+dataset to allow for the calculation of the rate of death, or percentage of 
+total population, for each cause of death.
 
-As a final note, the Vatican and Liechtenstein are the only two countries missing from our final, cleaned, dataset because they were not included in the original causes of death dataset from Kaggle.
+To complete the original dataset, all rows that did not correspond to countries 
+were removed. The number of executions and terrorism columns were also removed 
+from the original causes of death dataset due to a lack of data for most
+countries.
+
+As a final note, the Vatican and Liechtenstein are the only two countries 
+missing from the final, cleaned, dataset because they were not included in the 
+original causes of death dataset from Kaggle.
 
 ```{r}
 # Import the data
@@ -82,24 +105,37 @@ bootstrapping_data_cleaned = read.csv('bootstrapping_data_cleaned.csv',
                                       stringsAsFactors = TRUE)
 ```
 
-In order to fit our data into our experiments introduced later in the paper, we will need to further modify the dataset. The first thing we will want to do is to create a new column, Number_Of_Deaths, that includes the total number of reported deaths for a specific country and year by adding together the totals from all causes of deaths. Next, we will only extract the columns we will need for our experiments into a new dataset called boot_data. At this point we will also only extract data from the most recent reported year, 2019. The columns we will need are the Entity, Population, Number_Of_Deaths, Deaths_CardiovasuclarDiseases, and Deaths_InterpersonalViolence. Lastly, we will create a new column that is the rate of all deaths caused by cardiovascular diseases.
+#### Data Cleaning & Column Addition
+
+In order to fit the data into the experiments introduced later in the paper, the
+dataset will need to be further modified. A new column, Number_Of_Deaths, that 
+includes the total number of reported deaths for a specific country and year by 
+adding together the totals from all causes of deaths will be added. Next, only
+the columns needed for the experiments are extracted into a new dataset called
+boot_data. At this point, only data from the most recent reported year, 2019, is
+also extracted. The columns needed are the Entity, Population, Number_of_Deaths,
+Deaths_cardiovascularDiseases, and Deaths_InterpersonalViolence columns. Lastly,
+a new column is created that is the rate of all deaths caused by cardiovascular
+diseases.
 
 ```{r}
 # Create the total number of reported deaths column
-bootstrapping_data_cleaned$Number_Of_Deaths <- rowSums(bootstrapping_data_cleaned[,(5:35)])
+bootstrapping_data_cleaned$Number_Of_Deaths <- 
+  rowSums(bootstrapping_data_cleaned[,(5:35)])
 
 # Filter down the data to just include 2019 and just the columns we want
-boot_data = bootstrapping_data_cleaned[bootstrapping_data_cleaned$Year == '2019', 
-                                       c('Entity', 'Population', 
-                                         'Number_Of_Deaths',
-                                         'Deaths_CardiovascularDiseases',
-                                         'Deaths_InterpersonalViolence')]
+boot_data = 
+  bootstrapping_data_cleaned[bootstrapping_data_cleaned$Year == '2019', 
+                             c('Entity', 'Population', 'Number_Of_Deaths',
+                               'Deaths_CardiovascularDiseases',
+                               'Deaths_InterpersonalViolence')]
 
 # Create the cardiovascular diseases rate column
-boot_data$Deaths_CardiovascularDiseasesRate <- boot_data$Deaths_CardiovascularDiseases / boot_data$Number_Of_Deaths
+boot_data$Deaths_CardiovascularDiseasesRate <- 
+  boot_data$Deaths_CardiovascularDiseases / boot_data$Number_Of_Deaths
 ```
 
-Our dataset now contains the following columns:
+The dataset now contains the following columns:
 
 | Name                              | Description                                                                  | Type       |
 |----------------------------|--------------------------|------------------|
@@ -110,30 +146,41 @@ Our dataset now contains the following columns:
 | Deaths_InterpersonalViolence      | Total Number of Deaths for Country Caused by Interpersonal Violence in 2019  | Discrete   |
 | Deaths_CardiovascularDiseasesRate | Rate of Deaths in Country Caused by Cardiovascular Diseases in 2019          | Continuous |
 
-```{r}
-# Display a sample of the data
-# head(boot_data)
-```
+#### Descriptive Statistics
 
-Now that we have our dataset, we can find population descriptive statistics to compare against our estimated population statistics from bootstrapping. We can also visualize the data to check that if follow a normal distribution.
+Now that the dataset is created, we can find population descriptive statistics 
+to compare against the estimated population statistics from Bootstrapping. The 
+data can also be visualized to check that the rate of deaths caused by 
+cardiovascular diseases follows a normal distribution and that there appears to 
+be a relationship between the number of deaths caused by interpersonal violence
+and the population of a country.
 
 ```{r}
 # Find cardiovascular disease death rate statistics
-boot_means <- boot_data %>% summarize(mean_cardiovasculardiseasesrate = mean(Deaths_CardiovascularDiseasesRate),
-                                      sd_cardiovasculardiseasesrate = sd(Deaths_CardiovascularDiseasesRate))
+boot_means <- boot_data %>% summarize(mean_cardiovasculardiseasesrate = 
+                                        mean(Deaths_CardiovascularDiseasesRate),
+                                      sd_cardiovasculardiseasesrate = 
+                                        sd(Deaths_CardiovascularDiseasesRate))
 ```
 
-We find that the average rate of deaths caused by cardiovascular diseases across the entire population is `r round(boot_means$mean_cardiovasculardiseasesrate, 4)`, or `r round(boot_means$mean_cardiovasculardiseasesrate * 100, 2)`%, with a standard deviation of `r round(boot_means$sd_cardiovasculardiseasesrate, 4)`, or `r round(boot_means$sd_cardiovasculardiseasesrate * 100, 2)`%.
+The average rate of deaths caused by cardiovascular diseases across the entire 
+population is `r round(boot_means$mean_cardiovasculardiseasesrate, 4)`, or 
+`r round(boot_means$mean_cardiovasculardiseasesrate * 100, 2)`%, with a standard 
+deviation of `r round(boot_means$sd_cardiovasculardiseasesrate, 4)`, or 
+`r round(boot_means$sd_cardiovasculardiseasesrate * 100, 2)`%.
 
 ```{r}
 # Create a histogram of the cardiovascular diseases death rate
-cardioHistogram <- ggplot(boot_data, aes(x = Deaths_CardiovascularDiseasesRate)) +
+cardioHistogram <- ggplot(boot_data, 
+                          aes(x = Deaths_CardiovascularDiseasesRate)) +
                    xlab('Cardiovascular Diseases Death Rate') +
                    ylab('Count') +
                    geom_histogram()
 
 # Create a histogram of the interpersonal violence death rate
-violenceHistogram <- ggplot(boot_data, aes(x = Deaths_InterpersonalViolence, y = Population)) +
+violenceHistogram <- ggplot(boot_data, 
+                            aes(x = Deaths_InterpersonalViolence, 
+                                y = Population)) +
                      scale_x_log10() +
                      scale_y_log10() +
                      xlab('Interpersonal Violence Deaths (log 10)') +
@@ -144,22 +191,37 @@ violenceHistogram <- ggplot(boot_data, aes(x = Deaths_InterpersonalViolence, y =
 grid.arrange(cardioHistogram, violenceHistogram, ncol = 2)
 ```
 
-Based on the histogram for the cardiovascular diseases death rate, it appears that the death rate for cardiovascular diseases may follow a normal distribution. The plot for interpersonal violence shows that there may be a relationship between the number of deaths caused by interpersonal violence and the population of the country.
+Based on the histogram for the cardiovascular diseases death rate, it appears 
+that the death rate for cardiovascular diseases may follow a normal 
+distribution. The plot for interpersonal violence shows that there may be a 
+relationship between the number of deaths caused by interpersonal violence and 
+the population of the country. In both cases the data appear to be good
+contendors for statistical modeling using the Bootstrap method.
 
 ### Statistical Modeling
 
-We will look at two applications of Bootstrapping, both using the Monte Carlo method (new samples are the exact size as the original sample). The first application is estimating the population mean and standard deviation of the cardiovascular diseases death rate. Second, we will create confidence intervals on regression parameters for a simple linear regression that estimates the interpersonal violence deaths on the population of a country.
+We will look at two applications of Bootstrapping, both using the Monte Carlo 
+method (new samples are the exact size as the original sample). The first 
+application is estimating the population mean and standard deviation of the 
+cardiovascular diseases death rate. Second, we will test a simple linear 
+regression that estimate the number of interpersonal violence deaths on the 
+population of a country for variability of the model.
 
-#### Estimating Population Mean and Standard Deviation
-
-Here we are going to be estimating the population mean and standard deviation using the Bootstrap method. Since we currently have an entire population worth of data, we will take a sample of the population, $n = 20$ so we can perform Bootstrap re-sampling.
+In both experiments we will need to take a sample of our population data to
+continue with the Bootstrap methods. We will take a sample of the population,
+without replacement, with size $n = 20$.
 
 ```{r}
 # Create our initial sample
 boot_initial_sample <- sample(1:nrow(boot_data), 20, replace = FALSE)
 ```
 
-Now that we have our original sample we can use Bootstrap case re-sampling with the Monte Carlo method to find 1,000 new samples using replacement. For each new sample created we will save the mean and standard deviation.
+#### Estimating Population Mean and Standard Deviation
+
+Here we are going to be estimating the population mean and standard deviation 
+using the Bootstrap method. We can use Bootstrap case re-sampling to find 1,000 
+new samples using replacement. For each new sample created we will save the mean 
+and the standard deviation.
 
 ```{r}
 # Create vectors to store new sample means and standard deviations
@@ -169,9 +231,15 @@ boot_estimated_sds <- rep()
 for (x in 1:1000) {
   boot_new_sample <- sample(boot_initial_sample, 20, replace = TRUE)
   boot_estimated_means <- append(boot_estimated_means,
-                                 pull(summarize(boot_data[boot_new_sample,], mean(Deaths_CardiovascularDiseasesRate))))
+                                 pull(
+                                   summarize(
+                                     boot_data[boot_new_sample,], 
+                                     mean(Deaths_CardiovascularDiseasesRate))))
   boot_estimated_sds <- append(boot_estimated_sds, 
-                               pull(summarize(boot_data[boot_new_sample,], sd(Deaths_CardiovascularDiseasesRate))))
+                               pull(
+                                 summarize(
+                                   boot_data[boot_new_sample,], 
+                                   sd(Deaths_CardiovascularDiseasesRate))))
 }
 ```
 
@@ -183,7 +251,9 @@ head(boot_estimated_means)
 head(boot_estimated_sds)
 ```
 
-Now that we have the mean and standard deviations for all 1,000 samples creating using Bootstrapping, we can trim the top and bottom 2.5% to find our 95% confidence interval for the population mean and standard deviation.
+Now that we have the mean and standard deviations for all 1,000 samples creating 
+using Bootstrap re-sampling, we can trim the top and bottom 2.5% to find the 95% 
+confidence interval for the population mean and standard deviation.
 
 ```{r}
 # Sort the estimated means from smallest to largest
@@ -197,17 +267,35 @@ boot_estimated_means <- boot_estimated_means[start:end]
 boot_estimated_sds <- boot_estimated_sds[start:end]
 ```
 
-Now, by retrieving the first and last element in both the mean and standard deviation vectors we will find our 95% estimated population intervals. The 95% confidence interval for the population mean is \[`r round(boot_estimated_means[1], 4)`, `r round(boot_estimated_means[length(boot_estimated_means)], 4)`\] or \[`r round(boot_estimated_means[1] * 100, 2)`%, `r round(boot_estimated_means[length(boot_estimated_means)] * 100, 2)`%\]. The 95% confidence interval for the population standard deviation is \[`r round(boot_estimated_sds[1], 4)`, `r round(boot_estimated_sds[length(boot_estimated_sds)], 4)`\] or \[`r round(boot_estimated_sds[1] * 100, 2)`%, `r round(boot_estimated_sds[length(boot_estimated_sds)] * 100, 2)`%\].
+Now, by retrieving the first and last element in both the mean and standard 
+deviation vectors we will find our 95% estimated population intervals. The 95% 
+confidence interval for the population mean is 
+\[`r round(boot_estimated_means[1], 4)`, 
+`r round(boot_estimated_means[length(boot_estimated_means)], 4)`\] or 
+\[`r round(boot_estimated_means[1] * 100, 2)`%, 
+`r round(boot_estimated_means[length(boot_estimated_means)] * 100, 2)`%\]. The 
+95% confidence interval for the population standard deviation is 
+\[`r round(boot_estimated_sds[1], 4)`, 
+`r round(boot_estimated_sds[length(boot_estimated_sds)], 4)`\] or 
+\[`r round(boot_estimated_sds[1] * 100, 2)`%, 
+`r round(boot_estimated_sds[length(boot_estimated_sds)] * 100, 2)`%\].
 
 ```{r}
-# Display a histogram of the cardiovascular diseases deaths estimated population means rate
+# Display a histogram of the cardiovascular diseases deaths estimated 
+# population means rate
 ggplot() +
 geom_histogram(aes(boot_estimated_means))
 ```
 
 #### Finding Variablility of Regression Model
 
-The next experiment is finding the variability for a simple linear regression model. We will use the initial sample created in the first experiment as the initial sample for this experiment as well. For the model, we will see if the population of a country can be used to predict the deaths caused by interpersonal violence in 2019. Again, we will create 1,000 new samples. For each one of the new samples we will fit a simple linear regression model and save the coefficient and regression parameter.
+The next experiment is finding the variability for a simple linear regression 
+model. We will use the initial sample created in the first experiment as the 
+initial sample for this experiment as well. For the model, we will see if the 
+population of a country can be used to predict the deaths caused by 
+interpersonal violence in 2019. Again, we will create 1,000 new samples. For 
+each one of the new samples we will fit a simple linear regression model and 
+save the coefficient and regression parameter.
 
 ```{r}
 # Create vectors to store new intercepts and regression parameters
@@ -220,18 +308,21 @@ for (x in 1:1000) {
                     boot_data[boot_new_reg_sample,])
   boot_estimated_intercepts <- append(boot_estimated_intercepts, 
                                       boot_new_lm$coefficients[1])
-  boot_estimated_regressionparameters <- append(boot_estimated_regressionparameters, 
-                                                boot_new_lm$coefficients[2])
+  boot_estimated_regressionparameters <- 
+    append(boot_estimated_regressionparameters, 
+           boot_new_lm$coefficients[2])
 }
 ```
 
-Now we can compare the full population model, sample model, and Bootstrapping model against eachother.
+Now we can compare the full population model, sample model, and Bootstrapping 
+model against each other.
 
 ```{r}
 # Create population model
 pop_lm <- lm(Deaths_InterpersonalViolence ~ Population, boot_data)
 # Create initial sample model
-sample_lm <- lm(Deaths_InterpersonalViolence ~ Population, boot_data[boot_initial_sample,])
+sample_lm <- lm(Deaths_InterpersonalViolence ~ Population, 
+                boot_data[boot_initial_sample,])
 # Find Bootstrapping average values
 boot_lm_intercept <- mean(boot_estimated_intercepts) 
 boot_lm_x1 <- mean(boot_estimated_regressionparameters)
@@ -243,19 +334,30 @@ boot_lm_x1 <- mean(boot_estimated_regressionparameters)
 | x           | `r pop_lm$coefficients[2]` | `r sample_lm$coefficients[2]` | `r boot_lm_x1`        |
 
 ```{r}
-# Plot the data, population model, sample model, and final Bootstrap model (average of all models)
-final_plot <- ggplot(aes(x = Population, y = Deaths_InterpersonalViolence), data = boot_data) +
+# Plot the data, population model, sample model, and final Bootstrap model 
+# (average of all models)
+final_plot <- ggplot(aes(x = Population, y = Deaths_InterpersonalViolence), 
+                     data = boot_data) +
               geom_point() +
-              geom_abline(intercept = coef(pop_lm)[1], slope = coef(pop_lm)[2], color= 'blue') +
-              geom_abline(intercept = coef(sample_lm)[1], slope = coef(sample_lm)[2], color = 'green') +
-              geom_abline(intercept = mean(boot_estimated_intercepts), slope = mean(boot_estimated_regressionparameters), color = 'red') +
+              geom_abline(intercept = coef(pop_lm)[1], 
+                          slope = coef(pop_lm)[2], 
+                          color= 'blue') +
+              geom_abline(intercept = coef(sample_lm)[1], 
+                          slope = coef(sample_lm)[2], 
+                          color = 'green') +
+              geom_abline(intercept = mean(boot_estimated_intercepts), 
+                          slope = mean(boot_estimated_regressionparameters), 
+                          color = 'red') +
               xlab('Population') + 
               ylab('Interpersonal Violence Deaths') +
               ggtitle('Regression Comparison') +
               labs(color = "Model")
 # Add all Bootstrap models
 for (x in 1:length(boot_estimated_intercepts)) {
-  final_plot <- final_plot + geom_abline(intercept = boot_estimated_intercepts[x], slope = boot_estimated_regressionparameters[x], alpha = 0.025)
+  final_plot <- final_plot + 
+                geom_abline(intercept = boot_estimated_intercepts[x], 
+                            slope = boot_estimated_regressionparameters[x], 
+                            alpha = 0.025)
 }
 # Display final plot
 final_plot
@@ -269,7 +371,8 @@ interceptHistogram <- ggplot() +
                       ylab("Count") +
                       xlab("Bootstrap Intercepts")
 
-# Create a histogram of the regression parameter found from the Bootstrap method
+# Create a histogram of the regression parameter found from the Bootstrap 
+# method
 parameterHistogram <- ggplot() + 
                       aes(boot_estimated_regressionparameters) +
                       geom_histogram() +
@@ -282,4 +385,4 @@ grid.arrange(interceptHistogram, parameterHistogram, ncol = 2)
 
 ### Conclusion
 
-## References {#sec-references}
+## References
