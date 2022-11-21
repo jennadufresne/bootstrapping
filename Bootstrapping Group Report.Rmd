@@ -174,6 +174,27 @@ method and approximate bootstrapping confidence method. Throughout the article
 it states different examples on determining confidence intervals around various 
 statical distribution and using software to help make inferences about it.
 
+In "Bootstrapping Lasso Estimators" by A. Chatterjee & S. N. Lahiri (2011), 
+the authors consider bootstrapping the Lasso estimator of the regression parameter 
+in a multiple linear regression model. They propose a modified bootstrap method, 
+and show that it provides valid approximation to the distribution of the Lasso estimator, 
+for all possible values of the unknown regression parameter vector, including the case where 
+some of the components are zero. They also show that the residual bootstrap can be used to 
+consistently estimate the distribution and variance of the adaptive Lasso estimator. 
+Using the former result, they create a new method for choosing the optimal penalizing 
+parameter for the Lasso using the modified bootstrap. 
+
+"On the variety of methods for calculating confidence intervals by bootstrapping" discusses how 
+bootstrapping often implements a confidence interval around estimated parameter values. 
+There are multiple methods for this, but authors often do not specify which methods they use, 
+and this great variety in bootstrapping can give different results. Article explains 
+the difference between each method and encourages authors to be more clear with their methodology. 
+
+"A Note on Bootstrapping Generalized Method of Moments Estimators" by Jinyong Hahn (1996) 
+presents that the bootstrap distribution of the GMM estimator converges weakly to the limit 
+distribution of the estimator in probability. Asymptotic coverage probabilities of the confidence 
+intervals based on the bootstrap percentile method are thus equal to their nominal coverage probability. 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 library(tidyverse)
@@ -556,7 +577,7 @@ intervals. The 95% confidence interval for the intercept is
 The 95% confidence interval for the regression parameter is 
 [`r round(boot_estimated_regressionparameters[1], 4)`, `r round(boot_estimated_regressionparameters[length(boot_estimated_regressionparameters)], 4)`].
 
-### Conlusion
+### Conclusion
 
 Based on the results from the first experiment, estimating the population 
 mean and standard deviation using the bootstrapping method, we can see that
@@ -596,11 +617,16 @@ and a parameter value of `r round(boot_lm$coefficients[2], 4)`.
 
 ## References
 
+A. Chatterjee & S. N. Lahiri (2011) Bootstrapping Lasso Estimators, 
+Journal of the American Statistical Association, 106:494, 608-625, 
+DOI: 10.1198/jasa.2011.tm10159
 
+Puth, M.-T., Neuhäuser, M. and Ruxton, G.D. (2015), 
+On the variety of methods for calculating confidence intervals by bootstrapping. 
+J Anim Ecol, 84: 892-897. https://doi.org/10.1111/1365-2656.12382
 
-
-
-
+Hahn, J. (1996). A Note on Bootstrapping Generalized Method of Moments Estimators. 
+Econometric Theory, 12(1), 187-197. doi:10.1017/S0266466600006496 
 
 
 
