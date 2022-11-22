@@ -2,12 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Caelan Bryan, Jenna Dufresne, Jamielee Jimenez Perez">
-<meta name="dcterms.date" content="2022-11-20">
+<meta name="author" content="Caelan Bryan">
+<meta name="author" content="Jenna Dufresne">
+<meta name="author" content="Jamielee Jimenez Perez">
+<meta name="dcterms.date" content="2022-11-21">
 
 <title>Bootstrapping</title>
 <style>
@@ -127,7 +129,7 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Bootstrapping</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Bootstrapping</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
                       </div>
   </div>
     
@@ -135,18 +137,21 @@ div.csl-indent {
   <div class="quarto-title-meta">
 
       <div>
-      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-heading">Authors</div>
       <div class="quarto-title-meta-contents">
-               <p>Caelan Bryan, Jenna Dufresne, Jamielee Jimenez Perez </p>
+               <p>Caelan Bryan </p>
+               <p>Jenna Dufresne </p>
+               <p>Jamielee Jimenez Perez </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">November 20, 2022</p>
+        <p class="date">November 21, 2022</p>
       </div>
     </div>
+    
       
     </div>
     
@@ -158,48 +163,104 @@ div.csl-indent {
 
 
 
-<section id="sec-introduction" class="level2">
-<h2 class="anchored" data-anchor-id="sec-introduction">Introduction</h2>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="what-is-the-bootstrap-method" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-the-bootstrap-method">What is the Bootstrap Method</h3>
+</section>
+<section id="assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="assumptions">Assumptions</h3>
+</section>
+<section id="applications" class="level3">
+<h3 class="anchored" data-anchor-id="applications">Applications</h3>
 <p>Bootstrap Methods: Another Look at the Jackknife <span class="citation" data-cites="efron1">(<a href="#ref-efron1" role="doc-biblioref">B. Efron 1979</a>)</span> is credited as being the creation of bootstrapping by author B. Efron. It starts by explaining that bootstrapping is a step above the jackknife method, and that the jackknife is a linear expansion for estimating the bootstrap. Starting in the introduction, it is stated that the bootstrap is shown to estimate the variance of the sample median, which is an area that the jackknife fails at. It is also mentioned that the bootstrap does well at estimating the error rates in certain problems, which outperforms other non-parametric estimation methods. The problem attempting to be solved is estimating the sampling distribution based on the observed data. The idea behind the bootstrap method is listed in three parts. First, construct the sample probability distribution. Second, draw a random sample of size n.&nbsp;Lastly, approximate the sampling distribution by the bootstrap distribution. It is mentioned that that the difficult part of bootstrapping is calculating the bootstrap distribution and three methods are given to accomplish this; direct Monte Carlo approximations, and Taylor series expansion methods. A few applications are listed. These include estimating the median, error rate estimation in discrimination analysis, relationship with the jackknife, Wilcoxon’s statistic, and regression models. Finally, a list of some remarks regarding the bootstrap method are listed. Some important ideas listed are that the calculation of the bootstrap distribution using the Monte Carl method is easy to implement on the computer and that the bootstrap and jackknife provide approximate frequency statements and not approximate likelihood statements.</p>
 <p>Nonparametric Estimates of Standard Error: The Jackknife, the Bootstrap, and Other Methods <span class="citation" data-cites="efron2">(<a href="#ref-efron2" role="doc-biblioref">Bradley Efron 1981</a>)</span> starts by giving some background on what the purpose of the paper is. In this case, we want to estimate the standard error based on the data. This is normally done through parametric modeling methods, but in the paper it is being done through nonparametric methods. All methods are being tested using the same scenario which is bivariate normal distribution. This paper has four points. They are to describe the various methods, show how the methods derive from the same idea, relate the methods to each other, and finally show how the methods perform differently even though they are similar. The Monte Carlo experiment that the data was obtained from is then described. The bootstrap method is the first that is looked at. The steps are described to obtain the bootstrap samples. Random samples are created from the original sample and the bootstrap estimate is obtained. This process is than repeated multiple time to achieve enough samples to accurately estimate the standard error. 128 and 512 total samples were used separately, and while the 512 total sample provided a slightly more accurate result, the increase was minimal. on this result, the size of N samples is not overly important past 50-100. A smoothed bootstrap method is than looked at. This produced by compromising the normal theory maximum, likelihood estimate and the nonparametric maximum likelihood estimate. The results of the smoothed bootstrap method were overall better than those in the on-smoothed bootstrap method. Next, the jackknife, infinitesimal jackknife, half-sampling, and random sub sampling methods are discussed. All results are displayed in a table containing th estimated values, standard deviation, and confidence interval for each estimate. Overall, the bootstrap method produced the results that closest matches the theoretical values.</p>
 <p>In Bootstrapping - An Introduction And Its Applications In Statistics <span class="citation" data-cites="introduction">(<a href="#ref-introduction" role="doc-biblioref">Hossain 2000</a>)</span> the authors take a high-level approach to introducing the reader to bootstrapping along with applications to different parts of statistics. The introduction begins to explain what bootstrapping is and how it is accomplished. They make use of an example to help explain what bootstrapping is. In this case, they look at performing analysis on the population of the United States. It would be difficult, costly, and timely to sample the entire population so instead you might sample a smaller subset of the population and create new bootstrap samples using replacement. In this sense the bootstrap samples might contain duplicates or even omit certain responses from the original sample. Doing so allows interpretation of the entire population based on a subset of the population. One of the first applications looked at is estimation of means and confidence intervals for the mean. Another application is constructing confidence intervals for regression coefficients. The authors also look at regression models, case re-sampling, estimating the distribution of sample mean, Bayesian bootstrap, smooth bootstrap, parametric bootstrap, and re-sampling residuals as applications of bootstrapping. Lastly, some of the advantages and disadvantages are listed. One advantage is the simplicity of deriving estimates of standard errors and confidence intervals where a disadvantage would be that the result still depends on the original sample.</p>
 <p>In The Importance of Discussing Assumptions when Teaching Bootstrapping <span class="citation" data-cites="assumptions">(<a href="#ref-assumptions" role="doc-biblioref">Totty, Molyneux, and Fuentes 2021</a>)</span> the authors spend time ensuring that the readers understand when it is appropriate to use bootstrapping methods by presenting the math along with experimental results. The paper starts with an introduction to what bootstrapping is. They also mention that bootstrapping has increased in popularity since it’s inception with applications in linear regression and neural networks among other fields. The methods focused on during the paper are studentized, basic, and percentile bootstrap intervals and their hypothesis tests. The next section focuses on why it’s important to teach statistical computing and bootstrapping. One feature relevant to bootstrapping is that students understandings of confidence intervals and statistical inference relies on their understanding of sampling distributions. Next, some of the assumptions for bootstrapping are discussed. The assumptions were split based on interval estimation and hypothesis testing. For both cases, the largest assumption is that the distribution can be made approximately pivotal through shifting or studentization. Lastly, simulation-based performance was evaluated. This was done by using the metrics coverage proportion, significance level, and power. The most important results were that when the assumptions are broken, there can be differences in the performance of the different bootstrapping methods. There also was not a improvement between bootstrapping and other methods whose assumptions were also broken. The smaller the sample size and non-normalcy also impacted the performance of the methods. Lastly, an R package was created, which encompasses the functions used throughout the paper, that can be used to create intervals using bootstrapping methods.</p>
 <p>Bootstrapping with R to make generalized inference for regression model <span class="citation" data-cites="withr">(<a href="#ref-withr" role="doc-biblioref">Sillabutra et al. 2016</a>)</span> looks at a specific application of bootstrapping, validating a generalized regression model to make generalization of statistical inference to different cases outside of the original sample. In the introduction, the authors explain the different types of regression models and explain the different ways to complete model validation. Some of those listed include cross-validation, Jackknife, and bootstrap methods. The idea of the bootstrap method is then also explained. The methodology and design of the experiment is then outlined. In this case, the original observations will be resampled leading to a set of bootstrap samples. The mean estimate and regression coefficient estimates can then be found for each bootstrap sample. Finally, confidence intervals can be created for the mean, regression coefficients, and standard errors for both the mean and regression coefficients. A table is provided to outline the values received from the original sample and bootstrap samples. Finally, the results are discussed in the conclusion. Based on the results of this experiment, the values found are very similar among the original and bootstrap samples, although the confidence intervals for the bootstrap samples are often wider. Some advantages to bootstrapping are also listed.</p>
-<p>In the article, Bootstrapping <span class="citation" data-cites="mastersindata">(<a href="#ref-mastersindata" role="doc-biblioref"><span>“Bootstrapping”</span> 2022</a>)</span>, it first begins with a statement from Benjamin Zimmer. He believes the origin of bootstrapping was impossible to do. This idea evolved from a man trying to jump a fence by the force of pulling up on his bootstraps. Fortunately, statistically bootstrapping is possible. Bootstrapping is taking a population, creating a small collection of data by using replacement and randomly resampling to analyze. The idea of replacement is very important when discussing bootstrapping. When replacement happens in bootstrapping it means every item that is drawn from the population, the same item exists in the sample. The importance behind sampling and replacement is when each sample or subset is made there will be statistical measurements made on each set or on all the sets together. Once the measurements are done the data is ready to plot. After the data is plotted analysis can be done. Furthermore, inferences can be made on the population as a whole. As the article continues, dives in to the importance of machine learning and how to implement bootstrapping in python. To further understand bootstrapping the article gives an example and states advantages and disadvantages.</p>
-<p>In the article, Advanced statistics: Bootstrapping confidence intervals for statistics with “difficult” distributions explains the steps in bootstrapping to estimate confidence intervals for the two software packages, SAS and Stata. In 1979 bootstrapping was first introduced as a statistical technique allowing researchers to make inferences from data without making assumptions about distributions. In this case there are two distributions to take into account: probability function (normal, binomial, or Poisson) or distribution of statistics (median) calculated from the data. While estimating the confidence intervals using bootstrapping the article givesthe following steps: first, sample space is found with replacement with the same number of variables in the original data set. Then, step one is preformed until researchers are satisfied with the number of data sets. The following step is deciding the descriptive statistic and computing it on each data set. Next, a confidence interval is calculated from the collection of values. After all these steps are done, there are multiple different options for computing the confidence intervals. For example, the normal approximation method, percentile method, bias-corrected method and approximate bootstrapping confidence method. Throughout the article it states different examples on determining confidence intervals around various statistical distribution and using software to help make inferences about it.</p>
+<p>In the article, Bootstrapping , it first begins with a statement from Benjamin Zimmer. He believes the origin of bootstrapping was impossible to do. This idea evolve from a man trying to jump a fence by the force of pulling up on his bootstraps. Fortunately, statistically bootstrapping is possible. Bootstrapping is taking a population, creating a small collection of data by using replacement and randomly resampling to analyze. The idea of replacement is very important when discussing bootstrapping. When replacement happens in bootstrapping it means every item that is drawn from the population, the same item exists in the sample. The importance behind sampling and replacement is when each sample or subset is made there will be statistical measurements made on each set or on all the sets together. Once the measurements are done the data is ready to plot. After the data is plotted analysis can be done. Furthermore, inferences can be made on the population as a whole. As the article continues, dives in to the importance of machine learning and how to implement bootstrapping in python. To further understand bootstrapping the article gives an example and states advantages and disadvantages.</p>
+<p>In the article, Advanced statistics: Bootstrapping confidence intervals for statistics with “difficult” distributions explains the steps in bootstrapping to estimate confidence intervals for the two software packages, SAS and Stata. In 1979 bootstrapping was first introduced as a statistical technique allowing researchers to make inferences from data without making assumptions about distributions. In this case there are two distributions to take into account: probability function (normal, binomial, or Poisson) or distribution of statistics (median) calculated from the data. While estimating the confidence intervals using bootstrapping the article givesthe following steps: first, sample space is found with replacement with the same number of variables in the original data set. Then, step one is preformed until researchers are satisfied with the number of data sets. The following step is deciding the descriptive statistic and computing it on each data set. Next, a confidence interval is calculated from the collection of values. After all these steps are done, there are multiple different options for computing the confidence intervals. For example, the normal approximation method, percentile method, bias-corrected method and approximate bootstrapping confidence method. Throughout the article it states different examples on determining confidence intervals around various statistical distribution and using software to help make inferences about it. In “Bootstrapping Lasso Estimators” by A. Chatterjee &amp; S. N. Lahiri (2011), the authors consider bootstrapping the Lasso estimator of the regression parameter in a multiple linear regression model. They propose a modified bootstrap method, and show that it provides valid approximation to the distribution of the Lasso estimator, for all possible values of the unknown regression parameter vector, including the case where some of the components are zero. They also show that the residual bootstrap can be used to consistently estimate the distribution and variance of the adaptive Lasso estimator. Using the former result, they create a new method for choosing the optimal penalizing parameter for the Lasso using the modified bootstrap.</p>
+<p>“On the variety of methods for calculating confidence intervals by bootstrapping” discusses how bootstrapping often implements a confidence interval around estimated parameter values. There are multiple methods for this, but authors often do not specify which methods they use, and this great variety in bootstrapping can give different results. Article explains the difference between each method and encourages authors to be more clear with their methodology.</p>
+<p>“A Note on Bootstrapping Generalized Method of Moments Estimators” by Jinyong Hahn (1996) presents that the bootstrap distribution of the GMM estimator converges weakly to the limit distribution of the estimator in probability. Asymptotic coverage probabilities of the confidence intervals based on the bootstrap percentile method are thus equal to their nominal coverage probability.</p>
+<p>In this analysis, we develop and test two experiments with bootstrapping, a resampling method particularly useful when estimating the variance of the sample median.</p>
+</section>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>The bootstrapping method is fairly simple to understand but results in a variety of useful applications. Bootstrapping is a method of re-sampling that uses random sampling with replacement to mirror the sampling process and allows us to make inferences about the entire population based on just a sample from the full population. In order to utilize the bootstrapping method, the first step is to create <span class="math inline">\(n\)</span> number of new random samples from the current sample by allowing replacement. This means that every observation in the sample has the same probability of showing up in the new sample with every replacement. There are a variety of different types of bootstrapping that determine how to create the new samples. In the Monte Carlo method for case re-sampling, the new samples must have the exact size as the original sample. Bayesian bootstrap creates new samples by re-weighting the original sample. The smooth bootstrap adds random noise to each observation. The parametric bootstrap fits a parametric model to the original sample, where the new observations are pulled from the model. These are just the surface of what bootstrapping methods are available. Once the new sample(s) are created, you can analyze each sample like you would the original sample to gather information about how it performs. Finally, you can make assumptions about the entire population based on the results of the multiple samples. In our modeling, we will be using the Monte Carlo method for case re-sampling as it’s the easiest to visualize and understand what is happening during the process. We will also use <span class="math inline">\(n = 1000\)</span> to give a good balance of the bootstrapping method and performance, although it can be scaled up to hundreds of thousands of samples.</p>
+<p>There are a variety of different Bootstrap methods for specific scenarios, populations, samples, and applications. Although, many of the Bootstrap methods follow a similar set of steps. These steps for the one-sample problem were outlined in Bootstrap Methods: Another Look at the Jackknife <span class="citation" data-cites="efron1">(<a href="#ref-efron1" role="doc-biblioref">B. Efron 1979</a>)</span></p>
+<ol type="1">
+<li>Construct the sample probability distribution <span class="math inline">\(\hat{F}\)</span>, putting mass <span class="math inline">\(1/n\)</span> at each point <span class="math inline">\(x_1, x_2, x_3, . . . , x_n\)</span>.</li>
+<li>With <span class="math inline">\(\hat{F}\)</span> fixed, draw a random sample of size <span class="math inline">\(n\)</span> from <span class="math inline">\(\hat{F}\)</span>, say <span class="math inline">\(X_{i}^{*} = x_{i}^{*}\)</span>, <span class="math inline">\(X_{i}^{*} \sim _{ind}\hat{F}\)</span> and call this the bootstrap sample.</li>
+<li>Approximate the sampling distribution of <span class="math inline">\(R(X, \hat{F}\)</span> by the bootstrap distribution of <span class="math inline">\(R^{*} = R(X^{*}, \hat{F})\)</span>.</li>
+</ol>
+<p>Or more simply, to perform the Bootstrap method as proposed, given a sample of size <span class="math inline">\(n\)</span>, a new sample of size <span class="math inline">\(n\)</span> can be created by selecting from the original sample with replacement. Since the new sample is created with replacement, every element from the original sample has the same probability of ending up in the new sample. This can then by performed multiple times to estimate the sampling distribution based on the Bootstrap distribution.</p>
+<p>As time went on, new methods for Bootstrapping were introduced to be applied to different applications or to further enhance the accuracy. Some of the more popular methods are listed below.</p>
+<section id="types-of-bootstrap" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-bootstrap">Types of Bootstrap</h3>
+<p><strong>Monte Carlo Case Re-sampling</strong></p>
+<p>In the Monte Carlo method, a new sample is created by randomly selecting values from the original sample using replacement to create a sample of the same size. Statistics can then be computed from this new sample. This process is then repeated many times to create an estimate of the population statistic. <span class="citation" data-cites="efron1">(<a href="#ref-efron1" role="doc-biblioref">B. Efron 1979</a>)</span></p>
+<p><strong>Exact Case Re-sampling</strong></p>
+<p>The exact version for Bootstrap case re-sampling is similar to the Monte Carlo method, except every possible enumeration of the initial sample is created. The downside to this method is since there are a total of <span class="math inline">\({2n - 1 \choose n} = \frac{(2n - 1)!}{n!(n - 1)!}\)</span> possible samples, the process can be very intensive for large sample sizes. <span class="citation" data-cites="introduction">(<a href="#ref-introduction" role="doc-biblioref">Hossain 2000</a>)</span></p>
+<p><strong>Smooth Bootstrap</strong></p>
+<p>In the Smooth Bootstrap, a small amount of random noise is added to every re-sampled observation. This noise is zero-centered and usually normally distributed. Doing this means that the re-sampled data is not limited to just the data in the original sample, but rather to data points in close proximity to the original samples. <a href="#fig-1">Figure&nbsp;1</a> shows an example of the simple bootstrap density function and <a href="#fig-2">Figure&nbsp;2</a> shows an example of the smoothed density function provided by <span class="citation" data-cites="smooth">(<a href="#ref-smooth" role="doc-biblioref">Dwornicka, Goroshko, and Pietraszek 2019</a>)</span>.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Bootstrapping-Group-Report_files\figure-html\smooth1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Simple Bootstrap Density Function</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Bootstrapping-Group-Report_files\figure-html\smooth2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Smoothed Bootstrap Density Function</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>While these are some of the more popular methods for Bootstrapping, since Bootstrapping simply refers to a test that uses random sampling with replacement, there are multiple other types of Bootstrap methods. Some others include the Bayesian Bootstrap method, which creates new samples through assigning weights to the original data <span class="citation" data-cites="bayesian">(<a href="#ref-bayesian" role="doc-biblioref">Rubin 1981</a>)</span>, the Parametric Bootstrap, the Poisson Bootstrap, the Block Bootstrap, and Re-sampling residuals.</p>
 </section>
-<section id="sec-analysis-and-results" class="level2">
-<h2 class="anchored" data-anchor-id="sec-analysis-and-results">Analysis and Results</h2>
-<section id="sec-data-and-visualization" class="level3">
-<h3 class="anchored" data-anchor-id="sec-data-and-visualization">Data and Visualization</h3>
-<p>The dataset we will be using to explore Bootstrapping is the “Causes of Death - Our World in Data” dataset from Kaggle <span class="citation" data-cites="chavez_2022">(<a href="#ref-chavez_2022" role="doc-biblioref">Chavez 2022</a>)</span> which was expanded with the World Bank population dataset <span class="citation" data-cites="worldbank">(<a href="#ref-worldbank" role="doc-biblioref">2022</a>)</span>. The “Causes of Death - Our World in Data” dataset contains thirty three causes of death broken down by continent, region, country, and territory and by the year of reporting. The World Bank population dataset contains population numbers for multiple years also broken down by continent, region, country, and territory. The populations from the population dataset were added into the causes of death dataset to allow us to get a rate of death, or percentage of total population, for each cause of death.</p>
-<p>To complete our original dataset, all rows that did not correspond to countries were removed. The number of executions and terrorism columns were also removed from the original causes of death dataset due to a lack of data for the majority of countries.</p>
-<p>As a final note, the Vatican and Liechtenstein are the only two countries missing from our final, cleaned, dataset because they were not included in the original causes of death dataset from Kaggle.</p>
+</section>
+<section id="analysis-and-results" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-and-results">Analysis and Results</h2>
+<section id="data-and-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="data-and-visualization">Data and Visualization</h3>
+<section id="initial-data-sets" class="level4">
+<h4 class="anchored" data-anchor-id="initial-data-sets">Initial Data Sets</h4>
+<p>The dataset being used to explore Bootstrapping is the “Causes of Death - Our World in Data” dataset from Kaggle <span class="citation" data-cites="chavez_2022">(<a href="#ref-chavez_2022" role="doc-biblioref">Chavez 2022</a>)</span> which was expanded with the World Bank population dataset <span class="citation" data-cites="worldbank">(<a href="#ref-worldbank" role="doc-biblioref">2022</a>)</span>. The “Causes of Death - Our World in Data” dataset contains thirty three causes of death broken down by continent, region, country, and territory and by the year of reporting. The World Bank population dataset contains population numbers for multiple years also broken down by continent, region, country, and territory. The populations from the population dataset were added into the causes of death dataset to allow for the calculation of the rate of death, or percentage of total population, for each cause of death.</p>
+<p>To complete the original dataset, all rows that did not correspond to countries were removed. The number of executions and terrorism columns were also removed from the original causes of death dataset due to a lack of data for most countries.</p>
+<p>As a final note, the Vatican and Liechtenstein are the only two countries missing from the final, cleaned, dataset because they were not included in the original causes of death dataset from Kaggle.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>bootstrapping_data_cleaned <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">'bootstrapping_data_cleaned.csv'</span>, </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In order to fit our data into our experiments introduced later in the paper, we will need to further modify the dataset. The first thing we will want to do is to create a new column, Number_Of_Deaths, that includes the total number of reported deaths for a specific country and year by adding together the totals from all causes of deaths. Next, we will only extract the columns we will need for our experiments into a new dataset called boot_data. At this point we will also only extract data from the most recent reported year, 2019. The columns we will need are the Entity, Population, Number_Of_Deaths, Deaths_CardiovasuclarDiseases, and Deaths_InterpersonalViolence. Lastly, we will create a new column that is the rate of all deaths caused by cardiovascular diseases.</p>
+</section>
+<section id="data-cleaning" class="level4">
+<h4 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h4>
+<p>In order to fit the data into the experiments introduced later in the paper, the dataset will need to be further modified. A new column, Number_Of_Deaths, that includes the total number of reported deaths for a specific country and year by adding together the totals from all causes of deaths will be added. Next, only the columns needed for the experiments are extracted into a new dataset called boot_data. At this point, only data from the most recent reported year, 2019, is also extracted. The columns needed are the Entity, Population, Number_of_Deaths, Deaths_cardiovascularDiseases, and Deaths_InterpersonalViolence columns. Lastly, a new column is created that is the rate of all deaths caused by cardiovascular diseases.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the total number of reported deaths column</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bootstrapping_data_cleaned<span class="sc">$</span>Number_Of_Deaths <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(bootstrapping_data_cleaned[,(<span class="dv">5</span><span class="sc">:</span><span class="dv">35</span>)])</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter down the data to just include 2019 and just the columns we want</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>boot_data <span class="ot">=</span> bootstrapping_data_cleaned[bootstrapping_data_cleaned<span class="sc">$</span>Year <span class="sc">==</span> <span class="st">'2019'</span>, </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                                       <span class="fu">c</span>(<span class="st">'Entity'</span>, <span class="st">'Population'</span>, </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">'Number_Of_Deaths'</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">'Deaths_CardiovascularDiseases'</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">'Deaths_InterpersonalViolence'</span>)]</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the cardiovascular diseases rate column</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>boot_data<span class="sc">$</span>Deaths_CardiovascularDiseasesRate <span class="ot">&lt;-</span> boot_data<span class="sc">$</span>Deaths_CardiovascularDiseases <span class="sc">/</span> boot_data<span class="sc">$</span>Number_Of_Deaths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bootstrapping_data_cleaned<span class="sc">$</span>Number_Of_Deaths <span class="ot">&lt;-</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowSums</span>(bootstrapping_data_cleaned[,(<span class="dv">5</span><span class="sc">:</span><span class="dv">35</span>)])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter down the data to just include 2019 and just the columns needed</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>boot_data <span class="ot">=</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  bootstrapping_data_cleaned[bootstrapping_data_cleaned<span class="sc">$</span>Year <span class="sc">==</span> <span class="st">'2019'</span>, </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">'Entity'</span>, <span class="st">'Population'</span>, <span class="st">'Number_Of_Deaths'</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                               <span class="st">'Deaths_CardiovascularDiseases'</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                               <span class="st">'Deaths_InterpersonalViolence'</span>)]</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the cardiovascular diseases rate column</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>boot_data<span class="sc">$</span>Deaths_CardiovascularDiseasesRate <span class="ot">&lt;-</span> </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  boot_data<span class="sc">$</span>Deaths_CardiovascularDiseases <span class="sc">/</span> boot_data<span class="sc">$</span>Number_Of_Deaths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Our dataset now contains the following columns:</p>
+<p>The dataset now contains the following columns:</p>
 <table class="table">
 <colgroup>
 <col style="width: 38%">
@@ -246,125 +307,146 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
+</section>
+<section id="descriptive-statistics" class="level4">
+<h4 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h4>
+<p>Now that the dataset is created, we can find population descriptive statistics to compare against the estimated population statistics from Bootstrapping. The data can also be visualized to check that the rate of deaths caused by cardiovascular diseases follows a normal distribution and that there appears to be a relationship between the number of deaths caused by interpersonal violence and the population of a country.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display a sample of the data</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># head(boot_data)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find cardiovascular disease death rate statistics</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>boot_means <span class="ot">&lt;-</span> boot_data <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">mean_cardiovasculardiseasesrate =</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="fu">mean</span>(Deaths_CardiovascularDiseasesRate),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">sd_cardiovasculardiseasesrate =</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                                        <span class="fu">sd</span>(Deaths_CardiovascularDiseasesRate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now that we have our dataset, we can find population descriptive statistics to compare against our estimated population statistics from bootstrapping. We can also visualize the data to check that if follow a normal distribution.</p>
+<p>The average rate of deaths caused by cardiovascular diseases across the entire population is 0.3273, or 32.73%, with a standard deviation of 0.1309, or 13.09%.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find cardiovascular disease death rate statistics</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>boot_means <span class="ot">&lt;-</span> boot_data <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">mean_cardiovasculardiseasesrate =</span> <span class="fu">mean</span>(Deaths_CardiovascularDiseasesRate),</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">sd_cardiovasculardiseasesrate =</span> <span class="fu">sd</span>(Deaths_CardiovascularDiseasesRate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We find that the average rate of deaths caused by cardiovascular diseases across the entire population is 0.3273, or 32.73%, with a standard deviation of 0.1309, or 13.09%.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the cardiovascular diseases death rate</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>cardioHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(boot_data, <span class="fu">aes</span>(<span class="at">x =</span> Deaths_CardiovascularDiseasesRate)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">xlab</span>(<span class="st">'Cardiovascular Diseases Death Rate'</span>) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">ylab</span>(<span class="st">'Count'</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">geom_histogram</span>()</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the interpersonal violence death rate</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>violenceHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(boot_data, <span class="fu">aes</span>(<span class="at">x =</span> Deaths_InterpersonalViolence, <span class="at">y =</span> Population)) <span class="sc">+</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">xlab</span>(<span class="st">'Interpersonal Violence Deaths (log 10)'</span>) <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">ylab</span>(<span class="st">'Population (log 10)'</span>) <span class="sc">+</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">geom_point</span>() </span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Display plots side by side</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(cardioHistogram, violenceHistogram, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the cardiovascular diseases death rate</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cardioHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(boot_data, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">aes</span>(<span class="at">x =</span> Deaths_CardiovascularDiseasesRate)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">xlab</span>(<span class="st">'Cardiovascular Diseases Death Rate'</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">ylab</span>(<span class="st">'Count'</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">geom_histogram</span>()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the interpersonal violence death rate</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>violenceHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(boot_data, </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">aes</span>(<span class="at">x =</span> Deaths_InterpersonalViolence, </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y =</span> Population)) <span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">xlab</span>(<span class="st">'Interpersonal Violence Deaths (log 10)'</span>) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">ylab</span>(<span class="st">'Population (log 10)'</span>) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">geom_point</span>() </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Display plots side by side</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(cardioHistogram, violenceHistogram, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="Bootstrapping-Group-Report_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="Bootstrapping-Group-Report_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Based on the histogram for the cardiovascular diseases death rate, it appears that the death rate for cardiovascular diseases may follow a normal distribution. The plot for interpersonal violence shows that there may be a relationship between the number of deaths caused by interpersonal violence and the population of the country.</p>
+<p>Based on the histogram for the cardiovascular diseases death rate, it appears that the death rate for cardiovascular diseases may follow a normal distribution. The plot for interpersonal violence shows that there may be a relationship between the number of deaths caused by interpersonal violence and the population of the country. In both cases the data appear to be good contenders for statistical modeling using the Bootstrap method.</p>
+</section>
 </section>
 <section id="statistical-modeling" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h3>
-<p>We will look at two applications of Bootstrapping, both using the Monte Carlo method (new samples are the exact size as the original sample). The first application is estimating the population mean and standard deviation of the cardiovascular diseases death rate. Second, we will create confidence intervals on regression parameters for a simple linear regression that estimates the interpersonal violence deaths on the population of a country.</p>
+<p>Two applications of the Bootstrap method, both using the Monte Carlo method (new samples are the exact size as the original sample) will be analyzed. The first application is estimating the population mean and standard deviation of the cardiovascular diseases death rate. The second application is testing the variability of a simple linear regression model that estimates the number of interpersonal violence deaths on the population of a country.</p>
+<p>In both experiments a sample of the full population data will need to be taken to continue with the Bootstrap applications. A sample of the population was taken, without replacement, with size <span class="math inline">\(n = 20\)</span> to use in the two applications.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the initial sample</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>boot_initial_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(boot_data), <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="estimating-population-mean-and-standard-deviation" class="level4">
 <h4 class="anchored" data-anchor-id="estimating-population-mean-and-standard-deviation">Estimating Population Mean and Standard Deviation</h4>
-<p>Here we are going to be estimating the population mean and standard deviation using the Bootstrap method. Since we currently have an entire population worth of data, we will take a sample of the population, <span class="math inline">\(n = 20\)</span> so we can perform Bootstrap re-sampling.</p>
+<p>To estimate the population mean and standard deviation using the Bootstrap method, 1,000 new samples were created, with replacement, using the initial sample created. A simple loop can be created to continuously create these new samples. For every new sample that is created, the mean and standard deviation can be calculated and saved to be analyzed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create our initial sample</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>boot_initial_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(boot_data), <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vectors to store new sample means and standard deviations</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>boot_estimated_means <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>boot_estimated_sds <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 1,000 new samples and save the means and standard deviations</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  boot_new_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(boot_initial_sample, <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  boot_estimated_means <span class="ot">&lt;-</span> <span class="fu">append</span>(boot_estimated_means,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">pull</span>(</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">summarize</span>(</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                                     boot_data[boot_new_sample,], </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                                     <span class="fu">mean</span>(Deaths_CardiovascularDiseasesRate))))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  boot_estimated_sds <span class="ot">&lt;-</span> <span class="fu">append</span>(boot_estimated_sds, </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">pull</span>(</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">summarize</span>(</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                                   boot_data[boot_new_sample,], </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">sd</span>(Deaths_CardiovascularDiseasesRate))))</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now that we have our original sample we can use Bootstrap case re-sampling with the Monte Carlo method to find 1,000 new samples using replacement. For each new sample created we will save the mean and standard deviation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vectors to store new sample means and standard deviations</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>boot_estimated_means <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>boot_estimated_sds <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 1,000 new samples and save the means and standard deviations</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  boot_new_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(boot_initial_sample, <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  boot_estimated_means <span class="ot">&lt;-</span> <span class="fu">append</span>(boot_estimated_means,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">pull</span>(<span class="fu">summarize</span>(boot_data[boot_new_sample,], <span class="fu">mean</span>(Deaths_CardiovascularDiseasesRate))))</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  boot_estimated_sds <span class="ot">&lt;-</span> <span class="fu">append</span>(boot_estimated_sds, </span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">pull</span>(<span class="fu">summarize</span>(boot_data[boot_new_sample,], <span class="fu">sd</span>(Deaths_CardiovascularDiseasesRate))))</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display some estimated means</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boot_estimated_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display some estimated means</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boot_estimated_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3388597 0.3022130 0.2752518 0.2595038 0.3198134 0.2974137</code></pre>
+<pre><code>[1] 0.3615596 0.3340289 0.3100393 0.2871207 0.3732761 0.3807039</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display some estimated standard deviations</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boot_estimated_sds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display some estimated standard deviations</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boot_estimated_sds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.12860914 0.11434955 0.09691241 0.07863421 0.10462585 0.13974854</code></pre>
+<pre><code>[1] 0.1590767 0.1537117 0.1547626 0.1675374 0.1467192 0.1457482</code></pre>
 </div>
 </div>
-<p>Now that we have the mean and standard deviations for all 1,000 samples creating using Bootstrapping, we can trim the top and bottom 2.5% to find our 95% confidence interval for the population mean and standard deviation.</p>
+<p>In order to create a 95% confidence interval for the population mean and standard deviation, the top and bottom 2.5% of saved means and standard deviations can be trimmed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the estimated means from smallest to largest</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>boot_estimated_means <span class="ot">&lt;-</span> <span class="fu">sort</span>(boot_estimated_means)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the estimated standard deviations from smallest to largest</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>boot_estimated_sds <span class="ot">&lt;-</span> <span class="fu">sort</span>(boot_estimated_sds)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Trim the top and bottom 2.5%</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>start <span class="ot">=</span> <span class="fu">length</span>(boot_estimated_means) <span class="sc">*</span> <span class="fl">0.025</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>end <span class="ot">=</span> <span class="fu">length</span>(boot_estimated_means) <span class="sc">*</span> <span class="fl">0.975</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>boot_estimated_means <span class="ot">&lt;-</span> boot_estimated_means[start<span class="sc">:</span>end]</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>boot_estimated_sds <span class="ot">&lt;-</span> boot_estimated_sds[start<span class="sc">:</span>end]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the estimated means from smallest to largest</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>boot_estimated_means <span class="ot">&lt;-</span> <span class="fu">sort</span>(boot_estimated_means)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the estimated standard deviations from smallest to largest</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>boot_estimated_sds <span class="ot">&lt;-</span> <span class="fu">sort</span>(boot_estimated_sds)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Trim the top and bottom 2.5%</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>start <span class="ot">=</span> <span class="fu">length</span>(boot_estimated_means) <span class="sc">*</span> <span class="fl">0.025</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>end <span class="ot">=</span> <span class="fu">length</span>(boot_estimated_means) <span class="sc">*</span> <span class="fl">0.975</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>boot_estimated_means <span class="ot">&lt;-</span> boot_estimated_means[start<span class="sc">:</span>end]</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>boot_estimated_sds <span class="ot">&lt;-</span> boot_estimated_sds[start<span class="sc">:</span>end]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now, by retrieving the first and last element in both the mean and standard deviation vectors we will find our 95% estimated population intervals. The 95% confidence interval for the population mean is [0.2569, 0.3562] or [25.69%, 35.62%]. The 95% confidence interval for the population standard deviation is [0.0764, 0.1529] or [7.64%, 15.29%].</p>
+<p>Now, by retrieving the first and last element in both the mean and standard deviation vectors, the 95% estimated population intervals can be constructed. The 95% confidence interval for the population mean is [0.2545, 0.3763] or [25.45%, 37.63%]. The 95% confidence interval for the population standard deviation is [0.0948, 0.1743] or [9.48%, 17.43%].</p>
+<p>To evaluate the accuracy of the estimated population mean and standard deviation for the rate of deaths caused by cardiovascular diseases, the population mean and standard deviation found from the full population can be compared to the estimated confidence intervals. The true population statistics should fall within the confidence interval range. In this case:</p>
+<center>
+<span class="math inline">\(0.2545 &gt; 0.3273 &gt; 0.3763\)</span>
+</center>
+<center>
+<span class="math inline">\(0.0948 &gt; 0.1309 &gt; 0.1743\)</span>
+</center>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display a histogram of the cardiovascular diseases deaths estimated population means rate</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(boot_estimated_means))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display a histogram of the estimated means from the Bootstrap samples</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(boot_estimated_means))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="Bootstrapping-Group-Report_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<p><img src="Bootstrapping-Group-Report_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Visualizing the estimated means shows that they follow a normal distribution. This matches the full population data for the rate of deaths caused by cardiovascular diseases, which also follows a normal distribution.</p>
 </section>
 <section id="finding-variablility-of-regression-model" class="level4">
 <h4 class="anchored" data-anchor-id="finding-variablility-of-regression-model">Finding Variablility of Regression Model</h4>
-<p>The next experiment is finding the variability for a simple linear regression model. We will use the initial sample created in the first experiment as the initial sample for this experiment as well. For the model, we will see if the population of a country can be used to predict the deaths caused by interpersonal violence in 2019. Again, we will create 1,000 new samples. For each one of the new samples we will fit a simple linear regression model and save the coefficient and regression parameter.</p>
+<p>The next experiment is finding the variability for a simple linear regression model. For this experiment a model will be fit that estimates the number of deaths caused by interpersonal violence by the population of a country. Similar to the first experiment, 1,000 new samples will be created and analyzed, except instead of retrieving the mean and standard deviation, a linear regression model will be fit based on the new sample and the intercept and regression parameter will be extracted and saved.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vectors to store new intercepts and regression parameters</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>boot_estimated_intercepts <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>boot_estimated_regressionparameters <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 1,000 new samples and save the means and standard deviations</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  boot_new_reg_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(boot_initial_sample, <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  boot_new_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Deaths_InterpersonalViolence <span class="sc">~</span> Population,</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                    boot_data[boot_new_reg_sample,])</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  boot_estimated_intercepts <span class="ot">&lt;-</span> <span class="fu">append</span>(boot_estimated_intercepts, </span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                                      boot_new_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  boot_estimated_regressionparameters <span class="ot">&lt;-</span> <span class="fu">append</span>(boot_estimated_regressionparameters, </span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                                                boot_new_lm<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vectors to store new intercepts and regression parameters</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>boot_estimated_intercepts <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>boot_estimated_regressionparameters <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 1,000 new samples and save the means and standard deviations</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  boot_new_reg_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(boot_initial_sample, <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  boot_new_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Deaths_InterpersonalViolence <span class="sc">~</span> Population,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                    boot_data[boot_new_reg_sample,])</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  boot_estimated_intercepts <span class="ot">&lt;-</span> <span class="fu">append</span>(boot_estimated_intercepts, </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                                      boot_new_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  boot_estimated_regressionparameters <span class="ot">&lt;-</span> </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">append</span>(boot_estimated_regressionparameters, </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>           boot_new_lm<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now we can compare the full population model, sample model, and Bootstrapping model against eachother.</p>
+<p>Once all models have been created, and the intercept and regression parameter saved, a model can be fit based on the full population and the initial sample so the Bootstrap model can be compared against the other two. The intercept and regression parameter for the Bootstrap model can find found by simply taking the average of the estimated intercepts and estimated regression parameter vectors.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create population model</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>pop_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Deaths_InterpersonalViolence <span class="sc">~</span> Population, boot_data)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create initial sample model</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>sample_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Deaths_InterpersonalViolence <span class="sc">~</span> Population, boot_data[boot_initial_sample,])</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find Bootstrapping average values</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>boot_lm_intercept <span class="ot">&lt;-</span> <span class="fu">mean</span>(boot_estimated_intercepts) </span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>boot_lm_x1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(boot_estimated_regressionparameters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create population model</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pop_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Deaths_InterpersonalViolence <span class="sc">~</span> Population, boot_data)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create initial sample model</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>sample_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Deaths_InterpersonalViolence <span class="sc">~</span> Population, </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                boot_data[boot_initial_sample,])</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Find Bootstrapping average values</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>boot_lm_intercept <span class="ot">&lt;-</span> <span class="fu">mean</span>(boot_estimated_intercepts) </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>boot_lm_x1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(boot_estimated_regressionparameters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <table class="table">
 <colgroup>
@@ -385,66 +467,86 @@ div.csl-indent {
 <tr class="odd">
 <td>(Intercept)</td>
 <td>1183.7272946</td>
-<td>269.1481736</td>
-<td>262.523111</td>
+<td>309.7494354</td>
+<td>306.3600851</td>
 </tr>
 <tr class="even">
 <td>x</td>
 <td>2.4147731^{-5}</td>
-<td>1.7653203^{-5}</td>
-<td>1.8019908^{-5}</td>
+<td>5.3565032^{-5}</td>
+<td>5.6210654^{-5}</td>
 </tr>
 </tbody>
 </table>
+<p>Based on the table above, it should be clear that the Bootstrap model more closely fits the sample model than the population model. Since the method produces different results every time it is ran, it is hard to speak to the exact numbers, but the sample and Bootstrap models are usually relatively close to each other, while the population model might not be close. This tells us that the full population model has high variability, or is sensitive to outliers or other influential data points. This outcome can also be visualized by viewing a plot of the original data with the population, sample, and Bootstrap models displayed. To visualize what the Bootstrap method is doing, all 1,000 iterations of models are also displayed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data, population model, sample model, and final Bootstrap model (average of all models)</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>final_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Population, <span class="at">y =</span> Deaths_InterpersonalViolence), <span class="at">data =</span> boot_data) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(pop_lm)[<span class="dv">1</span>], <span class="at">slope =</span> <span class="fu">coef</span>(pop_lm)[<span class="dv">2</span>], <span class="at">color=</span> <span class="st">'blue'</span>) <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(sample_lm)[<span class="dv">1</span>], <span class="at">slope =</span> <span class="fu">coef</span>(sample_lm)[<span class="dv">2</span>], <span class="at">color =</span> <span class="st">'green'</span>) <span class="sc">+</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">mean</span>(boot_estimated_intercepts), <span class="at">slope =</span> <span class="fu">mean</span>(boot_estimated_regressionparameters), <span class="at">color =</span> <span class="st">'red'</span>) <span class="sc">+</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>              <span class="fu">xlab</span>(<span class="st">'Population'</span>) <span class="sc">+</span> </span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>              <span class="fu">ylab</span>(<span class="st">'Interpersonal Violence Deaths'</span>) <span class="sc">+</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>              <span class="fu">ggtitle</span>(<span class="st">'Regression Comparison'</span>) <span class="sc">+</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>              <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Model"</span>)</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add all Bootstrap models</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(boot_estimated_intercepts)) {</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  final_plot <span class="ot">&lt;-</span> final_plot <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">intercept =</span> boot_estimated_intercepts[x], <span class="at">slope =</span> boot_estimated_regressionparameters[x], <span class="at">alpha =</span> <span class="fl">0.025</span>)</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Display final plot</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>final_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data, population model, sample model, and final Bootstrap model </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (average of all models)</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>final_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Population, <span class="at">y =</span> Deaths_InterpersonalViolence), </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> boot_data) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(pop_lm)[<span class="dv">1</span>], </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">slope =</span> <span class="fu">coef</span>(pop_lm)[<span class="dv">2</span>], </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span> <span class="st">'blue'</span>) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(sample_lm)[<span class="dv">1</span>], </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">slope =</span> <span class="fu">coef</span>(sample_lm)[<span class="dv">2</span>], </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color =</span> <span class="st">'green'</span>) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">mean</span>(boot_estimated_intercepts), </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>                          <span class="at">slope =</span> <span class="fu">mean</span>(boot_estimated_regressionparameters), </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color =</span> <span class="st">'red'</span>) <span class="sc">+</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>              <span class="fu">xlab</span>(<span class="st">'Population'</span>) <span class="sc">+</span> </span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>              <span class="fu">ylab</span>(<span class="st">'Interpersonal Violence Deaths'</span>) <span class="sc">+</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>              <span class="fu">ggtitle</span>(<span class="st">'Regression Comparison'</span>) <span class="sc">+</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>              <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Model"</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add all Bootstrap models</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(boot_estimated_intercepts)) {</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  final_plot <span class="ot">&lt;-</span> final_plot <span class="sc">+</span> </span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>                <span class="fu">geom_abline</span>(<span class="at">intercept =</span> boot_estimated_intercepts[x], </span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>                            <span class="at">slope =</span> boot_estimated_regressionparameters[x], </span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>                            <span class="at">alpha =</span> <span class="fl">0.025</span>)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Display final plot</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>final_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Bootstrapping-Group-Report_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>A comparison of the regression lines further solidify the results shown in the table. The sample model (green) and Bootstrap model (red) usually fall closely together on the line. Since the Bootstrap models are created using the same set of data as the initial sample this is expected. With this specific data set, how close the population model (blue) falls to the other two is highly variable. Since the results are different every time the models are created it’s possible that the Bootstrap model could fit the true population almost identically. More interesting, to visualize the variability, all Bootstrap models created are graphed (black). This shows the extreme values that can occur with this dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the intercepts found from the Bootstrap method</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>interceptHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">aes</span>(boot_estimated_intercepts) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">ylab</span>(<span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">xlab</span>(<span class="st">"Bootstrap Intercepts"</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the regression parameter found from the Bootstrap </span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># method</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>parameterHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">aes</span>(boot_estimated_regressionparameters) <span class="sc">+</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">ylab</span>(<span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">xlab</span>(<span class="st">"Bootstrap Regression Parameters"</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Display plots side by side</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(interceptHistogram, parameterHistogram, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Bootstrapping-Group-Report_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the intercepts found from the Bootstrap method</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>interceptHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">aes</span>(boot_estimated_intercepts) <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">ylab</span>(<span class="st">"Count"</span>) <span class="sc">+</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">xlab</span>(<span class="st">"Bootstrap Intercepts"</span>)</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the regression parameter found from the Bootstrap method</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>parameterHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">aes</span>(boot_estimated_regressionparameters) <span class="sc">+</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">ylab</span>(<span class="st">"Count"</span>) <span class="sc">+</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">xlab</span>(<span class="st">"Bootstrap Regression Parameters"</span>)</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Display plots side by side</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(interceptHistogram, parameterHistogram, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="Bootstrapping-Group-Report_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
+<p>Again, similar to the means and standard deviations found in the first experiment, the intercepts appear to follow a normal distribution. The regression parameters usually do not appear to follow a normal distribution.</p>
 </section>
 </section>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>In the first experiment, the population mean and standard deviation were estimated using the Bootstrap method. After 1,000 new samples were created and the means and standard deviations from every sample saved, they were used to create a 95% confidence interval for the population mean and standard deviations. Using those confidence intervals, the true population values could be compared. It was found that the confidence interval for both the mean and standard deviation fell within the confidence intervals. Lastly, we could visualize that the estimated means followed a normal distribution.</p>
+<p>In the second experiment the simple linear regression model to estimate the number of deaths caused by interpersonal violence on the country population was analyzed for variability in the model. Again, using 1,000 new samples, a model was fit for every sample created and the intercepts and regression parameters were saved. The average of all 1,000 intercepts and regression parameters were found to create the Bootstrap model. This model was then compared against the model created using the full population data and the model created using the initial sample data. It was found that the Bootstrap model usually follows the sample model more closely than the full population model. A graph was presented to show the difference between the three models, along with displaying all models created as part of the Bootstrap method.</p>
+<p>These two experiments scratch the surface of demonstrate the usefulness of the Bootstrap method. The population mean, standard deviation, and distribution of the rate of death caused by cardiovascular diseases were able to be successfully estimated. The model of deaths caused by interpersonal violence on population was able to be analyzed to show it has high variability.</p>
 </section>
 </section>
-<section id="sec-references" class="level2 unnumbered">
+<section id="references" class="level2">
+
+<!-- -->
 
 
 </section>
@@ -453,11 +555,11 @@ div.csl-indent {
 <div id="ref-worldbank" class="csl-entry" role="doc-biblioentry">
 2022. <a href="https://data.worldbank.org/indicator/SP.POP.TOTL">https://data.worldbank.org/indicator/SP.POP.TOTL</a>.
 </div>
-<div id="ref-mastersindata" class="csl-entry" role="doc-biblioentry">
-<span>“Bootstrapping.”</span> 2022. <em>CORP-MIDS1 (MDS)</em>. <a href="https://www.mastersindatascience.org/learning/machine-learning-algorithms/bootstrapping/">https://www.mastersindatascience.org/learning/machine-learning-algorithms/bootstrapping/</a>.
-</div>
 <div id="ref-chavez_2022" class="csl-entry" role="doc-biblioentry">
 Chavez, Ivan. 2022. <a href="https://www.kaggle.com/datasets/ivanchvez/causes-of-death-our-world-in-data">https://www.kaggle.com/datasets/ivanchvez/causes-of-death-our-world-in-data</a>.
+</div>
+<div id="ref-smooth" class="csl-entry" role="doc-biblioentry">
+Dwornicka, Renata, Andrii Goroshko, and Jacek Pietraszek. 2019. <span>“The Smoothed Bootstrap Fine-Tuning.”</span> <em>System Safety: Human - Technical Facility - Environment</em> 1 (1): 716–23. <a href="https://doi.org/doi:10.2478/czoto-2019-0091">https://doi.org/doi:10.2478/czoto-2019-0091</a>.
 </div>
 <div id="ref-efron1" class="csl-entry" role="doc-biblioentry">
 Efron, B. 1979. <span>“Bootstrap Methods: Another Look at the Jackknife.”</span> <em>The Annals of Statistics</em> 7 (1): 1–26. <a href="http://www.jstor.org/stable/2958830">http://www.jstor.org/stable/2958830</a>.
@@ -467,6 +569,9 @@ Efron, Bradley. 1981. <span>“Nonparametric Estimates of Standard Error: The Ja
 </div>
 <div id="ref-introduction" class="csl-entry" role="doc-biblioentry">
 Hossain, Mohammad. 2000. <span>“Bootstrapping – an Introduction and Its Applications in Statistics.”</span> <em>Bangladesh Journal of Scientific Research</em> 18 (January): 75–88.
+</div>
+<div id="ref-bayesian" class="csl-entry" role="doc-biblioentry">
+Rubin, Donald B. 1981. <span>“The Bayesian Bootstrap.”</span> <em>The Annals of Statistics</em> 9 (1): 130–34. <a href="http://www.jstor.org/stable/2240875">http://www.jstor.org/stable/2240875</a>.
 </div>
 <div id="ref-withr" class="csl-entry" role="doc-biblioentry">
 Sillabutra, Jutatip, Prasong Kitidamrongsuk, Chukiat Viwatwongkasem, Chareena Ujeh, Siam Sae-tang, and Khanokporn Donjdee. 2016. <span>“Bootstrapping with r to Make Generalized Inference for Regression Model.”</span> <em>Procedia Computer Science</em> 86: 228–31. https://doi.org/<a href="https://doi.org/10.1016/j.procs.2016.05.103">https://doi.org/10.1016/j.procs.2016.05.103</a>.
@@ -517,13 +622,81 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
@@ -553,27 +726,590 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Bootstrapping"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> </span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - Caelan Bryan</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - Jenna Dufresne </span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - Jamielee Jimenez Perez</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> '`r Sys.Date()`'</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="an">course:</span><span class="co"> STA 6257 - Advanced Statistical Modeling</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib </span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="an">nocite:</span><span class="co"> | </span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">  @chavez_2022</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">  @worldbank</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">  @efron1</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">  @efron2</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">  @introduction</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co">  @assumptions</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co">  @withr</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">  @smooth</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">  @bayesian</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="fu">### What is the Bootstrap Method</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="fu">### Assumptions</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Applications</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>Bootstrap Methods: Another Look at the Jackknife <span class="co">[</span><span class="ot">@efron1</span><span class="co">]</span> is credited as being the creation of bootstrapping by author B. Efron. It starts by explaining that bootstrapping is a step above the jackknife method, and that the jackknife is a linear expansion for estimating the bootstrap. Starting in the introduction, it is stated that the bootstrap is shown to estimate the variance of the sample median, which is an area that the jackknife fails at. It is also mentioned that the bootstrap does well at estimating the error rates in certain problems, which outperforms other non-parametric estimation methods. The problem attempting to be solved is estimating the sampling distribution based on the observed data. The idea behind the bootstrap method is listed in three parts. First, construct the sample probability distribution. Second, draw a random sample of size n. Lastly, approximate the sampling distribution by the bootstrap distribution. It is mentioned that that the difficult part of bootstrapping is calculating the bootstrap distribution and three methods are given to accomplish this; direct Monte Carlo approximations, and Taylor series expansion methods. A few applications are listed. These include estimating the median, error rate estimation in discrimination analysis, relationship with the jackknife, Wilcoxon's statistic, and regression models. Finally, a list of some remarks regarding the bootstrap method are listed. Some important ideas listed are that the calculation of the bootstrap distribution using the Monte Carl method is easy to implement on the computer and that the bootstrap and jackknife provide approximate frequency statements and not approximate likelihood statements.</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>Nonparametric Estimates of Standard Error: The Jackknife, the Bootstrap, and Other Methods <span class="co">[</span><span class="ot">@efron2</span><span class="co">]</span> starts by giving some background on what the purpose of the paper is. In this case, we want to estimate the standard error based on the data. This is normally done through parametric modeling methods, but in the paper it is being done through nonparametric methods. All methods are being tested using the same scenario which is bivariate normal distribution. This paper has four points. They are to describe the various methods, show how the methods derive from the same idea, relate the methods to each other, and finally show how the methods perform differently even though they are similar. The Monte Carlo experiment that the data was obtained from is then described. The bootstrap method is the first that is looked at. The steps are described to obtain the bootstrap samples. Random samples are created from the original sample and the bootstrap estimate is obtained. This process is than repeated multiple time to achieve enough samples to accurately estimate the standard error. 128 and 512 total samples were used separately, and while the 512 total sample provided a slightly more accurate result, the increase was minimal. on this result, the size of N samples is not overly important past 50-100. A smoothed bootstrap method is than looked at. This produced by compromising the normal theory maximum, likelihood estimate and the nonparametric maximum likelihood estimate. The results of the smoothed bootstrap method were overall better than those in the on-smoothed bootstrap method. Next, the jackknife, infinitesimal jackknife, half-sampling, and random sub sampling methods are discussed. All results are displayed in a table containing th estimated values, standard deviation, and confidence interval for each estimate. Overall, the bootstrap method produced the results that closest matches the theoretical values.</span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>In Bootstrapping - An Introduction And Its Applications In Statistics <span class="co">[</span><span class="ot">@introduction</span><span class="co">]</span> the authors take a high-level approach to introducing the reader to bootstrapping along with applications to different parts of statistics. The introduction begins to explain what bootstrapping is and how it is accomplished. They make use of an example to help explain what bootstrapping is. In this case, they look at performing analysis on the population of the United States. It would be difficult, costly, and timely to sample the entire population so instead you might sample a smaller subset of the population and create new bootstrap samples using replacement. In this sense the bootstrap samples might contain duplicates or even omit certain responses from the original sample. Doing so allows interpretation of the entire population based on a subset of the population. One of the first applications looked at is estimation of means and confidence intervals for the mean. Another application is constructing confidence intervals for regression coefficients. The authors also look at regression models, case re-sampling, estimating the distribution of sample mean, Bayesian bootstrap, smooth bootstrap, parametric bootstrap, and re-sampling residuals as applications of bootstrapping. Lastly, some of the advantages and disadvantages are listed. One advantage is the simplicity of deriving estimates of standard errors and confidence intervals where a disadvantage would be that the result still depends on the original sample.</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>In The Importance of Discussing Assumptions when Teaching Bootstrapping <span class="co">[</span><span class="ot">@assumptions</span><span class="co">]</span> the authors spend time ensuring that the readers understand when it is appropriate to use bootstrapping methods by presenting the math along with experimental results. The paper starts with an introduction to what bootstrapping is. They also mention that bootstrapping has increased in popularity since it's inception with applications in linear regression and neural networks among other fields. The methods focused on during the paper are studentized, basic, and percentile bootstrap intervals and their hypothesis tests. The next section focuses on why it's important to teach statistical computing and bootstrapping. One feature relevant to bootstrapping is that students understandings of confidence intervals and statistical inference relies on their understanding of sampling distributions. Next, some of the assumptions for bootstrapping are discussed. The assumptions were split based on interval estimation and hypothesis testing. For both cases, the largest assumption is that the distribution can be made approximately pivotal through shifting or studentization. Lastly, simulation-based performance was evaluated. This was done by using the metrics coverage proportion, significance level, and power. The most important results were that when the assumptions are broken, there can be differences in the performance of the different bootstrapping methods. There also was not a improvement between bootstrapping and other methods whose assumptions were also broken. The smaller the sample size and non-normalcy also impacted the performance of the methods. Lastly, an R package was created, which encompasses the functions used throughout the paper, that can be used to create intervals using bootstrapping methods.</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>Bootstrapping with R to make generalized inference for regression model <span class="co">[</span><span class="ot">@withr</span><span class="co">]</span> looks at a specific application of bootstrapping, validating a generalized regression model to make generalization of statistical inference to different cases outside of the original sample. In the introduction, the authors explain the different types of regression models and explain the different ways to complete model validation. Some of those listed include cross-validation, Jackknife, and bootstrap methods. The idea of the bootstrap method is then also explained. The methodology and design of the experiment is then outlined. In this case, the original observations will be resampled leading to a set of bootstrap samples. The mean estimate and regression coefficient estimates can then be found for each bootstrap sample. Finally, confidence intervals can be created for the mean, regression coefficients, and standard errors for both the mean and regression coefficients. A table is provided to outline the values received from the original sample and bootstrap samples. Finally, the results are discussed in the conclusion. Based on the results of this experiment, the values found are very similar among the original and bootstrap samples, although the confidence intervals for the bootstrap samples are often wider. Some advantages to bootstrapping are also listed.</span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>In the article, Bootstrapping , it first begins with a statement from Benjamin Zimmer. He believes the origin of bootstrapping was impossible to do. This idea evolve from a man trying to jump a fence by the force of pulling up on his bootstraps. Fortunately, statistically bootstrapping is possible. Bootstrapping is taking a population, creating a small collection of data by using replacement and randomly resampling to analyze. The idea of replacement is very important when discussing bootstrapping. When replacement happens in bootstrapping it means every item that is drawn from the population, the same item exists in the sample. The importance behind sampling and replacement is when each sample or subset is made there will be statistical measurements made on each set or on all the sets together. Once the measurements are done the data is ready to plot. After the data is plotted analysis can be done. Furthermore, inferences can be made on the population as a whole. As the article continues, dives in to the importance of machine learning and how to implement bootstrapping in python. To further understand bootstrapping the article gives an example and states advantages and disadvantages.</span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>In the article, Advanced statistics: Bootstrapping confidence intervals for statistics with "difficult" distributions explains the steps in bootstrapping to estimate confidence intervals for the two software packages, SAS and Stata. In 1979 bootstrapping was first introduced as a statistical technique allowing researchers to make inferences from data without making assumptions about distributions. In this case there are two distributions to take into account: probability function (normal, binomial, or Poisson) or distribution of statistics (median) calculated from the data. While estimating the confidence intervals using bootstrapping the article givesthe following steps: first, sample space is found with replacement with the same number of variables in the original data set. Then, step one is preformed until researchers are satisfied with the number of data sets. The following step is deciding the descriptive statistic and computing it on each data set. Next, a confidence interval is calculated from the collection of values. After all these steps are done, there are multiple different options for computing the confidence intervals. For example, the normal approximation method, percentile method, bias-corrected method and approximate bootstrapping confidence method. Throughout the article it states different examples on determining confidence intervals around various statistical distribution and using software to help make inferences about it.</span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a>In "Bootstrapping Lasso Estimators" by A. Chatterjee &amp; S. N. Lahiri (2011), </span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>the authors consider bootstrapping the Lasso estimator of the regression parameter </span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>in a multiple linear regression model. They propose a modified bootstrap method, </span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>and show that it provides valid approximation to the distribution of the Lasso estimator, </span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a>for all possible values of the unknown regression parameter vector, including the case where </span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>some of the components are zero. They also show that the residual bootstrap can be used to </span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>consistently estimate the distribution and variance of the adaptive Lasso estimator. </span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a>Using the former result, they create a new method for choosing the optimal penalizing </span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a>parameter for the Lasso using the modified bootstrap. </span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a>"On the variety of methods for calculating confidence intervals by bootstrapping" discusses how </span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a>bootstrapping often implements a confidence interval around estimated parameter values. </span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a>There are multiple methods for this, but authors often do not specify which methods they use, </span>
+<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a>and this great variety in bootstrapping can give different results. Article explains </span>
+<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a>the difference between each method and encourages authors to be more clear with their methodology. </span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a>"A Note on Bootstrapping Generalized Method of Moments Estimators" by Jinyong Hahn (1996) </span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a>presents that the bootstrap distribution of the GMM estimator converges weakly to the limit </span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>distribution of the estimator in probability. Asymptotic coverage probabilities of the confidence </span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a>intervals based on the bootstrap percentile method are thus equal to their nominal coverage probability. </span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a>In this analysis, we develop and test two experiments with bootstrapping, a resampling method </span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>particularly useful when estimating the variance of the sample median. </span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a><span class="fu">## Methods</span></span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a>There are a variety of different Bootstrap methods for specific scenarios, </span>
+<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a>populations, samples, and applications. Although, many of the Bootstrap</span>
+<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a>methods follow a similar set of steps. These steps for the one-sample problem</span>
+<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a>were outlined in Bootstrap Methods: Another Look at the Jackknife <span class="co">[</span><span class="ot">@efron1</span><span class="co">]</span></span>
+<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Construct the sample probability distribution $\hat{F}$, putting mass $1/n$</span>
+<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a>at each point $x_1, x_2, x_3, . . . , x_n$.</span>
+<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>With $\hat{F}$ fixed, draw a random sample of size $n$ from $\hat{F}$, say</span>
+<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a>$X_{i}^{*} = x_{i}^{*}$, $X_{i}^{*} \sim _{ind}\hat{F}$ and call this the</span>
+<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a>bootstrap sample.</span>
+<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Approximate the sampling distribution of $R(X, \hat{F}$ by the bootstrap</span>
+<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a>distribution of $R^{*} = R(X^{*}, \hat{F})$.</span>
+<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a>Or more simply, to perform the Bootstrap method as proposed, given a sample of</span>
+<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a>size $n$, a new sample of size $n$ can be created by selecting from the original </span>
+<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a>sample with replacement. Since the new sample is created with replacement, every</span>
+<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a>element from the original sample has the same probability of ending up in the</span>
+<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a>new sample. This can then by performed multiple times to estimate the sampling</span>
+<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a>distribution based on the Bootstrap distribution.</span>
+<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a>As time went on, new methods for Bootstrapping were introduced to be applied to</span>
+<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a>different applications or to further enhance the accuracy. Some of the more</span>
+<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a>popular methods are listed below.</span>
+<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a><span class="fu">### Types of Bootstrap</span></span>
+<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a>**Monte Carlo Case Re-sampling**</span>
+<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a>In the Monte Carlo method, a new sample is created by randomly selecting values </span>
+<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a>from the original sample using replacement to create a sample of the same size. </span>
+<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a>Statistics can then be computed from this new sample. This process is then </span>
+<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a>repeated many times to create an estimate of the population statistic. <span class="co">[</span><span class="ot">@efron1</span><span class="co">]</span></span>
+<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a>**Exact Case Re-sampling**</span>
+<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a>The exact version for Bootstrap case re-sampling is similar to the Monte Carlo</span>
+<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a>method, except every possible enumeration of the initial sample is created. The</span>
+<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a>downside to this method is since there are a total of </span>
+<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a>${2n - 1 \choose n} = \frac{(2n - 1)!}{n!(n - 1)!}$ possible samples, the </span>
+<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a>process can be very intensive for large sample sizes. <span class="co">[</span><span class="ot">@introduction</span><span class="co">]</span></span>
+<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a>**Smooth Bootstrap**</span>
+<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a>In the Smooth Bootstrap, a small amount of random noise is added to every</span>
+<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a>re-sampled observation. This noise is zero-centered and usually normally</span>
+<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a>distributed. Doing this means that the re-sampled data is not limited to just</span>
+<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a>the data in the original sample, but rather to data points in close proximity to</span>
+<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a>the original samples. @fig-1 shows an example of the simple bootstrap density</span>
+<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a>function and @fig-2 shows an example of the smoothed density function provided</span>
+<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a>by <span class="co">[</span><span class="ot">@smooth</span><span class="co">]</span>.</span>
+<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a>::: {layout-ncol=2}</span>
+<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a><span class="al">![Simple Bootstrap Density Function](Bootstrapping-Group-Report_files\figure-html\smooth1.png)</span>{#fig-1}</span>
+<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a><span class="al">![Smoothed Bootstrap Density Function](Bootstrapping-Group-Report_files\figure-html\smooth2.png)</span>{#fig-2}</span>
+<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a>While these are some of the more popular methods for Bootstrapping, since </span>
+<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>Bootstrapping simply refers to a test that uses random sampling with</span>
+<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>replacement, there are multiple other types of Bootstrap methods. Some others</span>
+<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a>include the Bayesian Bootstrap method, which creates new samples through </span>
+<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>assigning weights to the original data <span class="co">[</span><span class="ot">@bayesian</span><span class="co">]</span>, the</span>
+<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a>Parametric Bootstrap, the Poisson Bootstrap, the Block Bootstrap, and </span>
+<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a>Re-sampling residuals.</span>
+<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis and Results </span></span>
+<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb17-150"><a href="#cb17-150" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data and Visualization </span></span>
+<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Initial Data Sets</span></span>
+<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a>The dataset being used to explore Bootstrapping is the </span>
+<span id="cb17-160"><a href="#cb17-160" aria-hidden="true" tabindex="-1"></a>"Causes of Death - Our World in Data" dataset from Kaggle <span class="co">[</span><span class="ot">@chavez_2022</span><span class="co">]</span> which </span>
+<span id="cb17-161"><a href="#cb17-161" aria-hidden="true" tabindex="-1"></a>was expanded with the World Bank population dataset <span class="co">[</span><span class="ot">@worldbank</span><span class="co">]</span>. The </span>
+<span id="cb17-162"><a href="#cb17-162" aria-hidden="true" tabindex="-1"></a>"Causes of Death - Our World in Data" dataset contains thirty three causes of </span>
+<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a>death broken down by continent, region, country, and territory and by the year </span>
+<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a>of reporting. The World Bank population dataset contains population numbers for </span>
+<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a>multiple years also broken down by continent, region, country, and territory. </span>
+<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a>The populations from the population dataset were added into the causes of death </span>
+<span id="cb17-167"><a href="#cb17-167" aria-hidden="true" tabindex="-1"></a>dataset to allow for the calculation of the rate of death, or percentage of </span>
+<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a>total population, for each cause of death.</span>
+<span id="cb17-169"><a href="#cb17-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-170"><a href="#cb17-170" aria-hidden="true" tabindex="-1"></a>To complete the original dataset, all rows that did not correspond to countries </span>
+<span id="cb17-171"><a href="#cb17-171" aria-hidden="true" tabindex="-1"></a>were removed. The number of executions and terrorism columns were also removed </span>
+<span id="cb17-172"><a href="#cb17-172" aria-hidden="true" tabindex="-1"></a>from the original causes of death dataset due to a lack of data for most</span>
+<span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a>countries.</span>
+<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a>As a final note, the Vatican and Liechtenstein are the only two countries </span>
+<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a>missing from the final, cleaned, dataset because they were not included in the </span>
+<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a>original causes of death dataset from Kaggle.</span>
+<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-181"><a href="#cb17-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-182"><a href="#cb17-182" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the data</span></span>
+<span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a>bootstrapping_data_cleaned <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">'bootstrapping_data_cleaned.csv'</span>, </span>
+<span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-185"><a href="#cb17-185" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-186"><a href="#cb17-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Data Cleaning</span></span>
+<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a>In order to fit the data into the experiments introduced later in the paper, the</span>
+<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a>dataset will need to be further modified. A new column, Number_Of_Deaths, that </span>
+<span id="cb17-191"><a href="#cb17-191" aria-hidden="true" tabindex="-1"></a>includes the total number of reported deaths for a specific country and year by </span>
+<span id="cb17-192"><a href="#cb17-192" aria-hidden="true" tabindex="-1"></a>adding together the totals from all causes of deaths will be added. Next, only</span>
+<span id="cb17-193"><a href="#cb17-193" aria-hidden="true" tabindex="-1"></a>the columns needed for the experiments are extracted into a new dataset called</span>
+<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a>boot_data. At this point, only data from the most recent reported year, 2019, is</span>
+<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a>also extracted. The columns needed are the Entity, Population, Number_of_Deaths,</span>
+<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a>Deaths_cardiovascularDiseases, and Deaths_InterpersonalViolence columns. Lastly,</span>
+<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a>a new column is created that is the rate of all deaths caused by cardiovascular</span>
+<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a>diseases.</span>
+<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-202"><a href="#cb17-202" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-203"><a href="#cb17-203" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the total number of reported deaths column</span></span>
+<span id="cb17-204"><a href="#cb17-204" aria-hidden="true" tabindex="-1"></a>bootstrapping_data_cleaned<span class="sc">$</span>Number_Of_Deaths <span class="ot">&lt;-</span> </span>
+<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowSums</span>(bootstrapping_data_cleaned[,(<span class="dv">5</span><span class="sc">:</span><span class="dv">35</span>)])</span>
+<span id="cb17-206"><a href="#cb17-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-207"><a href="#cb17-207" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter down the data to just include 2019 and just the columns needed</span></span>
+<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a>boot_data <span class="ot">=</span> </span>
+<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a>  bootstrapping_data_cleaned[bootstrapping_data_cleaned<span class="sc">$</span>Year <span class="sc">==</span> <span class="st">'2019'</span>, </span>
+<span id="cb17-210"><a href="#cb17-210" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">'Entity'</span>, <span class="st">'Population'</span>, <span class="st">'Number_Of_Deaths'</span>,</span>
+<span id="cb17-211"><a href="#cb17-211" aria-hidden="true" tabindex="-1"></a>                               <span class="st">'Deaths_CardiovascularDiseases'</span>,</span>
+<span id="cb17-212"><a href="#cb17-212" aria-hidden="true" tabindex="-1"></a>                               <span class="st">'Deaths_InterpersonalViolence'</span>)]</span>
+<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the cardiovascular diseases rate column</span></span>
+<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a>boot_data<span class="sc">$</span>Deaths_CardiovascularDiseasesRate <span class="ot">&lt;-</span> </span>
+<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a>  boot_data<span class="sc">$</span>Deaths_CardiovascularDiseases <span class="sc">/</span> boot_data<span class="sc">$</span>Number_Of_Deaths</span>
+<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a>The dataset now contains the following columns:</span>
+<span id="cb17-220"><a href="#cb17-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a>| Name                              | Description                                                                  | Type       |</span>
+<span id="cb17-222"><a href="#cb17-222" aria-hidden="true" tabindex="-1"></a>|----------------------------|--------------------------|------------------|</span>
+<span id="cb17-223"><a href="#cb17-223" aria-hidden="true" tabindex="-1"></a>| Entity                            | Name of Country                                                              | Nominal    |</span>
+<span id="cb17-224"><a href="#cb17-224" aria-hidden="true" tabindex="-1"></a>| Population                        | Population of Country in 2019                                                | Discrete   |</span>
+<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a>| Number_of_Deaths                  | Total Number of Deaths for Country in 2019                                   | Discrete   |</span>
+<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a>| Deaths_CardiovascularDiseases     | Total Number of Deaths for Country Caused by Cardiovascular Diseases in 2019 | Nominal    |</span>
+<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a>| Deaths_InterpersonalViolence      | Total Number of Deaths for Country Caused by Interpersonal Violence in 2019  | Discrete   |</span>
+<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a>| Deaths_CardiovascularDiseasesRate | Rate of Deaths in Country Caused by Cardiovascular Diseases in 2019          | Continuous |</span>
+<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Descriptive Statistics</span></span>
+<span id="cb17-231"><a href="#cb17-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-232"><a href="#cb17-232" aria-hidden="true" tabindex="-1"></a>Now that the dataset is created, we can find population descriptive statistics </span>
+<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a>to compare against the estimated population statistics from Bootstrapping. The </span>
+<span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a>data can also be visualized to check that the rate of deaths caused by </span>
+<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a>cardiovascular diseases follows a normal distribution and that there appears to </span>
+<span id="cb17-236"><a href="#cb17-236" aria-hidden="true" tabindex="-1"></a>be a relationship between the number of deaths caused by interpersonal violence</span>
+<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a>and the population of a country.</span>
+<span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-241"><a href="#cb17-241" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a><span class="co"># Find cardiovascular disease death rate statistics</span></span>
+<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a>boot_means <span class="ot">&lt;-</span> boot_data <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">mean_cardiovasculardiseasesrate =</span> </span>
+<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a>                                        <span class="fu">mean</span>(Deaths_CardiovascularDiseasesRate),</span>
+<span id="cb17-245"><a href="#cb17-245" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">sd_cardiovasculardiseasesrate =</span> </span>
+<span id="cb17-246"><a href="#cb17-246" aria-hidden="true" tabindex="-1"></a>                                        <span class="fu">sd</span>(Deaths_CardiovascularDiseasesRate))</span>
+<span id="cb17-247"><a href="#cb17-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a>The average rate of deaths caused by cardiovascular diseases across the entire </span>
+<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a>population is <span class="in">`r round(boot_means$mean_cardiovasculardiseasesrate, 4)`</span>, or </span>
+<span id="cb17-251"><a href="#cb17-251" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_means$mean_cardiovasculardiseasesrate * 100, 2)`</span>%, with a standard </span>
+<span id="cb17-252"><a href="#cb17-252" aria-hidden="true" tabindex="-1"></a>deviation of <span class="in">`r round(boot_means$sd_cardiovasculardiseasesrate, 4)`</span>, or </span>
+<span id="cb17-253"><a href="#cb17-253" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_means$sd_cardiovasculardiseasesrate * 100, 2)`</span>%.</span>
+<span id="cb17-254"><a href="#cb17-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-257"><a href="#cb17-257" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the cardiovascular diseases death rate</span></span>
+<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a>cardioHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(boot_data, </span>
+<span id="cb17-260"><a href="#cb17-260" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">aes</span>(<span class="at">x =</span> Deaths_CardiovascularDiseasesRate)) <span class="sc">+</span></span>
+<span id="cb17-261"><a href="#cb17-261" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">xlab</span>(<span class="st">'Cardiovascular Diseases Death Rate'</span>) <span class="sc">+</span></span>
+<span id="cb17-262"><a href="#cb17-262" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">ylab</span>(<span class="st">'Count'</span>) <span class="sc">+</span></span>
+<span id="cb17-263"><a href="#cb17-263" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">geom_histogram</span>()</span>
+<span id="cb17-264"><a href="#cb17-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-265"><a href="#cb17-265" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the interpersonal violence death rate</span></span>
+<span id="cb17-266"><a href="#cb17-266" aria-hidden="true" tabindex="-1"></a>violenceHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(boot_data, </span>
+<span id="cb17-267"><a href="#cb17-267" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">aes</span>(<span class="at">x =</span> Deaths_InterpersonalViolence, </span>
+<span id="cb17-268"><a href="#cb17-268" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y =</span> Population)) <span class="sc">+</span></span>
+<span id="cb17-269"><a href="#cb17-269" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb17-270"><a href="#cb17-270" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb17-271"><a href="#cb17-271" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">xlab</span>(<span class="st">'Interpersonal Violence Deaths (log 10)'</span>) <span class="sc">+</span></span>
+<span id="cb17-272"><a href="#cb17-272" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">ylab</span>(<span class="st">'Population (log 10)'</span>) <span class="sc">+</span></span>
+<span id="cb17-273"><a href="#cb17-273" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">geom_point</span>() </span>
+<span id="cb17-274"><a href="#cb17-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-275"><a href="#cb17-275" aria-hidden="true" tabindex="-1"></a><span class="co"># Display plots side by side</span></span>
+<span id="cb17-276"><a href="#cb17-276" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(cardioHistogram, violenceHistogram, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb17-277"><a href="#cb17-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-278"><a href="#cb17-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-279"><a href="#cb17-279" aria-hidden="true" tabindex="-1"></a>Based on the histogram for the cardiovascular diseases death rate, it appears </span>
+<span id="cb17-280"><a href="#cb17-280" aria-hidden="true" tabindex="-1"></a>that the death rate for cardiovascular diseases may follow a normal </span>
+<span id="cb17-281"><a href="#cb17-281" aria-hidden="true" tabindex="-1"></a>distribution. The plot for interpersonal violence shows that there may be a </span>
+<span id="cb17-282"><a href="#cb17-282" aria-hidden="true" tabindex="-1"></a>relationship between the number of deaths caused by interpersonal violence and </span>
+<span id="cb17-283"><a href="#cb17-283" aria-hidden="true" tabindex="-1"></a>the population of the country. In both cases the data appear to be good</span>
+<span id="cb17-284"><a href="#cb17-284" aria-hidden="true" tabindex="-1"></a>contenders for statistical modeling using the Bootstrap method.</span>
+<span id="cb17-285"><a href="#cb17-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-286"><a href="#cb17-286" aria-hidden="true" tabindex="-1"></a><span class="fu">### Statistical Modeling</span></span>
+<span id="cb17-287"><a href="#cb17-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-288"><a href="#cb17-288" aria-hidden="true" tabindex="-1"></a>Two applications of the Bootstrap method, both using the Monte Carlo method </span>
+<span id="cb17-289"><a href="#cb17-289" aria-hidden="true" tabindex="-1"></a>(new samples are the exact size as the original sample) will be analyzed. The</span>
+<span id="cb17-290"><a href="#cb17-290" aria-hidden="true" tabindex="-1"></a>first application is estimating the population mean and standard deviation of</span>
+<span id="cb17-291"><a href="#cb17-291" aria-hidden="true" tabindex="-1"></a>the cardiovascular diseases death rate. The second application is testing</span>
+<span id="cb17-292"><a href="#cb17-292" aria-hidden="true" tabindex="-1"></a>the variability of a simple linear regression model that estimates the</span>
+<span id="cb17-293"><a href="#cb17-293" aria-hidden="true" tabindex="-1"></a>number of interpersonal violence deaths on the population of a country.</span>
+<span id="cb17-294"><a href="#cb17-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-295"><a href="#cb17-295" aria-hidden="true" tabindex="-1"></a>In both experiments a sample of the full population data will need to be taken</span>
+<span id="cb17-296"><a href="#cb17-296" aria-hidden="true" tabindex="-1"></a>to continue with the Bootstrap applications. A sample of the population was </span>
+<span id="cb17-297"><a href="#cb17-297" aria-hidden="true" tabindex="-1"></a>taken, without replacement, with size $n = 20$ to use in the two applications.</span>
+<span id="cb17-298"><a href="#cb17-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-301"><a href="#cb17-301" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-302"><a href="#cb17-302" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the initial sample</span></span>
+<span id="cb17-303"><a href="#cb17-303" aria-hidden="true" tabindex="-1"></a>boot_initial_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(boot_data), <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb17-304"><a href="#cb17-304" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-305"><a href="#cb17-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-306"><a href="#cb17-306" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Estimating Population Mean and Standard Deviation</span></span>
+<span id="cb17-307"><a href="#cb17-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-308"><a href="#cb17-308" aria-hidden="true" tabindex="-1"></a>To estimate the population mean and standard deviation using the Bootstrap </span>
+<span id="cb17-309"><a href="#cb17-309" aria-hidden="true" tabindex="-1"></a>method, 1,000 new samples were created, with replacement, using the initial </span>
+<span id="cb17-310"><a href="#cb17-310" aria-hidden="true" tabindex="-1"></a>sample created. A simple loop can be created to continuously create these new</span>
+<span id="cb17-311"><a href="#cb17-311" aria-hidden="true" tabindex="-1"></a>samples. For every new sample that is created, the mean and standard deviation</span>
+<span id="cb17-312"><a href="#cb17-312" aria-hidden="true" tabindex="-1"></a>can be calculated and saved to be analyzed.</span>
+<span id="cb17-313"><a href="#cb17-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-316"><a href="#cb17-316" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-317"><a href="#cb17-317" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vectors to store new sample means and standard deviations</span></span>
+<span id="cb17-318"><a href="#cb17-318" aria-hidden="true" tabindex="-1"></a>boot_estimated_means <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
+<span id="cb17-319"><a href="#cb17-319" aria-hidden="true" tabindex="-1"></a>boot_estimated_sds <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
+<span id="cb17-320"><a href="#cb17-320" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 1,000 new samples and save the means and standard deviations</span></span>
+<span id="cb17-321"><a href="#cb17-321" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb17-322"><a href="#cb17-322" aria-hidden="true" tabindex="-1"></a>  boot_new_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(boot_initial_sample, <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-323"><a href="#cb17-323" aria-hidden="true" tabindex="-1"></a>  boot_estimated_means <span class="ot">&lt;-</span> <span class="fu">append</span>(boot_estimated_means,</span>
+<span id="cb17-324"><a href="#cb17-324" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">pull</span>(</span>
+<span id="cb17-325"><a href="#cb17-325" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">summarize</span>(</span>
+<span id="cb17-326"><a href="#cb17-326" aria-hidden="true" tabindex="-1"></a>                                     boot_data[boot_new_sample,], </span>
+<span id="cb17-327"><a href="#cb17-327" aria-hidden="true" tabindex="-1"></a>                                     <span class="fu">mean</span>(Deaths_CardiovascularDiseasesRate))))</span>
+<span id="cb17-328"><a href="#cb17-328" aria-hidden="true" tabindex="-1"></a>  boot_estimated_sds <span class="ot">&lt;-</span> <span class="fu">append</span>(boot_estimated_sds, </span>
+<span id="cb17-329"><a href="#cb17-329" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">pull</span>(</span>
+<span id="cb17-330"><a href="#cb17-330" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">summarize</span>(</span>
+<span id="cb17-331"><a href="#cb17-331" aria-hidden="true" tabindex="-1"></a>                                   boot_data[boot_new_sample,], </span>
+<span id="cb17-332"><a href="#cb17-332" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">sd</span>(Deaths_CardiovascularDiseasesRate))))</span>
+<span id="cb17-333"><a href="#cb17-333" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-334"><a href="#cb17-334" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-335"><a href="#cb17-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-338"><a href="#cb17-338" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-339"><a href="#cb17-339" aria-hidden="true" tabindex="-1"></a><span class="co"># Display some estimated means</span></span>
+<span id="cb17-340"><a href="#cb17-340" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boot_estimated_means)</span>
+<span id="cb17-341"><a href="#cb17-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-342"><a href="#cb17-342" aria-hidden="true" tabindex="-1"></a><span class="co"># Display some estimated standard deviations</span></span>
+<span id="cb17-343"><a href="#cb17-343" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boot_estimated_sds)</span>
+<span id="cb17-344"><a href="#cb17-344" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-345"><a href="#cb17-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-346"><a href="#cb17-346" aria-hidden="true" tabindex="-1"></a>In order to create a 95% confidence interval for the population mean and </span>
+<span id="cb17-347"><a href="#cb17-347" aria-hidden="true" tabindex="-1"></a>standard deviation, the top and bottom 2.5% of saved means and standard</span>
+<span id="cb17-348"><a href="#cb17-348" aria-hidden="true" tabindex="-1"></a>deviations can be trimmed. </span>
+<span id="cb17-349"><a href="#cb17-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-352"><a href="#cb17-352" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-353"><a href="#cb17-353" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the estimated means from smallest to largest</span></span>
+<span id="cb17-354"><a href="#cb17-354" aria-hidden="true" tabindex="-1"></a>boot_estimated_means <span class="ot">&lt;-</span> <span class="fu">sort</span>(boot_estimated_means)</span>
+<span id="cb17-355"><a href="#cb17-355" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the estimated standard deviations from smallest to largest</span></span>
+<span id="cb17-356"><a href="#cb17-356" aria-hidden="true" tabindex="-1"></a>boot_estimated_sds <span class="ot">&lt;-</span> <span class="fu">sort</span>(boot_estimated_sds)</span>
+<span id="cb17-357"><a href="#cb17-357" aria-hidden="true" tabindex="-1"></a><span class="co"># Trim the top and bottom 2.5%</span></span>
+<span id="cb17-358"><a href="#cb17-358" aria-hidden="true" tabindex="-1"></a>start <span class="ot">=</span> <span class="fu">length</span>(boot_estimated_means) <span class="sc">*</span> <span class="fl">0.025</span></span>
+<span id="cb17-359"><a href="#cb17-359" aria-hidden="true" tabindex="-1"></a>end <span class="ot">=</span> <span class="fu">length</span>(boot_estimated_means) <span class="sc">*</span> <span class="fl">0.975</span></span>
+<span id="cb17-360"><a href="#cb17-360" aria-hidden="true" tabindex="-1"></a>boot_estimated_means <span class="ot">&lt;-</span> boot_estimated_means[start<span class="sc">:</span>end]</span>
+<span id="cb17-361"><a href="#cb17-361" aria-hidden="true" tabindex="-1"></a>boot_estimated_sds <span class="ot">&lt;-</span> boot_estimated_sds[start<span class="sc">:</span>end]</span>
+<span id="cb17-362"><a href="#cb17-362" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-363"><a href="#cb17-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-364"><a href="#cb17-364" aria-hidden="true" tabindex="-1"></a>Now, by retrieving the first and last element in both the mean and standard </span>
+<span id="cb17-365"><a href="#cb17-365" aria-hidden="true" tabindex="-1"></a>deviation vectors, the 95% estimated population intervals can be constructed. </span>
+<span id="cb17-366"><a href="#cb17-366" aria-hidden="true" tabindex="-1"></a>The 95% confidence interval for the population mean is </span>
+<span id="cb17-367"><a href="#cb17-367" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span><span class="in">`r round(boot_estimated_means[1], 4)`</span>, </span>
+<span id="cb17-368"><a href="#cb17-368" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_estimated_means[length(boot_estimated_means)], 4)`</span><span class="sc">\]</span> or </span>
+<span id="cb17-369"><a href="#cb17-369" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span><span class="in">`r round(boot_estimated_means[1] * 100, 2)`</span>%, </span>
+<span id="cb17-370"><a href="#cb17-370" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_estimated_means[length(boot_estimated_means)] * 100, 2)`</span>%<span class="sc">\]</span>. The </span>
+<span id="cb17-371"><a href="#cb17-371" aria-hidden="true" tabindex="-1"></a>95% confidence interval for the population standard deviation is </span>
+<span id="cb17-372"><a href="#cb17-372" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span><span class="in">`r round(boot_estimated_sds[1], 4)`</span>, </span>
+<span id="cb17-373"><a href="#cb17-373" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_estimated_sds[length(boot_estimated_sds)], 4)`</span><span class="sc">\]</span> or </span>
+<span id="cb17-374"><a href="#cb17-374" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span><span class="in">`r round(boot_estimated_sds[1] * 100, 2)`</span>%, </span>
+<span id="cb17-375"><a href="#cb17-375" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_estimated_sds[length(boot_estimated_sds)] * 100, 2)`</span>%<span class="sc">\]</span>.</span>
+<span id="cb17-376"><a href="#cb17-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-377"><a href="#cb17-377" aria-hidden="true" tabindex="-1"></a>To evaluate the accuracy of the estimated population mean and standard</span>
+<span id="cb17-378"><a href="#cb17-378" aria-hidden="true" tabindex="-1"></a>deviation for the rate of deaths caused by cardiovascular diseases, the </span>
+<span id="cb17-379"><a href="#cb17-379" aria-hidden="true" tabindex="-1"></a>population mean and standard deviation found from the full population can be</span>
+<span id="cb17-380"><a href="#cb17-380" aria-hidden="true" tabindex="-1"></a>compared to the estimated confidence intervals. The true population statistics</span>
+<span id="cb17-381"><a href="#cb17-381" aria-hidden="true" tabindex="-1"></a>should fall within the confidence interval range. In this case:</span>
+<span id="cb17-382"><a href="#cb17-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-383"><a href="#cb17-383" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;center&gt;</span></span>
+<span id="cb17-384"><a href="#cb17-384" aria-hidden="true" tabindex="-1"></a>$<span class="in">`r round(boot_estimated_means[1], 4)`</span> &gt; </span>
+<span id="cb17-385"><a href="#cb17-385" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_means$mean_cardiovasculardiseasesrate, 4)`</span> &gt;</span>
+<span id="cb17-386"><a href="#cb17-386" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_estimated_means[length(boot_estimated_means)], 4)`</span>$</span>
+<span id="cb17-387"><a href="#cb17-387" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/center&gt;</span></span>
+<span id="cb17-388"><a href="#cb17-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-389"><a href="#cb17-389" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;center&gt;</span></span>
+<span id="cb17-390"><a href="#cb17-390" aria-hidden="true" tabindex="-1"></a>$<span class="in">`r round(boot_estimated_sds[1], 4)`</span> &gt; </span>
+<span id="cb17-391"><a href="#cb17-391" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_means$sd_cardiovasculardiseasesrate, 4)`</span> &gt;</span>
+<span id="cb17-392"><a href="#cb17-392" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_estimated_sds[length(boot_estimated_sds)], 4)`</span>$</span>
+<span id="cb17-393"><a href="#cb17-393" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/center&gt;</span></span>
+<span id="cb17-394"><a href="#cb17-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-397"><a href="#cb17-397" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-398"><a href="#cb17-398" aria-hidden="true" tabindex="-1"></a><span class="co"># Display a histogram of the estimated means from the Bootstrap samples</span></span>
+<span id="cb17-399"><a href="#cb17-399" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb17-400"><a href="#cb17-400" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(boot_estimated_means))</span>
+<span id="cb17-401"><a href="#cb17-401" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-402"><a href="#cb17-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-403"><a href="#cb17-403" aria-hidden="true" tabindex="-1"></a>Visualizing the estimated means shows that they follow a normal distribution.</span>
+<span id="cb17-404"><a href="#cb17-404" aria-hidden="true" tabindex="-1"></a>This matches the full population data for the rate of deaths caused by</span>
+<span id="cb17-405"><a href="#cb17-405" aria-hidden="true" tabindex="-1"></a>cardiovascular diseases, which also follows a normal distribution.</span>
+<span id="cb17-406"><a href="#cb17-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-407"><a href="#cb17-407" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Finding Variablility of Regression Model</span></span>
+<span id="cb17-408"><a href="#cb17-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-409"><a href="#cb17-409" aria-hidden="true" tabindex="-1"></a>The next experiment is finding the variability for a simple linear regression </span>
+<span id="cb17-410"><a href="#cb17-410" aria-hidden="true" tabindex="-1"></a>model. For this experiment a model will be fit that estimates the number of</span>
+<span id="cb17-411"><a href="#cb17-411" aria-hidden="true" tabindex="-1"></a>deaths caused by interpersonal violence by the population of a country. Similar </span>
+<span id="cb17-412"><a href="#cb17-412" aria-hidden="true" tabindex="-1"></a>to the first experiment, 1,000 new samples will be created and analyzed, except </span>
+<span id="cb17-413"><a href="#cb17-413" aria-hidden="true" tabindex="-1"></a>instead of retrieving the mean and standard deviation, a linear regression model </span>
+<span id="cb17-414"><a href="#cb17-414" aria-hidden="true" tabindex="-1"></a>will be fit based on the new sample and the intercept and regression parameter</span>
+<span id="cb17-415"><a href="#cb17-415" aria-hidden="true" tabindex="-1"></a>will be extracted and saved. </span>
+<span id="cb17-416"><a href="#cb17-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-419"><a href="#cb17-419" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-420"><a href="#cb17-420" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vectors to store new intercepts and regression parameters</span></span>
+<span id="cb17-421"><a href="#cb17-421" aria-hidden="true" tabindex="-1"></a>boot_estimated_intercepts <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
+<span id="cb17-422"><a href="#cb17-422" aria-hidden="true" tabindex="-1"></a>boot_estimated_regressionparameters <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
+<span id="cb17-423"><a href="#cb17-423" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 1,000 new samples and save the means and standard deviations</span></span>
+<span id="cb17-424"><a href="#cb17-424" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb17-425"><a href="#cb17-425" aria-hidden="true" tabindex="-1"></a>  boot_new_reg_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(boot_initial_sample, <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-426"><a href="#cb17-426" aria-hidden="true" tabindex="-1"></a>  boot_new_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Deaths_InterpersonalViolence <span class="sc">~</span> Population,</span>
+<span id="cb17-427"><a href="#cb17-427" aria-hidden="true" tabindex="-1"></a>                    boot_data[boot_new_reg_sample,])</span>
+<span id="cb17-428"><a href="#cb17-428" aria-hidden="true" tabindex="-1"></a>  boot_estimated_intercepts <span class="ot">&lt;-</span> <span class="fu">append</span>(boot_estimated_intercepts, </span>
+<span id="cb17-429"><a href="#cb17-429" aria-hidden="true" tabindex="-1"></a>                                      boot_new_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span>
+<span id="cb17-430"><a href="#cb17-430" aria-hidden="true" tabindex="-1"></a>  boot_estimated_regressionparameters <span class="ot">&lt;-</span> </span>
+<span id="cb17-431"><a href="#cb17-431" aria-hidden="true" tabindex="-1"></a>    <span class="fu">append</span>(boot_estimated_regressionparameters, </span>
+<span id="cb17-432"><a href="#cb17-432" aria-hidden="true" tabindex="-1"></a>           boot_new_lm<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
+<span id="cb17-433"><a href="#cb17-433" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-434"><a href="#cb17-434" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-435"><a href="#cb17-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-436"><a href="#cb17-436" aria-hidden="true" tabindex="-1"></a>Once all models have been created, and the intercept and regression parameter</span>
+<span id="cb17-437"><a href="#cb17-437" aria-hidden="true" tabindex="-1"></a>saved, a model can be fit based on the full population and the initial sample</span>
+<span id="cb17-438"><a href="#cb17-438" aria-hidden="true" tabindex="-1"></a>so the Bootstrap model can be compared against the other two. The intercept and</span>
+<span id="cb17-439"><a href="#cb17-439" aria-hidden="true" tabindex="-1"></a>regression parameter for the Bootstrap model can find found by simply taking the</span>
+<span id="cb17-440"><a href="#cb17-440" aria-hidden="true" tabindex="-1"></a>average of the estimated intercepts and estimated regression parameter vectors.</span>
+<span id="cb17-441"><a href="#cb17-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-444"><a href="#cb17-444" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-445"><a href="#cb17-445" aria-hidden="true" tabindex="-1"></a><span class="co"># Create population model</span></span>
+<span id="cb17-446"><a href="#cb17-446" aria-hidden="true" tabindex="-1"></a>pop_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Deaths_InterpersonalViolence <span class="sc">~</span> Population, boot_data)</span>
+<span id="cb17-447"><a href="#cb17-447" aria-hidden="true" tabindex="-1"></a><span class="co"># Create initial sample model</span></span>
+<span id="cb17-448"><a href="#cb17-448" aria-hidden="true" tabindex="-1"></a>sample_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Deaths_InterpersonalViolence <span class="sc">~</span> Population, </span>
+<span id="cb17-449"><a href="#cb17-449" aria-hidden="true" tabindex="-1"></a>                boot_data[boot_initial_sample,])</span>
+<span id="cb17-450"><a href="#cb17-450" aria-hidden="true" tabindex="-1"></a><span class="co"># Find Bootstrapping average values</span></span>
+<span id="cb17-451"><a href="#cb17-451" aria-hidden="true" tabindex="-1"></a>boot_lm_intercept <span class="ot">&lt;-</span> <span class="fu">mean</span>(boot_estimated_intercepts) </span>
+<span id="cb17-452"><a href="#cb17-452" aria-hidden="true" tabindex="-1"></a>boot_lm_x1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(boot_estimated_regressionparameters)</span>
+<span id="cb17-453"><a href="#cb17-453" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-454"><a href="#cb17-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-455"><a href="#cb17-455" aria-hidden="true" tabindex="-1"></a>|             | Population                 | Sample                        | Bootstrap             |</span>
+<span id="cb17-456"><a href="#cb17-456" aria-hidden="true" tabindex="-1"></a>|----------------|-------------------|---------------------|----------------|</span>
+<span id="cb17-457"><a href="#cb17-457" aria-hidden="true" tabindex="-1"></a>| (Intercept) | <span class="in">`r pop_lm$coefficients[1]`</span> | <span class="in">`r sample_lm$coefficients[1]`</span> | <span class="in">`r boot_lm_intercept`</span> |</span>
+<span id="cb17-458"><a href="#cb17-458" aria-hidden="true" tabindex="-1"></a>| x           | <span class="in">`r pop_lm$coefficients[2]`</span> | <span class="in">`r sample_lm$coefficients[2]`</span> | <span class="in">`r boot_lm_x1`</span>        |</span>
+<span id="cb17-459"><a href="#cb17-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-460"><a href="#cb17-460" aria-hidden="true" tabindex="-1"></a>Based on the table above, it should be clear that the Bootstrap model more </span>
+<span id="cb17-461"><a href="#cb17-461" aria-hidden="true" tabindex="-1"></a>closely fits the sample model than the population model. Since the method</span>
+<span id="cb17-462"><a href="#cb17-462" aria-hidden="true" tabindex="-1"></a>produces different results every time it is ran, it is hard to speak to the </span>
+<span id="cb17-463"><a href="#cb17-463" aria-hidden="true" tabindex="-1"></a>exact numbers, but the sample and Bootstrap models are usually relatively close</span>
+<span id="cb17-464"><a href="#cb17-464" aria-hidden="true" tabindex="-1"></a>to each other, while the population model might not be close. This tells us that</span>
+<span id="cb17-465"><a href="#cb17-465" aria-hidden="true" tabindex="-1"></a>the full population model has high variability, or is sensitive to outliers or</span>
+<span id="cb17-466"><a href="#cb17-466" aria-hidden="true" tabindex="-1"></a>other influential data points. This outcome can also be visualized by viewing</span>
+<span id="cb17-467"><a href="#cb17-467" aria-hidden="true" tabindex="-1"></a>a plot of the original data with the population, sample, and Bootstrap models</span>
+<span id="cb17-468"><a href="#cb17-468" aria-hidden="true" tabindex="-1"></a>displayed. To visualize what the Bootstrap method is doing, all 1,000 iterations</span>
+<span id="cb17-469"><a href="#cb17-469" aria-hidden="true" tabindex="-1"></a>of models are also displayed.</span>
+<span id="cb17-470"><a href="#cb17-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-473"><a href="#cb17-473" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-474"><a href="#cb17-474" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data, population model, sample model, and final Bootstrap model </span></span>
+<span id="cb17-475"><a href="#cb17-475" aria-hidden="true" tabindex="-1"></a><span class="co"># (average of all models)</span></span>
+<span id="cb17-476"><a href="#cb17-476" aria-hidden="true" tabindex="-1"></a>final_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Population, <span class="at">y =</span> Deaths_InterpersonalViolence), </span>
+<span id="cb17-477"><a href="#cb17-477" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> boot_data) <span class="sc">+</span></span>
+<span id="cb17-478"><a href="#cb17-478" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-479"><a href="#cb17-479" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(pop_lm)[<span class="dv">1</span>], </span>
+<span id="cb17-480"><a href="#cb17-480" aria-hidden="true" tabindex="-1"></a>                          <span class="at">slope =</span> <span class="fu">coef</span>(pop_lm)[<span class="dv">2</span>], </span>
+<span id="cb17-481"><a href="#cb17-481" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span> <span class="st">'blue'</span>) <span class="sc">+</span></span>
+<span id="cb17-482"><a href="#cb17-482" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(sample_lm)[<span class="dv">1</span>], </span>
+<span id="cb17-483"><a href="#cb17-483" aria-hidden="true" tabindex="-1"></a>                          <span class="at">slope =</span> <span class="fu">coef</span>(sample_lm)[<span class="dv">2</span>], </span>
+<span id="cb17-484"><a href="#cb17-484" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color =</span> <span class="st">'green'</span>) <span class="sc">+</span></span>
+<span id="cb17-485"><a href="#cb17-485" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">mean</span>(boot_estimated_intercepts), </span>
+<span id="cb17-486"><a href="#cb17-486" aria-hidden="true" tabindex="-1"></a>                          <span class="at">slope =</span> <span class="fu">mean</span>(boot_estimated_regressionparameters), </span>
+<span id="cb17-487"><a href="#cb17-487" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color =</span> <span class="st">'red'</span>) <span class="sc">+</span></span>
+<span id="cb17-488"><a href="#cb17-488" aria-hidden="true" tabindex="-1"></a>              <span class="fu">xlab</span>(<span class="st">'Population'</span>) <span class="sc">+</span> </span>
+<span id="cb17-489"><a href="#cb17-489" aria-hidden="true" tabindex="-1"></a>              <span class="fu">ylab</span>(<span class="st">'Interpersonal Violence Deaths'</span>) <span class="sc">+</span></span>
+<span id="cb17-490"><a href="#cb17-490" aria-hidden="true" tabindex="-1"></a>              <span class="fu">ggtitle</span>(<span class="st">'Regression Comparison'</span>) <span class="sc">+</span></span>
+<span id="cb17-491"><a href="#cb17-491" aria-hidden="true" tabindex="-1"></a>              <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Model"</span>)</span>
+<span id="cb17-492"><a href="#cb17-492" aria-hidden="true" tabindex="-1"></a><span class="co"># Add all Bootstrap models</span></span>
+<span id="cb17-493"><a href="#cb17-493" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(boot_estimated_intercepts)) {</span>
+<span id="cb17-494"><a href="#cb17-494" aria-hidden="true" tabindex="-1"></a>  final_plot <span class="ot">&lt;-</span> final_plot <span class="sc">+</span> </span>
+<span id="cb17-495"><a href="#cb17-495" aria-hidden="true" tabindex="-1"></a>                <span class="fu">geom_abline</span>(<span class="at">intercept =</span> boot_estimated_intercepts[x], </span>
+<span id="cb17-496"><a href="#cb17-496" aria-hidden="true" tabindex="-1"></a>                            <span class="at">slope =</span> boot_estimated_regressionparameters[x], </span>
+<span id="cb17-497"><a href="#cb17-497" aria-hidden="true" tabindex="-1"></a>                            <span class="at">alpha =</span> <span class="fl">0.025</span>)</span>
+<span id="cb17-498"><a href="#cb17-498" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-499"><a href="#cb17-499" aria-hidden="true" tabindex="-1"></a><span class="co"># Display final plot</span></span>
+<span id="cb17-500"><a href="#cb17-500" aria-hidden="true" tabindex="-1"></a>final_plot</span>
+<span id="cb17-501"><a href="#cb17-501" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-502"><a href="#cb17-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-503"><a href="#cb17-503" aria-hidden="true" tabindex="-1"></a>A comparison of the regression lines further solidify the results shown in</span>
+<span id="cb17-504"><a href="#cb17-504" aria-hidden="true" tabindex="-1"></a>the table. The sample model (green) and Bootstrap model (red) usually fall</span>
+<span id="cb17-505"><a href="#cb17-505" aria-hidden="true" tabindex="-1"></a>closely together on the line. Since the Bootstrap models are created using the</span>
+<span id="cb17-506"><a href="#cb17-506" aria-hidden="true" tabindex="-1"></a>same set of data as the initial sample this is expected. With this specific data</span>
+<span id="cb17-507"><a href="#cb17-507" aria-hidden="true" tabindex="-1"></a>set, how close the population model (blue) falls to the other two is highly</span>
+<span id="cb17-508"><a href="#cb17-508" aria-hidden="true" tabindex="-1"></a>variable. Since the results are different every time the models are created it's</span>
+<span id="cb17-509"><a href="#cb17-509" aria-hidden="true" tabindex="-1"></a>possible that the Bootstrap model could fit the true population almost</span>
+<span id="cb17-510"><a href="#cb17-510" aria-hidden="true" tabindex="-1"></a>identically. More interesting, to visualize the variability, all Bootstrap </span>
+<span id="cb17-511"><a href="#cb17-511" aria-hidden="true" tabindex="-1"></a>models created are graphed (black). This shows the extreme values that can</span>
+<span id="cb17-512"><a href="#cb17-512" aria-hidden="true" tabindex="-1"></a>occur with this dataset.</span>
+<span id="cb17-513"><a href="#cb17-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-516"><a href="#cb17-516" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-517"><a href="#cb17-517" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the intercepts found from the Bootstrap method</span></span>
+<span id="cb17-518"><a href="#cb17-518" aria-hidden="true" tabindex="-1"></a>interceptHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb17-519"><a href="#cb17-519" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">aes</span>(boot_estimated_intercepts) <span class="sc">+</span></span>
+<span id="cb17-520"><a href="#cb17-520" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb17-521"><a href="#cb17-521" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">ylab</span>(<span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb17-522"><a href="#cb17-522" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">xlab</span>(<span class="st">"Bootstrap Intercepts"</span>)</span>
+<span id="cb17-523"><a href="#cb17-523" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-524"><a href="#cb17-524" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the regression parameter found from the Bootstrap </span></span>
+<span id="cb17-525"><a href="#cb17-525" aria-hidden="true" tabindex="-1"></a><span class="co"># method</span></span>
+<span id="cb17-526"><a href="#cb17-526" aria-hidden="true" tabindex="-1"></a>parameterHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb17-527"><a href="#cb17-527" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">aes</span>(boot_estimated_regressionparameters) <span class="sc">+</span></span>
+<span id="cb17-528"><a href="#cb17-528" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb17-529"><a href="#cb17-529" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">ylab</span>(<span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb17-530"><a href="#cb17-530" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">xlab</span>(<span class="st">"Bootstrap Regression Parameters"</span>)</span>
+<span id="cb17-531"><a href="#cb17-531" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-532"><a href="#cb17-532" aria-hidden="true" tabindex="-1"></a><span class="co"># Display plots side by side</span></span>
+<span id="cb17-533"><a href="#cb17-533" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(interceptHistogram, parameterHistogram, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb17-534"><a href="#cb17-534" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-535"><a href="#cb17-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-536"><a href="#cb17-536" aria-hidden="true" tabindex="-1"></a>Again, similar to the means and standard deviations found in the first</span>
+<span id="cb17-537"><a href="#cb17-537" aria-hidden="true" tabindex="-1"></a>experiment, the intercepts appear to follow a normal distribution. The </span>
+<span id="cb17-538"><a href="#cb17-538" aria-hidden="true" tabindex="-1"></a>regression parameters usually do not appear to follow a normal distribution.</span>
+<span id="cb17-539"><a href="#cb17-539" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-540"><a href="#cb17-540" aria-hidden="true" tabindex="-1"></a><span class="fu">### Conclusion</span></span>
+<span id="cb17-541"><a href="#cb17-541" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-542"><a href="#cb17-542" aria-hidden="true" tabindex="-1"></a>In the first experiment, the population mean and standard deviation were</span>
+<span id="cb17-543"><a href="#cb17-543" aria-hidden="true" tabindex="-1"></a>estimated using the Bootstrap method. After 1,000 new samples were created</span>
+<span id="cb17-544"><a href="#cb17-544" aria-hidden="true" tabindex="-1"></a>and the means and standard deviations from every sample saved, they were</span>
+<span id="cb17-545"><a href="#cb17-545" aria-hidden="true" tabindex="-1"></a>used to create a 95% confidence interval for the population mean and </span>
+<span id="cb17-546"><a href="#cb17-546" aria-hidden="true" tabindex="-1"></a>standard deviations. Using those confidence intervals, the true population</span>
+<span id="cb17-547"><a href="#cb17-547" aria-hidden="true" tabindex="-1"></a>values could be compared. It was found that the confidence interval for both</span>
+<span id="cb17-548"><a href="#cb17-548" aria-hidden="true" tabindex="-1"></a>the mean and standard deviation fell within the confidence intervals. Lastly,</span>
+<span id="cb17-549"><a href="#cb17-549" aria-hidden="true" tabindex="-1"></a>we could visualize that the estimated means followed a normal distribution.</span>
+<span id="cb17-550"><a href="#cb17-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-551"><a href="#cb17-551" aria-hidden="true" tabindex="-1"></a>In the second experiment the simple linear regression model to estimate the</span>
+<span id="cb17-552"><a href="#cb17-552" aria-hidden="true" tabindex="-1"></a>number of deaths caused by interpersonal violence on the country population was</span>
+<span id="cb17-553"><a href="#cb17-553" aria-hidden="true" tabindex="-1"></a>analyzed for variability in the model. Again, using 1,000 new samples, a model</span>
+<span id="cb17-554"><a href="#cb17-554" aria-hidden="true" tabindex="-1"></a>was fit for every sample created and the intercepts and regression parameters</span>
+<span id="cb17-555"><a href="#cb17-555" aria-hidden="true" tabindex="-1"></a>were saved. The average of all 1,000 intercepts and regression parameters were</span>
+<span id="cb17-556"><a href="#cb17-556" aria-hidden="true" tabindex="-1"></a>found to create the Bootstrap model. This model was then compared against the</span>
+<span id="cb17-557"><a href="#cb17-557" aria-hidden="true" tabindex="-1"></a>model created using the full population data and the model created using the</span>
+<span id="cb17-558"><a href="#cb17-558" aria-hidden="true" tabindex="-1"></a>initial sample data. It was found that the Bootstrap model usually follows the</span>
+<span id="cb17-559"><a href="#cb17-559" aria-hidden="true" tabindex="-1"></a>sample model more closely than the full population model. A graph was presented</span>
+<span id="cb17-560"><a href="#cb17-560" aria-hidden="true" tabindex="-1"></a>to show the difference between the three models, along with displaying all </span>
+<span id="cb17-561"><a href="#cb17-561" aria-hidden="true" tabindex="-1"></a>models created as part of the Bootstrap method. </span>
+<span id="cb17-562"><a href="#cb17-562" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-563"><a href="#cb17-563" aria-hidden="true" tabindex="-1"></a>These two experiments scratch the surface of demonstrate the usefulness of the </span>
+<span id="cb17-564"><a href="#cb17-564" aria-hidden="true" tabindex="-1"></a>Bootstrap method. The population mean, standard deviation, and distribution of </span>
+<span id="cb17-565"><a href="#cb17-565" aria-hidden="true" tabindex="-1"></a>the rate of death caused by cardiovascular diseases were able to be successfully </span>
+<span id="cb17-566"><a href="#cb17-566" aria-hidden="true" tabindex="-1"></a>estimated. The model of deaths caused by interpersonal violence on population </span>
+<span id="cb17-567"><a href="#cb17-567" aria-hidden="true" tabindex="-1"></a>was able to be analyzed to show it has high variability. </span>
+<span id="cb17-568"><a href="#cb17-568" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-569"><a href="#cb17-569" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
