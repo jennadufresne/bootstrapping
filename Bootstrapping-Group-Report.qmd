@@ -73,8 +73,7 @@ intervals based on the bootstrap percentile method are thus equal to their nomin
 In this analysis, we develop and test two experiments with bootstrapping, a resampling method 
 particularly useful when estimating the variance of the sample median. 
 While there are various bootstrapping types, we will focus on the Monte Carlo method, wherein we create new samples of the same size by randomly choosing values from the original population. The goal is to use the Monte Carlo method for two separate applications: estimating the population mean and standard deviation, and the variability of a simple linear regression model.
-
-
+By analyzing the results of these two experiments, we should obtain a clearer picture of the practicality and effectiveness of Bootstrapping and how it can be used to assess estimation accuracy.
 
 ## Methods
 
