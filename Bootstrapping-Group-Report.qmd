@@ -105,7 +105,7 @@ bootstrapping_data_cleaned = read.csv('bootstrapping_data_cleaned.csv',
                                       stringsAsFactors = TRUE)
 ```
 
-#### Data Cleaning & Column Addition
+#### Data Cleaning
 
 In order to fit the data into the experiments introduced later in the paper, the
 dataset will need to be further modified. A new column, Number_Of_Deaths, that 
@@ -123,7 +123,7 @@ diseases.
 bootstrapping_data_cleaned$Number_Of_Deaths <- 
   rowSums(bootstrapping_data_cleaned[,(5:35)])
 
-# Filter down the data to just include 2019 and just the columns we want
+# Filter down the data to just include 2019 and just the columns needed
 boot_data = 
   bootstrapping_data_cleaned[bootstrapping_data_cleaned$Year == '2019', 
                              c('Entity', 'Population', 'Number_Of_Deaths',
@@ -196,32 +196,33 @@ that the death rate for cardiovascular diseases may follow a normal
 distribution. The plot for interpersonal violence shows that there may be a 
 relationship between the number of deaths caused by interpersonal violence and 
 the population of the country. In both cases the data appear to be good
-contendors for statistical modeling using the Bootstrap method.
+contenders for statistical modeling using the Bootstrap method.
 
 ### Statistical Modeling
 
-We will look at two applications of Bootstrapping, both using the Monte Carlo 
-method (new samples are the exact size as the original sample). The first 
-application is estimating the population mean and standard deviation of the 
-cardiovascular diseases death rate. Second, we will test a simple linear 
-regression that estimate the number of interpersonal violence deaths on the 
-population of a country for variability of the model.
+Two applications of the Bootstrap method, both using the Monte Carlo method 
+(new samples are the exact size as the original sample) will be analyzed. The
+first application is estimating the population mean and standard deviation of
+the cardiovascular diseases death rate. The second application is testing
+the variability of a simple linear regression model that estimates the
+number of interpersonal violence deaths on the population of a country.
 
-In both experiments we will need to take a sample of our population data to
-continue with the Bootstrap methods. We will take a sample of the population,
-without replacement, with size $n = 20$.
+In both experiments a sample of the full population data will need to be taken
+to continue with the Bootstrap applications. A sample of the population was 
+taken, without replacement, with size $n = 20$ to use in the two applications.
 
 ```{r}
-# Create our initial sample
+# Create the initial sample
 boot_initial_sample <- sample(1:nrow(boot_data), 20, replace = FALSE)
 ```
 
 #### Estimating Population Mean and Standard Deviation
 
-Here we are going to be estimating the population mean and standard deviation 
-using the Bootstrap method. We can use Bootstrap case re-sampling to find 1,000 
-new samples using replacement. For each new sample created we will save the mean 
-and the standard deviation.
+To estimate the population mean and standard deviation using the Bootstrap 
+method, 1,000 new samples were created, with replacement, using the initial 
+sample created. A simple loop can be created to continuously create these new
+samples. For every new sample that is created, the mean and standard deviation
+can be calculated and saved to be analyzed.
 
 ```{r}
 # Create vectors to store new sample means and standard deviations
@@ -251,9 +252,9 @@ head(boot_estimated_means)
 head(boot_estimated_sds)
 ```
 
-Now that we have the mean and standard deviations for all 1,000 samples creating 
-using Bootstrap re-sampling, we can trim the top and bottom 2.5% to find the 95% 
-confidence interval for the population mean and standard deviation.
+In order to create a 95% confidence interval for the population mean and 
+standard deviation, the top and bottom 2.5% of saved means and standard
+deviations can be trimmed. 
 
 ```{r}
 # Sort the estimated means from smallest to largest
@@ -268,8 +269,8 @@ boot_estimated_sds <- boot_estimated_sds[start:end]
 ```
 
 Now, by retrieving the first and last element in both the mean and standard 
-deviation vectors we will find our 95% estimated population intervals. The 95% 
-confidence interval for the population mean is 
+deviation vectors, the 95% estimated population intervals can be constructed. 
+The 95% confidence interval for the population mean is 
 \[`r round(boot_estimated_means[1], 4)`, 
 `r round(boot_estimated_means[length(boot_estimated_means)], 4)`\] or 
 \[`r round(boot_estimated_means[1] * 100, 2)`%, 
@@ -280,22 +281,47 @@ confidence interval for the population mean is
 \[`r round(boot_estimated_sds[1] * 100, 2)`%, 
 `r round(boot_estimated_sds[length(boot_estimated_sds)] * 100, 2)`%\].
 
+To evaluate the accuracy of the estimated population mean and standard
+deviation for the rate of deaths caused by cardiovascular diseases, the 
+population mean and standard deviation found from the full population can be
+compared to the estimated confidence intervals. The true population statistics
+should fall within the confidence interval range. In this case:
+
+<center>
+
+$`r round(boot_estimated_means[1], 4)` > 
+`r round(boot_means$mean_cardiovasculardiseasesrate, 4)` >
+`r round(boot_estimated_means[length(boot_estimated_means)], 4)`$
+
+</center>
+
+<center>
+
+$`r round(boot_estimated_sds[1], 4)` > 
+`r round(boot_means$sd_cardiovasculardiseasesrate, 4)` >
+`r round(boot_estimated_sds[length(boot_estimated_sds)], 4)`$
+
+</center>
+
 ```{r}
-# Display a histogram of the cardiovascular diseases deaths estimated 
-# population means rate
+# Display a histogram of the estimated means from the Bootstrap samples
 ggplot() +
 geom_histogram(aes(boot_estimated_means))
 ```
 
+Visualizing the estimated means shows that they follow a normal distribution.
+This matches the full population data for the rate of deaths caused by
+cardiovascular diseases, which also follows a normal distribution.
+
 #### Finding Variablility of Regression Model
 
 The next experiment is finding the variability for a simple linear regression 
-model. We will use the initial sample created in the first experiment as the 
-initial sample for this experiment as well. For the model, we will see if the 
-population of a country can be used to predict the deaths caused by 
-interpersonal violence in 2019. Again, we will create 1,000 new samples. For 
-each one of the new samples we will fit a simple linear regression model and 
-save the coefficient and regression parameter.
+model. For this experiment a model will be fit that estimates the number of
+deaths caused by interpersonal violence by the population of a country. Similar 
+to the first experiment, 1,000 new samples will be created and analyzed, except 
+instead of retrieving the mean and standard deviation, a linear regression model 
+will be fit based on the new sample and the intercept and regression parameter
+will be extracted and saved. 
 
 ```{r}
 # Create vectors to store new intercepts and regression parameters
@@ -314,8 +340,11 @@ for (x in 1:1000) {
 }
 ```
 
-Now we can compare the full population model, sample model, and Bootstrapping 
-model against each other.
+Once all models have been created, and the intercept and regression parameter
+saved, a model can be fit based on the full population and the initial sample
+so the Bootstrap model can be compared against the other two. The intercept and
+regression parameter for the Bootstrap model can find found by simply taking the
+average of the estimated intercepts and estimated regression parameter vectors.
 
 ```{r}
 # Create population model
@@ -332,6 +361,17 @@ boot_lm_x1 <- mean(boot_estimated_regressionparameters)
 |----------------|-------------------|---------------------|----------------|
 | (Intercept) | `r pop_lm$coefficients[1]` | `r sample_lm$coefficients[1]` | `r boot_lm_intercept` |
 | x           | `r pop_lm$coefficients[2]` | `r sample_lm$coefficients[2]` | `r boot_lm_x1`        |
+
+Based on the table above, it should be clear that the Bootstrap model more 
+closely fits the sample model than the population model. Since the method
+produces different results every time it is ran, it is hard to speak to the 
+exact numbers, but the sample and Bootstrap models are usually relatively close
+to each other, while the population model might not be close. This tells us that
+the full population model has high variability, or is sensitive to outliers or
+other influential data points. This outcome can also be visualized by viewing
+a plot of the original data with the population, sample, and Bootstrap models
+displayed. To visualize what the Bootstrap method is doing, all 1,000 iterations
+of models are also displayed.
 
 ```{r}
 # Plot the data, population model, sample model, and final Bootstrap model 
@@ -354,14 +394,25 @@ final_plot <- ggplot(aes(x = Population, y = Deaths_InterpersonalViolence),
               labs(color = "Model")
 # Add all Bootstrap models
 for (x in 1:length(boot_estimated_intercepts)) {
-  final_plot <- final_plot + 
-                geom_abline(intercept = boot_estimated_intercepts[x], 
-                            slope = boot_estimated_regressionparameters[x], 
-                            alpha = 0.025)
+  #final_plot <- final_plot + 
+  #              geom_abline(intercept = boot_estimated_intercepts[x], 
+  #                          slope = boot_estimated_regressionparameters[x], 
+  #                          alpha = 0.025)
 }
 # Display final plot
 final_plot
 ```
+
+A comparison of the regression lines further solidify the results shown in
+the table. The sample model (green) and Bootstrap model (red) usually fall
+closely together on the line. Since the Bootstrap models are created using the
+same set of data as the initial sample this is expected. With this specific data
+set, how close the population model (blue) falls to the other two is highly
+variable. Since the results are different every time the models are created it's
+possible that the Bootstrap model could fit the true population almost
+identically. More interesting, to visualize the variability, all Bootstrap 
+models created are graphed (black). This shows the extreme values that can
+occur with this dataset.
 
 ```{r}
 # Create a histogram of the intercepts found from the Bootstrap method
@@ -383,6 +434,37 @@ parameterHistogram <- ggplot() +
 grid.arrange(interceptHistogram, parameterHistogram, ncol = 2)
 ```
 
+Again, similar to the means and standard deviations found in the first
+experiment, the intercepts appear to follow a normal distribution. The 
+regression parameters usually do not appear to follow a normal distribution.
+
 ### Conclusion
+
+In the first experiment, the population mean and standard deviation were
+estimated using the Bootstrap method. After 1,000 new samples were created
+and the means and standard deviations from every sample saved, they were
+used to create a 95% confidence interval for the population mean and 
+standard deviations. Using those confidence intervals, the true population
+values could be compared. It was found that the confidence interval for both
+the mean and standard deviation fell within the confidence intervals. Lastly,
+we could visualize that the estimated means followed a normal distribution.
+
+In the second experiment the simple linear regression model to estimate the
+number of deaths caused by interpersonal violence on the country population was
+analyzed for variability in the model. Again, using 1,000 new samples, a model
+was fit for every sample created and the intercepts and regression parameters
+were saved. The average of all 1,000 intercepts and regression parameters were
+found to create the Bootstrap model. This model was then compared against the
+model created using the full population data and the model created using the
+initial sample data. It was found that the Bootstrap model usually follows the
+sample model more closely than the full population model. A graph was presented
+to show the difference between the three models, along with displaying all 
+models created as part of the Bootstrap method. 
+
+These two experiments scratch the surface of demonstrate the usefulness of the 
+Bootstrap method. The population mean, standard deviation, and distribution of 
+the rate of death caused by cardiovascular diseases were able to be successfully 
+estimated. The model of deaths caused by interpersonal violence on population 
+was able to be analyzed to show it has high variability. 
 
 ## References
