@@ -10,70 +10,124 @@ format:
   html:
     code-overflow: wrap
     code-tools: true
+  pdf:
+    toc: false
+    number-sections: false
 course: STA 6257 - Advanced Statistical Modeling
 bibliography: references.bib 
-nocite: | 
-  @chavez_2022
-  @worldbank
-  @efron1
-  @efron2
-  @introduction
-  @assumptions
-  @withr
-  @smooth
-  @bayesian
 ---
 
 ## Introduction
 
+Resampling is the process of creating new samples based on an observed sample to
+gather more information about either the sample or the population the sample
+came from. Resampling techniques like permutation tests, cross validation, and 
+the jackknife have been prevalent in the statistics world for a while. 
+
+Resampling can come in handy when it's either impossible or unfeasible to 
+retrieve a sample from the entire population. For instance, if you wanted to 
+learn more about all attendees of a concert it would be very difficult to 
+survey every single person in attendance. While you might not be able to 
+survey everyone at the concert, you most likely could survey a smaller subset,
+say 100 to 200. With resampling techniques you could verify the accuracy of
+the original sample, or make observations about the entire population of
+concert goers.
+
+All of the resampling techniques listed either have assumptions required for
+them to make meaningful results, fail at specific estimations, or produce 
+errors during the process. The Bootstrap method was introduced to overcome
+some of the pitfalls of the jackknife resampling method.
+
 ### What is the Bootstrap Method
 
-### Assumptions
+The Bootstrap Method was first introduced by Bradley Efron in Bootstrap 
+Methods: Another Look at the Jackknife [@efron1]. He described the Bootstrap
+as a more primitive method, whose applications are more wide and dependable
+than those of the jackknife. The Bootstrap was introduced as a way to estimate
+a sampling distribution based on the observed sample. The Bootstrap is also 
+shown to estimate the variance here, which is an area the jackknife fails at,
+along with being shown to do well as estimated the error rates in certain 
+problems, outperforming other non-parametric estimation methods.
+
+At a very high-level, Bootstrapping is the process of taking a sample and using
+it to create a new sample with replacement. Doing so gives every observation
+an equal chance to show up in the new sample, and some might show up more than
+once while others might not show up due to replacement. Doing this multiple 
+times can give an understanding about the population that the original sample
+came from.
+
+While all Bootstrap methods follow the same formula, there are some slight
+differences between different version of the Bootstrap. For example, the Monte
+Carlo technique takes exact copies of the data from the original sample to 
+place into the new sample [@introduction] while the Bayesian Bootstrap adds 
+weights to each observation before selecting the data for the new sample. These 
+slight differences result in multiple different types of Bootstraps that can be
+used for different applications or to get around certain assumptions of another
+type of Bootstrap.
+
+### Assumptions and Shortcomings
+
+As Bootstrapping gains popularity, it's important to understand that there
+are still assumptions that must be met, and shortcomings that should be
+understood. The Importance of Discussing Assumptions when Teaching Bootstrapping
+[@assumptions] takes an interesting approach of looking at those who are
+learning about Bootstrapping, and assessing possible pain points. The largest
+assumption listed is that the distribution can be made approximately pivotal
+through shifting or studentization. Further in this paper, an interesting
+result came out that if assumptions are broken when performing the Bootstrap
+method, it performs no better or worse then other methods whose assumptions are
+also broken. Performing Bootstrapping with broken assumptions can also lead to
+decreased performance of the method.
+
+One of the shortcomings of the Bootstrap method is that the results still rely
+on the original sample [@introduction]. So, if the original sample contains
+many outliers, then it most likely won't produce an accurate representation
+of the population. Small sample sizes and data that does not follow a normal
+distribution has also been found to negatively impact the performance of
+Bootstrapping methods [@assumptions].
 
 ### Applications
 
+Bootstrapping has far reaching applications from finding a population mean to
+performing hypothesis testing. Initially, Efron introduced the Bootstrap 
+method to estimate the sampling distribution, estimate the median, error rate 
+estimation in discrimination analysis, Wilcoxon's statistic, and regression 
+models [@efron1]. Another application from Efron was introduced in Nonparametric 
+Estimates of Standard Error: The Jackknife, the Bootstrap, and Other Methods 
+[@efron2]. He introduces the concept of using the Bootstrap to estimate the 
+standard error based on the data. While this is normally done using parametric 
+modeling methods, here it is being done with non-parametric methods, like the 
+Bootstrap. As time has progressed, and computers have become more powerful, the 
+applications of Bootstrapping have increased.
 
+One popular application is using Bootstrapping to create confidence intervals
+for certain statistics. Due to the nature of Bootstrapping, it creates results
+that make perfect sense to construct confidence intervals. Often, Bootstrapping
+implements confidence intervals around estimated parameter values 
+[@confidenceintervals]. One example is using Bootstrapping to find the population 
+mean of a specific feature based on the sample means. A few other similar 
+applications are creating a confidence interval for the population mean and 
+estimating the distribution of a sample mean [@introduction].
 
+Another popular application to Bootstrapping is in regression. In regression,
+the Bootstrap method can be used to perform validation on the model. In
+Bootstrapping with R to make generalized inference for regression model [@withr]
+the authors used the Bootstrap method to resample thousands of times, fit a 
+model to each new sample, and save the intercept and regression coefficient 
+estimates. Confidence intervals can then be created to assess performance of
+a population regression model against the Bootstrap sample models. Another
+possible application of Bootstrapping in regression is using it to approximate
+the distribution of the Lasso estimator for all possible values of the unknown
+regression parameter vector [@lasso]. The residual bootstrap can also be used
+to consistently estimate the distribution and variance of the adaptive Lasso
+estimator.
 
-
-Bootstrap Methods: Another Look at the Jackknife [@efron1] is credited as being the creation of bootstrapping by author B. Efron. It starts by explaining that bootstrapping is a step above the jackknife method, and that the jackknife is a linear expansion for estimating the bootstrap. Starting in the introduction, it is stated that the bootstrap is shown to estimate the variance of the sample median, which is an area that the jackknife fails at. It is also mentioned that the bootstrap does well at estimating the error rates in certain problems, which outperforms other non-parametric estimation methods. The problem attempting to be solved is estimating the sampling distribution based on the observed data. The idea behind the bootstrap method is listed in three parts. First, construct the sample probability distribution. Second, draw a random sample of size n. Lastly, approximate the sampling distribution by the bootstrap distribution. It is mentioned that that the difficult part of bootstrapping is calculating the bootstrap distribution and three methods are given to accomplish this; direct Monte Carlo approximations, and Taylor series expansion methods. A few applications are listed. These include estimating the median, error rate estimation in discrimination analysis, relationship with the jackknife, Wilcoxon's statistic, and regression models. Finally, a list of some remarks regarding the bootstrap method are listed. Some important ideas listed are that the calculation of the bootstrap distribution using the Monte Carl method is easy to implement on the computer and that the bootstrap and jackknife provide approximate frequency statements and not approximate likelihood statements.
-
-Nonparametric Estimates of Standard Error: The Jackknife, the Bootstrap, and Other Methods [@efron2] starts by giving some background on what the purpose of the paper is. In this case, we want to estimate the standard error based on the data. This is normally done through parametric modeling methods, but in the paper it is being done through nonparametric methods. All methods are being tested using the same scenario which is bivariate normal distribution. This paper has four points. They are to describe the various methods, show how the methods derive from the same idea, relate the methods to each other, and finally show how the methods perform differently even though they are similar. The Monte Carlo experiment that the data was obtained from is then described. The bootstrap method is the first that is looked at. The steps are described to obtain the bootstrap samples. Random samples are created from the original sample and the bootstrap estimate is obtained. This process is than repeated multiple time to achieve enough samples to accurately estimate the standard error. 128 and 512 total samples were used separately, and while the 512 total sample provided a slightly more accurate result, the increase was minimal. on this result, the size of N samples is not overly important past 50-100. A smoothed bootstrap method is than looked at. This produced by compromising the normal theory maximum, likelihood estimate and the nonparametric maximum likelihood estimate. The results of the smoothed bootstrap method were overall better than those in the on-smoothed bootstrap method. Next, the jackknife, infinitesimal jackknife, half-sampling, and random sub sampling methods are discussed. All results are displayed in a table containing th estimated values, standard deviation, and confidence interval for each estimate. Overall, the bootstrap method produced the results that closest matches the theoretical values.
-
-In Bootstrapping - An Introduction And Its Applications In Statistics [@introduction] the authors take a high-level approach to introducing the reader to bootstrapping along with applications to different parts of statistics. The introduction begins to explain what bootstrapping is and how it is accomplished. They make use of an example to help explain what bootstrapping is. In this case, they look at performing analysis on the population of the United States. It would be difficult, costly, and timely to sample the entire population so instead you might sample a smaller subset of the population and create new bootstrap samples using replacement. In this sense the bootstrap samples might contain duplicates or even omit certain responses from the original sample. Doing so allows interpretation of the entire population based on a subset of the population. One of the first applications looked at is estimation of means and confidence intervals for the mean. Another application is constructing confidence intervals for regression coefficients. The authors also look at regression models, case re-sampling, estimating the distribution of sample mean, Bayesian bootstrap, smooth bootstrap, parametric bootstrap, and re-sampling residuals as applications of bootstrapping. Lastly, some of the advantages and disadvantages are listed. One advantage is the simplicity of deriving estimates of standard errors and confidence intervals where a disadvantage would be that the result still depends on the original sample.
-
-In The Importance of Discussing Assumptions when Teaching Bootstrapping [@assumptions] the authors spend time ensuring that the readers understand when it is appropriate to use bootstrapping methods by presenting the math along with experimental results. The paper starts with an introduction to what bootstrapping is. They also mention that bootstrapping has increased in popularity since it's inception with applications in linear regression and neural networks among other fields. The methods focused on during the paper are studentized, basic, and percentile bootstrap intervals and their hypothesis tests. The next section focuses on why it's important to teach statistical computing and bootstrapping. One feature relevant to bootstrapping is that students understandings of confidence intervals and statistical inference relies on their understanding of sampling distributions. Next, some of the assumptions for bootstrapping are discussed. The assumptions were split based on interval estimation and hypothesis testing. For both cases, the largest assumption is that the distribution can be made approximately pivotal through shifting or studentization. Lastly, simulation-based performance was evaluated. This was done by using the metrics coverage proportion, significance level, and power. The most important results were that when the assumptions are broken, there can be differences in the performance of the different bootstrapping methods. There also was not a improvement between bootstrapping and other methods whose assumptions were also broken. The smaller the sample size and non-normalcy also impacted the performance of the methods. Lastly, an R package was created, which encompasses the functions used throughout the paper, that can be used to create intervals using bootstrapping methods.
-
-Bootstrapping with R to make generalized inference for regression model [@withr] looks at a specific application of bootstrapping, validating a generalized regression model to make generalization of statistical inference to different cases outside of the original sample. In the introduction, the authors explain the different types of regression models and explain the different ways to complete model validation. Some of those listed include cross-validation, Jackknife, and bootstrap methods. The idea of the bootstrap method is then also explained. The methodology and design of the experiment is then outlined. In this case, the original observations will be resampled leading to a set of bootstrap samples. The mean estimate and regression coefficient estimates can then be found for each bootstrap sample. Finally, confidence intervals can be created for the mean, regression coefficients, and standard errors for both the mean and regression coefficients. A table is provided to outline the values received from the original sample and bootstrap samples. Finally, the results are discussed in the conclusion. Based on the results of this experiment, the values found are very similar among the original and bootstrap samples, although the confidence intervals for the bootstrap samples are often wider. Some advantages to bootstrapping are also listed.
-
-In the article, Bootstrapping , it first begins with a statement from Benjamin Zimmer. He believes the origin of bootstrapping was impossible to do. This idea evolve from a man trying to jump a fence by the force of pulling up on his bootstraps. Fortunately, statistically bootstrapping is possible. Bootstrapping is taking a population, creating a small collection of data by using replacement and randomly resampling to analyze. The idea of replacement is very important when discussing bootstrapping. When replacement happens in bootstrapping it means every item that is drawn from the population, the same item exists in the sample. The importance behind sampling and replacement is when each sample or subset is made there will be statistical measurements made on each set or on all the sets together. Once the measurements are done the data is ready to plot. After the data is plotted analysis can be done. Furthermore, inferences can be made on the population as a whole. As the article continues, dives in to the importance of machine learning and how to implement bootstrapping in python. To further understand bootstrapping the article gives an example and states advantages and disadvantages.
-
-In the article, Advanced statistics: Bootstrapping confidence intervals for statistics with "difficult" distributions explains the steps in bootstrapping to estimate confidence intervals for the two software packages, SAS and Stata. In 1979 bootstrapping was first introduced as a statistical technique allowing researchers to make inferences from data without making assumptions about distributions. In this case there are two distributions to take into account: probability function (normal, binomial, or Poisson) or distribution of statistics (median) calculated from the data. While estimating the confidence intervals using bootstrapping the article givesthe following steps: first, sample space is found with replacement with the same number of variables in the original data set. Then, step one is preformed until researchers are satisfied with the number of data sets. The following step is deciding the descriptive statistic and computing it on each data set. Next, a confidence interval is calculated from the collection of values. After all these steps are done, there are multiple different options for computing the confidence intervals. For example, the normal approximation method, percentile method, bias-corrected method and approximate bootstrapping confidence method. Throughout the article it states different examples on determining confidence intervals around various statistical distribution and using software to help make inferences about it.
-In "Bootstrapping Lasso Estimators" by A. Chatterjee & S. N. Lahiri (2011), 
-the authors consider bootstrapping the Lasso estimator of the regression parameter 
-in a multiple linear regression model. They propose a modified bootstrap method, 
-and show that it provides valid approximation to the distribution of the Lasso estimator, 
-for all possible values of the unknown regression parameter vector, including the case where 
-some of the components are zero. They also show that the residual bootstrap can be used to 
-consistently estimate the distribution and variance of the adaptive Lasso estimator. 
-Using the former result, they create a new method for choosing the optimal penalizing 
-parameter for the Lasso using the modified bootstrap. 
-
-"On the variety of methods for calculating confidence intervals by bootstrapping" discusses how 
-bootstrapping often implements a confidence interval around estimated parameter values. 
-There are multiple methods for this, but authors often do not specify which methods they use, 
-and this great variety in bootstrapping can give different results. Article explains 
-the difference between each method and encourages authors to be more clear with their methodology. 
-
-"A Note on Bootstrapping Generalized Method of Moments Estimators" by Jinyong Hahn (1996) 
-presents that the bootstrap distribution of the GMM estimator converges weakly to the limit 
-distribution of the estimator in probability. Asymptotic coverage probabilities of the confidence 
-intervals based on the bootstrap percentile method are thus equal to their nominal coverage probability. 
-
-In this analysis, we develop and test two experiments with bootstrapping, a resampling method 
-particularly useful when estimating the variance of the sample median. 
-While there are various bootstrapping types, we will focus on the Monte Carlo method, wherein we create new samples of the same size by randomly choosing values from the original population. The goal is to use the Monte Carlo method for two separate applications: estimating the population mean and standard deviation, and the variability of a simple linear regression model.
-By analyzing the results of these two experiments, we should obtain a clearer picture of the practicality and effectiveness of Bootstrapping and how it can be used to assess estimation accuracy.
+The rise of statistical and mathematical programming languages and tools have
+greatly improved the state of Bootstrapping. Since Bootstrapping normally 
+requires a large number of iterations to produce meaningful results, faster
+computers and tools have allowed statisticians to gain useful information. 
+software packages have been created for SAS, Stata [@difficult], and R [@withr]
+that allow common Bootstrapping functionality to be used readily and easily.
 
 ## Methods
 
@@ -103,16 +157,16 @@ popular methods are listed below.
 
 ### Types of Bootstrap
 
-**Monte Carlo Case Re-sampling**
+**Monte Carlo Case resampling**
 
 In the Monte Carlo method, a new sample is created by randomly selecting values 
 from the original sample using replacement to create a sample of the same size. 
 Statistics can then be computed from this new sample. This process is then 
 repeated many times to create an estimate of the population statistic. [@efron1]
 
-**Exact Case Re-sampling**
+**Exact Case resampling**
 
-The exact version for Bootstrap case re-sampling is similar to the Monte Carlo
+The exact version for Bootstrap case resampling is similar to the Monte Carlo
 method, except every possible enumeration of the initial sample is created. The
 downside to this method is since there are a total of 
 ${2n - 1 \choose n} = \frac{(2n - 1)!}{n!(n - 1)!}$ possible samples, the 
@@ -140,7 +194,7 @@ replacement, there are multiple other types of Bootstrap methods. Some others
 include the Bayesian Bootstrap method, which creates new samples through 
 assigning weights to the original data [@bayesian], the
 Parametric Bootstrap, the Poisson Bootstrap, the Block Bootstrap, and 
-Re-sampling residuals.
+resampling residuals.
 
 ## Analysis and Results 
 
