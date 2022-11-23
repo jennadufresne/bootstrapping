@@ -163,7 +163,7 @@ div.csl-indent {
 
 
 
-<p>View presentation <a href="/Bootstrapping-Group-Presentation.html">here</a>.</p>
+<p>View presentation <a href="/bootstrapping/Bootstrapping-Group-Presentation.html">here</a>.</p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Resampling is the process of creating new samples based on an observed sample to gather more information about either the sample or the population the sample came from. Resampling techniques like permutation tests, cross validation, and the jackknife have been prevalent in the statistics world for a while.</p>
@@ -383,12 +383,12 @@ div.csl-indent {
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display some estimated means</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boot_estimated_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3435974 0.3341793 0.3248992 0.3399096 0.3544415 0.3496752</code></pre>
+<pre><code>[1] 0.3560262 0.3591422 0.4005843 0.3786600 0.3728687 0.3217062</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display some estimated standard deviations</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boot_estimated_sds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.11118865 0.14083212 0.08319958 0.10773652 0.09879535 0.08342002</code></pre>
+<pre><code>[1] 0.08782456 0.10642160 0.12351007 0.10787915 0.09384863 0.06597414</code></pre>
 </div>
 </div>
 <p>In order to create a 95% confidence interval for the population mean and standard deviation, the top and bottom 2.5% of saved means and standard deviations can be trimmed.</p>
@@ -403,13 +403,13 @@ div.csl-indent {
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>boot_estimated_means <span class="ot">&lt;-</span> boot_estimated_means[start<span class="sc">:</span>end]</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>boot_estimated_sds <span class="ot">&lt;-</span> boot_estimated_sds[start<span class="sc">:</span>end]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now, by retrieving the first and last element in both the mean and standard deviation vectors, the 95% estimated population intervals can be constructed. The 95% confidence interval for the population mean is [0.2953, 0.3819] or [29.53%, 38.19%]. The 95% confidence interval for the population standard deviation is [0.0651, 0.1356] or [6.51%, 13.56%].</p>
+<p>Now, by retrieving the first and last element in both the mean and standard deviation vectors, the 95% estimated population intervals can be constructed. The 95% confidence interval for the population mean is [0.3181, 0.4141] or [31.81%, 41.41%]. The 95% confidence interval for the population standard deviation is [0.0729, 0.1419] or [7.29%, 14.19%].</p>
 <p>To evaluate the accuracy of the estimated population mean and standard deviation for the rate of deaths caused by cardiovascular diseases, the population mean and standard deviation found from the full population can be compared to the estimated confidence intervals. The true population statistics should fall within the confidence interval range. In this case:</p>
 <center>
-<span class="math inline">\(0.2953 &gt; 0.3273 &gt; 0.3819\)</span>
+<span class="math inline">\(0.3181 &gt; 0.3273 &gt; 0.4141\)</span>
 </center>
 <center>
-<span class="math inline">\(0.0651 &gt; 0.1309 &gt; 0.1356\)</span>
+<span class="math inline">\(0.0729 &gt; 0.1309 &gt; 0.1419\)</span>
 </center>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display a histogram of the estimated means from the Bootstrap samples</span></span>
@@ -470,14 +470,14 @@ div.csl-indent {
 <tr class="odd">
 <td>(Intercept)</td>
 <td>1183.7272946</td>
-<td>1526.9626562</td>
-<td>896.5642123</td>
+<td>645.2881166</td>
+<td>578.8878692</td>
 </tr>
 <tr class="even">
 <td>x</td>
 <td>2.4147731^{-5}</td>
-<td>3.0061379^{-5}</td>
-<td>4.9659152^{-5}</td>
+<td>2.943504^{-5}</td>
+<td>3.9369268^{-5}</td>
 </tr>
 </tbody>
 </table>
@@ -796,7 +796,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib </span></span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>View presentation <span class="co">[</span><span class="ot">here</span><span class="co">](/Bootstrapping-Group-Presentation.html)</span>.</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>View presentation <span class="co">[</span><span class="ot">here</span><span class="co">](/bootstrapping/Bootstrapping-Group-Presentation.html)</span>.</span>
 <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
 <span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>

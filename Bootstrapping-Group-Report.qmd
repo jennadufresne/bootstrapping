@@ -17,7 +17,7 @@ course: STA 6257 - Advanced Statistical Modeling
 bibliography: references.bib 
 ---
 
-View presentation [here](/Bootstrapping-Group-Presentation.html).
+View presentation [here](/bootstrapping/Bootstrapping-Group-Presentation.html).
 
 ## Introduction
 
