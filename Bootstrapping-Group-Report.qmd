@@ -17,6 +17,8 @@ course: STA 6257 - Advanced Statistical Modeling
 bibliography: references.bib 
 ---
 
+View presentation [here](/Bootstrapping-Group-Presentation.html).
+
 ## Introduction
 
 Resampling is the process of creating new samples based on an observed sample to
