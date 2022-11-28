@@ -4,9 +4,8 @@ format: revealjs
 editor: visual
 ---
 
-## Quarto
+##Introduction
 
-Introduction
 
 ## Bullets
 
