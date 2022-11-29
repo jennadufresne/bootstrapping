@@ -396,7 +396,15 @@ final_plot
 
 ## Conclusion
 
-- Enter some conclusion
+In the first experiment, the population mean and standard deviation were
+estimated using the Bootstrap method and it was found that the confidence interval 
+for both the mean and standard deviation fell within the confidence intervals and the 
+population had a normal distribution.
+
+In the second experiment, the simple linear regression model to estimate the
+number of deaths caused by interpersonal violence on the country population was
+analyzed for variability in the model. It was found that the Bootstrap 
+model usually follows the sample model more closely than the full population model. 
 
 ## References
 
