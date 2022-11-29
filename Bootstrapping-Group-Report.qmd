@@ -309,7 +309,7 @@ cardioHistogram <- ggplot(boot_data,
                    ylab('Count') +
                    geom_histogram()
 
-# Create a histogram of the interpersonal violence death rate
+# Plot the interpersonal violence death rate against population
 violenceHistogram <- ggplot(boot_data, 
                             aes(x = Deaths_InterpersonalViolence, 
                                 y = Population)) +
@@ -420,14 +420,14 @@ compared to the estimated confidence intervals. The true population statistics
 should fall within the confidence interval range. In this case:
 
 <center>
-$`r round(boot_estimated_means[1], 4)` > 
-`r round(boot_means$mean_cardiovasculardiseasesrate, 4)` >
+$`r round(boot_estimated_means[1], 4)` < 
+`r round(boot_means$mean_cardiovasculardiseasesrate, 4)` <
 `r round(boot_estimated_means[length(boot_estimated_means)], 4)`$
 </center>
 
 <center>
-$`r round(boot_estimated_sds[1], 4)` > 
-`r round(boot_means$sd_cardiovasculardiseasesrate, 4)` >
+$`r round(boot_estimated_sds[1], 4)` < 
+`r round(boot_means$sd_cardiovasculardiseasesrate, 4)` <
 `r round(boot_estimated_sds[length(boot_estimated_sds)], 4)`$
 </center>
 
@@ -455,7 +455,7 @@ will be extracted and saved.
 # Create vectors to store new intercepts and regression parameters
 boot_estimated_intercepts <- rep()
 boot_estimated_regressionparameters <- rep()
-# Create 1,000 new samples and save the means and standard deviations
+# Create 1,000 new samples and save the intercepts and parameters
 for (x in 1:1000) {
   boot_new_reg_sample <- sample(boot_initial_sample, 20, replace = TRUE)
   boot_new_lm <- lm(Deaths_InterpersonalViolence ~ Population,

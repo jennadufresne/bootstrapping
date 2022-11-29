@@ -330,7 +330,7 @@ div.csl-indent {
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">ylab</span>(<span class="st">'Count'</span>) <span class="sc">+</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">geom_histogram</span>()</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the interpersonal violence death rate</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the interpersonal violence death rate against population</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>violenceHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(boot_data, </span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">aes</span>(<span class="at">x =</span> Deaths_InterpersonalViolence, </span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y =</span> Population)) <span class="sc">+</span></span>
@@ -383,12 +383,12 @@ div.csl-indent {
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display some estimated means</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boot_estimated_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3262404 0.3180399 0.3264991 0.3113746 0.3159988 0.3275520</code></pre>
+<pre><code>[1] 0.2376975 0.2588913 0.2442710 0.2255804 0.2571570 0.2940044</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display some estimated standard deviations</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boot_estimated_sds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1636377 0.1344489 0.1515566 0.1470695 0.1277181 0.1376071</code></pre>
+<pre><code>[1] 0.1164273 0.1524905 0.1045732 0.1108373 0.1239245 0.1243419</code></pre>
 </div>
 </div>
 <p>In order to create a 95% confidence interval for the population mean and standard deviation, the top and bottom 2.5% of saved means and standard deviations can be trimmed.</p>
@@ -403,13 +403,13 @@ div.csl-indent {
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>boot_estimated_means <span class="ot">&lt;-</span> boot_estimated_means[start<span class="sc">:</span>end]</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>boot_estimated_sds <span class="ot">&lt;-</span> boot_estimated_sds[start<span class="sc">:</span>end]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now, by retrieving the first and last element in both the mean and standard deviation vectors, the 95% estimated population intervals can be constructed. The 95% confidence interval for the population mean is [0.2296, 0.35] or [22.96%, 35%]. The 95% confidence interval for the population standard deviation is [0.1044, 0.173] or [10.44%, 17.3%].</p>
+<p>Now, by retrieving the first and last element in both the mean and standard deviation vectors, the 95% estimated population intervals can be constructed. The 95% confidence interval for the population mean is [0.2186, 0.334] or [21.86%, 33.4%]. The 95% confidence interval for the population standard deviation is [0.0896, 0.158] or [8.96%, 15.8%].</p>
 <p>To evaluate the accuracy of the estimated population mean and standard deviation for the rate of deaths caused by cardiovascular diseases, the population mean and standard deviation found from the full population can be compared to the estimated confidence intervals. The true population statistics should fall within the confidence interval range. In this case:</p>
 <center>
-<span class="math inline">\(0.2296 &gt; 0.3273 &gt; 0.35\)</span>
+<span class="math inline">\(0.2186 &lt; 0.3273 &lt; 0.334\)</span>
 </center>
 <center>
-<span class="math inline">\(0.1044 &gt; 0.1309 &gt; 0.173\)</span>
+<span class="math inline">\(0.0896 &lt; 0.1309 &lt; 0.158\)</span>
 </center>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display a histogram of the estimated means from the Bootstrap samples</span></span>
@@ -428,7 +428,7 @@ div.csl-indent {
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vectors to store new intercepts and regression parameters</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>boot_estimated_intercepts <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>boot_estimated_regressionparameters <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 1,000 new samples and save the means and standard deviations</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 1,000 new samples and save the intercepts and parameters</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  boot_new_reg_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(boot_initial_sample, <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  boot_new_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Deaths_InterpersonalViolence <span class="sc">~</span> Population,</span>
@@ -470,14 +470,14 @@ div.csl-indent {
 <tr class="odd">
 <td>(Intercept)</td>
 <td>1183.7272946</td>
-<td>28.7857556</td>
-<td>48.1673154</td>
+<td>-1471.8475032</td>
+<td>-1079.7289737</td>
 </tr>
 <tr class="even">
 <td>x</td>
 <td>2.4147731^{-5}</td>
-<td>6.4009418^{-5}</td>
-<td>6.2586918^{-5}</td>
+<td>1.6573036^{-4}</td>
+<td>1.500217^{-4}</td>
 </tr>
 </tbody>
 </table>
@@ -1088,7 +1088,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-317"><a href="#cb17-317" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">ylab</span>(<span class="st">'Count'</span>) <span class="sc">+</span></span>
 <span id="cb17-318"><a href="#cb17-318" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">geom_histogram</span>()</span>
 <span id="cb17-319"><a href="#cb17-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-320"><a href="#cb17-320" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the interpersonal violence death rate</span></span>
+<span id="cb17-320"><a href="#cb17-320" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the interpersonal violence death rate against population</span></span>
 <span id="cb17-321"><a href="#cb17-321" aria-hidden="true" tabindex="-1"></a>violenceHistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(boot_data, </span>
 <span id="cb17-322"><a href="#cb17-322" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">aes</span>(<span class="at">x =</span> Deaths_InterpersonalViolence, </span>
 <span id="cb17-323"><a href="#cb17-323" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y =</span> Population)) <span class="sc">+</span></span>
@@ -1199,14 +1199,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-436"><a href="#cb17-436" aria-hidden="true" tabindex="-1"></a>should fall within the confidence interval range. In this case:</span>
 <span id="cb17-437"><a href="#cb17-437" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-438"><a href="#cb17-438" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;center&gt;</span></span>
-<span id="cb17-439"><a href="#cb17-439" aria-hidden="true" tabindex="-1"></a>$<span class="in">`r round(boot_estimated_means[1], 4)`</span> &gt; </span>
-<span id="cb17-440"><a href="#cb17-440" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_means$mean_cardiovasculardiseasesrate, 4)`</span> &gt;</span>
+<span id="cb17-439"><a href="#cb17-439" aria-hidden="true" tabindex="-1"></a>$<span class="in">`r round(boot_estimated_means[1], 4)`</span> &lt; </span>
+<span id="cb17-440"><a href="#cb17-440" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_means$mean_cardiovasculardiseasesrate, 4)`</span> &lt;</span>
 <span id="cb17-441"><a href="#cb17-441" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_estimated_means[length(boot_estimated_means)], 4)`</span>$</span>
 <span id="cb17-442"><a href="#cb17-442" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/center&gt;</span></span>
 <span id="cb17-443"><a href="#cb17-443" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-444"><a href="#cb17-444" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;center&gt;</span></span>
-<span id="cb17-445"><a href="#cb17-445" aria-hidden="true" tabindex="-1"></a>$<span class="in">`r round(boot_estimated_sds[1], 4)`</span> &gt; </span>
-<span id="cb17-446"><a href="#cb17-446" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_means$sd_cardiovasculardiseasesrate, 4)`</span> &gt;</span>
+<span id="cb17-445"><a href="#cb17-445" aria-hidden="true" tabindex="-1"></a>$<span class="in">`r round(boot_estimated_sds[1], 4)`</span> &lt; </span>
+<span id="cb17-446"><a href="#cb17-446" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_means$sd_cardiovasculardiseasesrate, 4)`</span> &lt;</span>
 <span id="cb17-447"><a href="#cb17-447" aria-hidden="true" tabindex="-1"></a><span class="in">`r round(boot_estimated_sds[length(boot_estimated_sds)], 4)`</span>$</span>
 <span id="cb17-448"><a href="#cb17-448" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/center&gt;</span></span>
 <span id="cb17-449"><a href="#cb17-449" aria-hidden="true" tabindex="-1"></a></span>
@@ -1234,7 +1234,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-475"><a href="#cb17-475" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vectors to store new intercepts and regression parameters</span></span>
 <span id="cb17-476"><a href="#cb17-476" aria-hidden="true" tabindex="-1"></a>boot_estimated_intercepts <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
 <span id="cb17-477"><a href="#cb17-477" aria-hidden="true" tabindex="-1"></a>boot_estimated_regressionparameters <span class="ot">&lt;-</span> <span class="fu">rep</span>()</span>
-<span id="cb17-478"><a href="#cb17-478" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 1,000 new samples and save the means and standard deviations</span></span>
+<span id="cb17-478"><a href="#cb17-478" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 1,000 new samples and save the intercepts and parameters</span></span>
 <span id="cb17-479"><a href="#cb17-479" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
 <span id="cb17-480"><a href="#cb17-480" aria-hidden="true" tabindex="-1"></a>  boot_new_reg_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(boot_initial_sample, <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb17-481"><a href="#cb17-481" aria-hidden="true" tabindex="-1"></a>  boot_new_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Deaths_InterpersonalViolence <span class="sc">~</span> Population,</span>
