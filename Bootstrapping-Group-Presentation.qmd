@@ -92,6 +92,8 @@ process can be very intensive for large sample sizes. [@introduction]
 
 - In the Smooth Bootstrap, a small amount of random noise is added to every resampled observation. This noise is zero-centered and usually normally distributed. Doing this means that the re-sampled data is not limited to just the data in the original sample, but rather to data points in close proximity to the original samples. Figure 1 shows an example of the simple bootstrap density function and Figure 2 shows an example of the smoothed density function provided by [@smooth].
 
+## Figures
+
 ![figure 1](Bootstrapping-Group-Report_files/figure-html/smooth1.png)
 ![figure 2](Bootstrapping-Group-Report_files/figure-html/smooth2.png)
 # Analysis and Results
