@@ -9,7 +9,7 @@
 <meta name="author" content="Caelan Bryan">
 <meta name="author" content="Jenna Dufresne">
 <meta name="author" content="Jamielee Jimenez Perez">
-<meta name="dcterms.date" content="2022-11-28">
+<meta name="dcterms.date" content="2022-11-29">
 
 <title>Bootstrapping</title>
 <style>
@@ -148,7 +148,7 @@ div.csl-indent {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">November 28, 2022</p>
+        <p class="date">November 29, 2022</p>
       </div>
     </div>
     
@@ -383,12 +383,12 @@ div.csl-indent {
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display some estimated means</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boot_estimated_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4609054 0.4027245 0.3656332 0.3721877 0.3540715 0.3567189</code></pre>
+<pre><code>[1] 0.2794270 0.3020687 0.3205066 0.3264136 0.3361106 0.3063833</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display some estimated standard deviations</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boot_estimated_sds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1363290 0.1312991 0.1501239 0.1546183 0.1583402 0.1241831</code></pre>
+<pre><code>[1] 0.1054951 0.1252067 0.1377212 0.1267743 0.1077935 0.1016889</code></pre>
 </div>
 </div>
 <p>In order to create a 95% confidence interval for the population mean and standard deviation, the top and bottom 2.5% of saved means and standard deviations can be trimmed.</p>
@@ -403,13 +403,13 @@ div.csl-indent {
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>boot_estimated_means <span class="ot">&lt;-</span> boot_estimated_means[start<span class="sc">:</span>end]</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>boot_estimated_sds <span class="ot">&lt;-</span> boot_estimated_sds[start<span class="sc">:</span>end]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now, by retrieving the first and last element in both the mean and standard deviation vectors, the 95% estimated population intervals can be constructed. The 95% confidence interval for the population mean is [0.3003, 0.433] or [30.03%, 43.3%]. The 95% confidence interval for the population standard deviation is [0.1084, 0.1818] or [10.84%, 18.18%].</p>
+<p>Now, by retrieving the first and last element in both the mean and standard deviation vectors, the 95% estimated population intervals can be constructed. The 95% confidence interval for the population mean is [0.2723, 0.3672] or [27.23%, 36.72%]. The 95% confidence interval for the population standard deviation is [0.0702, 0.1374] or [7.02%, 13.74%].</p>
 <p>To evaluate the accuracy of the estimated population mean and standard deviation for the rate of deaths caused by cardiovascular diseases, the population mean and standard deviation found from the full population can be compared to the estimated confidence intervals. The true population statistics should fall within the confidence interval range. In this case:</p>
 <center>
-<span class="math inline">\(0.3003 &lt; 0.3273 &lt; 0.433\)</span>
+<span class="math inline">\(0.2723 &lt; 0.3273 &lt; 0.3672\)</span>
 </center>
 <center>
-<span class="math inline">\(0.1084 &lt; 0.1309 &lt; 0.1818\)</span>
+<span class="math inline">\(0.0702 &lt; 0.1309 &lt; 0.1374\)</span>
 </center>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display a histogram of the estimated means from the Bootstrap samples</span></span>
@@ -470,14 +470,14 @@ div.csl-indent {
 <tr class="odd">
 <td>(Intercept)</td>
 <td>1183.7272946</td>
-<td>-178.6216841</td>
-<td>-699.2135373</td>
+<td>210.1802594</td>
+<td>201.9456623</td>
 </tr>
 <tr class="even">
 <td>x</td>
 <td>2.4147731^{-5}</td>
-<td>1.2629038^{-4}</td>
-<td>1.4353195^{-4}</td>
+<td>1.1325143^{-5}</td>
+<td>1.2112682^{-5}</td>
 </tr>
 </tbody>
 </table>

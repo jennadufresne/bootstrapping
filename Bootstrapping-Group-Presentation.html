@@ -448,28 +448,91 @@ Jamielee Jimenez Perez
 </section>
 <section id="what-is-the-bootstrap-method" class="slide level2">
 <h2>What is the Bootstrap Method</h2>
+<ul>
+<li>Bootstrapping is the process of taking a sample and using it to create a new sample with replacement.</li>
+<li>Different version of the Bootstrap:</li>
+<li>Monte Carlo technique takes exact copies of the data from the original sample to place into the new sample <span class="citation" data-cites="introduction">(<a href="#/references" role="doc-biblioref" onclick="">Hossain 2000</a>)</span></li>
+<li>Bayesian Bootstrap adds weights to each observation before selecting the data for the new sample.</li>
+<li>This result in multiple different types of Bootstraps that can be used for different applications or to get around certain assumptions of another type of Bootstrap.</li>
+</ul>
 </section>
 <section id="assumptions-and-shortcomings" class="slide level2">
 <h2>Assumptions and Shortcomings</h2>
+<ul>
+<li>The Importance of Discussing Assumptions when Teaching Bootstrapping <span class="citation" data-cites="assumptions">(<a href="#/references" role="doc-biblioref" onclick="">Totty, Molyneux, and Fuentes 2021</a>)</span> states the largest assumption listed is that the distribution can be made approximately pivotal through shifting or studentization.</li>
+<li>Interesting result came out that if assumptions are broken when performing the Bootstrap method, it performs no better or worse then other methods whose assumptions are also broken.</li>
+<li>Performing Bootstrapping with broken assumptions can also lead to decreased performance of the method.</li>
+</ul>
 </section>
-<section id="applications" class="slide level2">
-<h2>Applications</h2>
+<section id="continued" class="slide level2">
+<h2>Continued</h2>
+<ul>
+<li>One of the shortcomings of the Bootstrap method is that the results still rely on the original sample <span class="citation" data-cites="introduction">(<a href="#/references" role="doc-biblioref" onclick="">Hossain 2000</a>)</span>.</li>
+<li>if the original sample contains many outliers, then it most likely won’t produce an accurate representation of the population.</li>
+<li>Small sample sizes and data that does not follow a normal distribution has also been found to negatively impact the performance of Bootstrapping methods <span class="citation" data-cites="assumptions">(<a href="#/references" role="doc-biblioref" onclick="">Totty, Molyneux, and Fuentes 2021</a>)</span>.</li>
+</ul>
+</section>
+<section id="application-1" class="slide level2">
+<h2>Application 1</h2>
+<ul>
+<li>Bootstrapping has far reaching applications from finding a population mean to performing hypothesis testing. Initially, Efron introduced the Bootstrap method to estimate the sampling distribution, estimate the median, error rate estimation in discrimination analysis, Wilcoxon’s statistic, and regression models <span class="citation" data-cites="efron1">(<a href="#/references" role="doc-biblioref" onclick="">B. Efron 1979</a>)</span>.</li>
+</ul>
+</section>
+<section id="application-2" class="slide level2">
+<h2>Application 2</h2>
+<ul>
+<li>In Nonparametric Estimates of Standard Error: The Jackknife, the Bootstrap, and Other Methods <span class="citation" data-cites="efron2">(<a href="#/references" role="doc-biblioref" onclick="">Bradley Efron 1981</a>)</span>. He introduces the concept of using the Bootstrap to estimate the standard error based on the data. While this is normally done using parametric modeling methods, here it is being done with non-parametric methods, like the Bootstrap. As time has progressed, and computers have become more powerful, the applications of Bootstrapping have increased.</li>
+</ul>
+</section>
+<section id="application-3" class="slide level2">
+<h2>Application 3</h2>
+<ul>
+<li>Bootstrapping to create confidence intervals for certain statistics. Due to the nature of Bootstrapping, it creates results that make perfect sense to construct confidence intervals. Often, Bootstrapping implements confidence intervals around estimated parameter values <span class="citation" data-cites="confidenceintervals">(<a href="#/references" role="doc-biblioref" onclick="">Puth, Neuhäuser, and Ruxton 2015</a>)</span>. One example is using Bootstrapping to find the population mean of a specific feature based on the sample means. A few other similar applications are creating a confidence interval for the population mean and estimating the distribution of a sample mean <span class="citation" data-cites="introduction">(<a href="#/references" role="doc-biblioref" onclick="">Hossain 2000</a>)</span>.</li>
+</ul>
+</section>
+<section id="application-4" class="slide level2">
+<h2>Application 4</h2>
+<ul>
+<li>Bootstrapping is in regression. In regression, the Bootstrap method can be used to perform validation on the model. In Bootstrapping with R to make generalized inference for regression model <span class="citation" data-cites="withr">(<a href="#/references" role="doc-biblioref" onclick="">Sillabutra et al. 2016</a>)</span> the authors used the Bootstrap method to resample thousands of times, fit a model to each new sample, and save the intercept and regression coefficient estimates. Confidence intervals can then be created to assess performance of a population regression model against the Bootstrap sample models. Another possible application of Bootstrapping in regression is using it to approximate the distribution of the Lasso estimator for all possible values of the unknown regression parameter vector <span class="citation" data-cites="lasso">(<a href="#/references" role="doc-biblioref" onclick="">Chatterjee and Lahiri 2011</a>)</span>.</li>
+</ul>
+</section>
+<section id="application-5" class="slide level2">
+<h2>Application 5</h2>
+<ul>
+<li>The rise of statistical and mathematical programming languages and tools have greatly improved the state of Bootstrapping. Since Bootstrapping normally requires a large number of iterations to produce meaningful results, faster computers and tools have allowed statisticians to gain useful information. Software packages have been created for SAS, Stata <span class="citation" data-cites="difficult">(<a href="#/references" role="doc-biblioref" onclick="">MD et al. 2005</a>)</span>, and R <span class="citation" data-cites="withr">(<a href="#/references" role="doc-biblioref" onclick="">Sillabutra et al. 2016</a>)</span> that allow common Bootstrapping functionality to be used readily and easily.</li>
+</ul>
 </section></section>
 <section>
 <section id="methods" class="title-slide slide level1 center">
 <h1>Methods</h1>
-<ul>
-<li><p>Something here</p></li>
-<li><p>Something else here</p></li>
-</ul>
+<ol type="1">
+<li>Construct the sample probability distribution <span class="math inline">\(\hat{F}\)</span>, putting mass <span class="math inline">\(1/n\)</span> at each point <span class="math inline">\(x_1, x_2, x_3, . . . , x_n\)</span>.</li>
+<li>With <span class="math inline">\(\hat{F}\)</span> fixed, draw a random sample of size <span class="math inline">\(n\)</span> from <span class="math inline">\(\hat{F}\)</span>, say <span class="math inline">\(X_{i}^{*} = x_{i}^{*}\)</span>, <span class="math inline">\(X_{i}^{*} \sim _{ind}\hat{F}\)</span> and call this the bootstrap sample.</li>
+<li>Approximate the sampling distribution of <span class="math inline">\(R(X, \hat{F}\)</span> by the bootstrap distribution of <span class="math inline">\(R^{*} = R(X^{*}, \hat{F})\)</span>.</li>
+</ol>
 </section>
 <section id="types-of-bootstrap" class="slide level2">
 <h2>Types of Bootstrap</h2>
-</section></section>
-<section>
-<section id="analysis-and-results" class="title-slide slide level1 center">
-<h1>Analysis and Results</h1>
-
+<ol type="1">
+<li>Monte Carlo Case resampling</li>
+<li>Exact Case resampling</li>
+<li>Smooth Bootstrap</li>
+</ol>
+</section>
+<section id="monte-carlo-case-resampling" class="slide level2">
+<h2>Monte Carlo Case resampling</h2>
+<p>In the Monte Carlo method, a new sample is created by randomly selecting values from the original sample using replacement to create a sample of the same size. Statistics can then be computed from this new sample. This process is then repeated many times to create an estimate of the population statistic. <span class="citation" data-cites="efron1">(<a href="#/references" role="doc-biblioref" onclick="">B. Efron 1979</a>)</span></p>
+</section>
+<section id="exact-case-resampling" class="slide level2">
+<h2>Exact Case resampling</h2>
+<p>The exact version for Bootstrap case resampling is similar to the Monte Carlo method, except every possible enumeration of the initial sample is created. The downside to this method is since there are a total of <span class="math inline">\({2n - 1 \choose n} = \frac{(2n - 1)!}{n!(n - 1)!}\)</span> possible samples, the process can be very intensive for large sample sizes. <span class="citation" data-cites="introduction">(<a href="#/references" role="doc-biblioref" onclick="">Hossain 2000</a>)</span></p>
+</section>
+<section id="smooth-bootstrap" class="slide level2">
+<h2>Smooth Bootstrap</h2>
+<ul>
+<li>In the Smooth Bootstrap, a small amount of random noise is added to every resampled observation. This noise is zero-centered and usually normally distributed. Doing this means that the re-sampled data is not limited to just the data in the original sample, but rather to data points in close proximity to the original samples. Figure 1 shows an example of the simple bootstrap density function and Figure 2 shows an example of the smoothed density function provided by <span class="citation" data-cites="smooth">(<a href="#/references" role="doc-biblioref" onclick="">Dwornicka, Goroshko, and Pietraszek 2019</a>)</span>.</li>
+</ul>
+<p><img data-src="Bootstrapping-Group-Report_files/figure-html/smooth1.png" alt="figure 1"> <img data-src="Bootstrapping-Group-Report_files/figure-html/smooth2.png" alt="figure 2"> # Analysis and Results</p>
 </section>
 <section id="data-and-visualization" class="slide level2">
 <h2>Data and Visualization</h2>
@@ -630,13 +693,13 @@ Jamielee Jimenez Perez
 <li><p>Estimated population mean</p>
 <ul>
 <li><center>
-<span class="math inline">\(0.243 &lt;  0.3273 &lt;  0.3484\)</span>
+<span class="math inline">\(0.3358 &lt;  0.3273 &lt;  0.4535\)</span>
 </center></li>
 </ul></li>
 <li><p>Estimated population standard deviation</p>
 <ul>
 <li><center>
-<span class="math inline">\(0.0845 &lt;  0.1309 &lt;  0.156\)</span>
+<span class="math inline">\(0.094 &lt;  0.1309 &lt;  0.1674\)</span>
 </center></li>
 </ul></li>
 </ul>
@@ -703,14 +766,14 @@ Jamielee Jimenez Perez
 <tr class="odd">
 <td>(Intercept)</td>
 <td>1183.7273</td>
-<td>441.6647</td>
-<td>381.1072</td>
+<td>192.6677</td>
+<td>185.2595</td>
 </tr>
 <tr class="even">
 <td>x</td>
 <td>2.4^{-5}</td>
-<td>1.1^{-5}</td>
-<td>1.4^{-5}</td>
+<td>8^{-6}</td>
+<td>9^{-6}</td>
 </tr>
 </tbody>
 </table>
@@ -753,9 +816,8 @@ Jamielee Jimenez Perez
 <img data-src="Bootstrapping-Group-Presentation_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
 <section id="conclusion" class="slide level2">
 <h2>Conclusion</h2>
-<ul>
-<li>Enter some conclusion</li>
-</ul>
+<p>In the first experiment, the population mean and standard deviation were estimated using the Bootstrap method and it was found that the confidence interval for both the mean and standard deviation fell within the confidence intervals and the population had a normal distribution.</p>
+<p>In the second experiment, the simple linear regression model to estimate the number of deaths caused by interpersonal violence on the country population was analyzed for variability in the model. It was found that the Bootstrap model usually follows the sample model more closely than the full population model.</p>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
@@ -766,8 +828,35 @@ Jamielee Jimenez Perez
 <div id="ref-worldbank" class="csl-entry" role="doc-biblioentry">
 2022. <a href="https://data.worldbank.org/indicator/SP.POP.TOTL">https://data.worldbank.org/indicator/SP.POP.TOTL</a>.
 </div>
+<div id="ref-lasso" class="csl-entry" role="doc-biblioentry">
+Chatterjee, A., and S. N. Lahiri. 2011. <span>“Bootstrapping Lasso Estimators.”</span> <em>Journal of the American Statistical Association</em> 106 (494): 608–25. <a href="http://www.jstor.org/stable/41416396">http://www.jstor.org/stable/41416396</a>.
+</div>
 <div id="ref-chavez_2022" class="csl-entry" role="doc-biblioentry">
 Chavez, Ivan. 2022. <a href="https://www.kaggle.com/datasets/ivanchvez/causes-of-death-our-world-in-data">https://www.kaggle.com/datasets/ivanchvez/causes-of-death-our-world-in-data</a>.
+</div>
+<div id="ref-smooth" class="csl-entry" role="doc-biblioentry">
+Dwornicka, Renata, Andrii Goroshko, and Jacek Pietraszek. 2019. <span>“The Smoothed Bootstrap Fine-Tuning.”</span> <em>System Safety: Human - Technical Facility - Environment</em> 1 (1): 716–23. <a href="https://doi.org/doi:10.2478/czoto-2019-0091">https://doi.org/doi:10.2478/czoto-2019-0091</a>.
+</div>
+<div id="ref-efron1" class="csl-entry" role="doc-biblioentry">
+Efron, B. 1979. <span>“Bootstrap Methods: Another Look at the Jackknife.”</span> <em>The Annals of Statistics</em> 7 (1): 1–26. <a href="http://www.jstor.org/stable/2958830">http://www.jstor.org/stable/2958830</a>.
+</div>
+<div id="ref-efron2" class="csl-entry" role="doc-biblioentry">
+Efron, Bradley. 1981. <span>“Nonparametric Estimates of Standard Error: The Jackknife, the Bootstrap and Other Methods.”</span> <em>Biometrika</em> 68 (3): 589–99. <a href="http://www.jstor.org/stable/2335441">http://www.jstor.org/stable/2335441</a>.
+</div>
+<div id="ref-introduction" class="csl-entry" role="doc-biblioentry">
+Hossain, Mohammad. 2000. <span>“Bootstrapping – an Introduction and Its Applications in Statistics.”</span> <em>Bangladesh Journal of Scientific Research</em> 18 (January): 75–88.
+</div>
+<div id="ref-difficult" class="csl-entry" role="doc-biblioentry">
+MD, MS, PhD MD, Jason Haukoos, and Roger Lewis. 2005. <span>“Advanced Statistics: Bootstrapping Confidence Intervals for Statistics with <span>‘Difficult’</span> Distributions.”</span> <em>Academic Emergency Medicine</em> 12 (April): 360–65. <a href="https://doi.org/10.1197/j.aem.2004.11.018">https://doi.org/10.1197/j.aem.2004.11.018</a>.
+</div>
+<div id="ref-confidenceintervals" class="csl-entry" role="doc-biblioentry">
+Puth, Marie-Therese, Markus Neuhäuser, and Graeme D. Ruxton. 2015. <span>“On the Variety of Methods for Calculating Confidence Intervals by Bootstrapping.”</span> <em>Journal of Animal Ecology</em> 84 (4): 892–97. https://doi.org/<a href="https://doi.org/10.1111/1365-2656.12382">https://doi.org/10.1111/1365-2656.12382</a>.
+</div>
+<div id="ref-withr" class="csl-entry" role="doc-biblioentry">
+Sillabutra, Jutatip, Prasong Kitidamrongsuk, Chukiat Viwatwongkasem, Chareena Ujeh, Siam Sae-tang, and Khanokporn Donjdee. 2016. <span>“Bootstrapping with r to Make Generalized Inference for Regression Model.”</span> <em>Procedia Computer Science</em> 86: 228–31. https://doi.org/<a href="https://doi.org/10.1016/j.procs.2016.05.103">https://doi.org/10.1016/j.procs.2016.05.103</a>.
+</div>
+<div id="ref-assumptions" class="csl-entry" role="doc-biblioentry">
+Totty, Njesa, James Molyneux, and Claudio Fuentes. 2021. <span>“The Importance of Discussing Assumptions When Teaching Bootstrapping.”</span> arXiv. <a href="https://doi.org/10.48550/ARXIV.2112.07737">https://doi.org/10.48550/ARXIV.2112.07737</a>.
 </div>
 </div>
 </section></section>
