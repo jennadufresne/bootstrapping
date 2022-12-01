@@ -36,6 +36,12 @@ some of the pitfalls of the jackknife resampling method.
 -   Bayesian Bootstrap adds weights to each observation before selecting the data for the new sample.
 -   This result in multiple different types of Bootstraps that can be used for different applications or to get around certain assumptions of another type of Bootstrap.
 
+## What is the Bootstrap Method (cont.)
+
+<center>
+![figure 1 [@bootpic]](Bootstrapping-Group-Presentation_files/figure-revealjs/bootstrapping-image.png){height=200%}
+</center>
+
 ## Assumptions and Shortcomings
 -   The Importance of Discussing Assumptions when Teaching Bootstrapping [@assumptions] states the largest assumption listed is that the distribution can be made approximately pivotal through shifting or studentization. 
 - Interesting result came out that if assumptions are broken when performing the Bootstrap method, it performs no better or worse then other methods whose assumptions are also broken. 
@@ -60,7 +66,6 @@ some of the pitfalls of the jackknife resampling method.
 
 ## Application 5
 -   The rise of statistical and mathematical programming languages and tools have greatly improved the state of Bootstrapping. Since Bootstrapping normally requires a large number of iterations to produce meaningful results, faster computers and tools have allowed statisticians to gain useful information. Software packages have been created for SAS, Stata [@difficult], and R [@withr] that allow common Bootstrapping functionality to be used readily and easily.
-
 
 # Methods
 
@@ -94,10 +99,20 @@ process can be very intensive for large sample sizes. [@introduction]
 - This noise is zero-centered and usually normally distributed. 
 - Doing this means that the re-sampled data is not limited to just the data in the original sample, but rather to data points in close proximity to the original samples. 
 
+## Other Types of Bootstrap
+
+- Bayesian Bootstrap
+  - Creates new sets by reweighting the initial data
+- Parametric Bootstrap
+  - Random observations are drawn from a fitted parametric model
+- Poisson Bootstrap, Block Bootstrap, Wild Bootstrap, Gaussian Bootstrap
+
 ## Figures
-- Figure 1 shows an example of the simple bootstrap density function and Figure 2 shows an example of the smoothed density function provided by [@smooth].
-![figure 1](Bootstrapping-Group-Report_files/figure-html/smooth1.png)
-![figure 2](Bootstrapping-Group-Report_files/figure-html/smooth2.png)
+- Figure 2 shows an example of the simple bootstrap density function and Figure 3 shows an example of the smoothed density function provided by [@smooth].
+
+## Figures (cont.)
+![figure 2](Bootstrapping-Group-Report_files/figure-html/smooth1.png)
+![figure 3](Bootstrapping-Group-Report_files/figure-html/smooth2.png)
 
 # Analysis and Results
 

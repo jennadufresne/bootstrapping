@@ -456,6 +456,17 @@ Jamielee Jimenez Perez
 <li>This result in multiple different types of Bootstraps that can be used for different applications or to get around certain assumptions of another type of Bootstrap.</li>
 </ul>
 </section>
+<section id="what-is-the-bootstrap-method-cont." class="slide level2">
+<h2>What is the Bootstrap Method (cont.)</h2>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Bootstrapping-Group-Presentation_files/figure-revealjs/bootstrapping-image.png" style="height:200.0%"></p>
+<p></p><figcaption>figure 1 <span class="citation" data-cites="bootpic">(<a href="#/references" role="doc-biblioref" onclick="">Joseph 2020</a>)</span></figcaption><p></p>
+</figure>
+</div>
+</center>
+</section>
 <section id="assumptions-and-shortcomings" class="slide level2">
 <h2>Assumptions and Shortcomings</h2>
 <ul>
@@ -481,7 +492,7 @@ Jamielee Jimenez Perez
 <section id="application-2" class="slide level2">
 <h2>Application 2</h2>
 <ul>
-<li>In Nonparametric Estimates of Standard Error: The Jackknife, the Bootstrap, and Other Methods <span class="citation" data-cites="efron2">(<a href="#/references" role="doc-biblioref" onclick="">Bradley Efron 1981</a>)</span>. He introduces the concept of using the Bootstrap to estimate the standard error based on the data. While this is normally done using parametric modeling methods, here it is being done with non-parametric methods, like the Bootstrap. As time has progressed, and computers have become more powerful, the applications of Bootstrapping have increased.</li>
+<li>In Nonparametric Estimates of Standard Error: The Jackknife, the Bootstrap, and Other Methods <span class="citation" data-cites="efron2">(<a href="#/references" role="doc-biblioref" onclick="">Bradley Efron 1981</a>)</span>. He introduces the concept of using the Bootstrap to estimate the standard error based on the data. While this is normally done using parametric modeling methods, in this article, it is being done with non-parametric methods, knowns as the Bootstrap.</li>
 </ul>
 </section>
 <section id="application-3" class="slide level2">
@@ -493,7 +504,7 @@ Jamielee Jimenez Perez
 <section id="application-4" class="slide level2">
 <h2>Application 4</h2>
 <ul>
-<li>Bootstrapping is in regression. In regression, the Bootstrap method can be used to perform validation on the model. In Bootstrapping with R to make generalized inference for regression model <span class="citation" data-cites="withr">(<a href="#/references" role="doc-biblioref" onclick="">Sillabutra et al. 2016</a>)</span> the authors used the Bootstrap method to resample thousands of times, fit a model to each new sample, and save the intercept and regression coefficient estimates. Confidence intervals can then be created to assess performance of a population regression model against the Bootstrap sample models. Another possible application of Bootstrapping in regression is using it to approximate the distribution of the Lasso estimator for all possible values of the unknown regression parameter vector <span class="citation" data-cites="lasso">(<a href="#/references" role="doc-biblioref" onclick="">Chatterjee and Lahiri 2011</a>)</span>.</li>
+<li>Bootstrapping is in regression. In regression, the Bootstrap method can be used to perform validation on the model. In Bootstrapping with R to make generalized inference for regression model <span class="citation" data-cites="withr">(<a href="#/references" role="doc-biblioref" onclick="">Sillabutra et al. 2016</a>)</span> the authors used the Bootstrap method to resample thousands of times, fit a model to each new sample, and save the intercept and regression coefficient estimates. Confidence intervals can then be created to assess performance of a population regression model against the Bootstrap sample models.</li>
 </ul>
 </section>
 <section id="application-5" class="slide level2">
@@ -530,9 +541,39 @@ Jamielee Jimenez Perez
 <section id="smooth-bootstrap" class="slide level2">
 <h2>Smooth Bootstrap</h2>
 <ul>
-<li>In the Smooth Bootstrap, a small amount of random noise is added to every resampled observation. This noise is zero-centered and usually normally distributed. Doing this means that the re-sampled data is not limited to just the data in the original sample, but rather to data points in close proximity to the original samples. Figure 1 shows an example of the simple bootstrap density function and Figure 2 shows an example of the smoothed density function provided by <span class="citation" data-cites="smooth">(<a href="#/references" role="doc-biblioref" onclick="">Dwornicka, Goroshko, and Pietraszek 2019</a>)</span>.</li>
+<li>In the Smooth Bootstrap, a small amount of random noise is added to every resampled observation.</li>
+<li>This noise is zero-centered and usually normally distributed.</li>
+<li>Doing this means that the re-sampled data is not limited to just the data in the original sample, but rather to data points in close proximity to the original samples.</li>
 </ul>
-<p><img data-src="Bootstrapping-Group-Report_files/figure-html/smooth1.png" alt="figure 1"> <img data-src="Bootstrapping-Group-Report_files/figure-html/smooth2.png" alt="figure 2"> # Analysis and Results</p>
+</section>
+<section id="other-types-of-bootstrap" class="slide level2">
+<h2>Other Types of Bootstrap</h2>
+<ul>
+<li>Bayesian Bootstrap
+<ul>
+<li>Creates new sets by reweighting the initial data</li>
+</ul></li>
+<li>Parametric Bootstrap
+<ul>
+<li>Random observations are drawn from a fitted parametric model</li>
+</ul></li>
+<li>Poisson Bootstrap, Block Bootstrap, Wild Bootstrap, Gaussian Bootstrap</li>
+</ul>
+</section>
+<section id="figures" class="slide level2">
+<h2>Figures</h2>
+<ul>
+<li>Figure 2 shows an example of the simple bootstrap density function and Figure 3 shows an example of the smoothed density function provided by <span class="citation" data-cites="smooth">(<a href="#/references" role="doc-biblioref" onclick="">Dwornicka, Goroshko, and Pietraszek 2019</a>)</span>.</li>
+</ul>
+</section>
+<section id="figures-cont." class="slide level2">
+<h2>Figures (cont.)</h2>
+<p><img data-src="Bootstrapping-Group-Report_files/figure-html/smooth1.png" alt="figure 2"> <img data-src="Bootstrapping-Group-Report_files/figure-html/smooth2.png" alt="figure 3"></p>
+</section></section>
+<section>
+<section id="analysis-and-results" class="title-slide slide level1 center">
+<h1>Analysis and Results</h1>
+
 </section>
 <section id="data-and-visualization" class="slide level2">
 <h2>Data and Visualization</h2>
@@ -693,13 +734,13 @@ Jamielee Jimenez Perez
 <li><p>Estimated population mean</p>
 <ul>
 <li><center>
-<span class="math inline">\(0.3358 &lt;  0.3273 &lt;  0.4535\)</span>
+<span class="math inline">\(0.2658 &lt;  0.3273 &lt;  0.3758\)</span>
 </center></li>
 </ul></li>
 <li><p>Estimated population standard deviation</p>
 <ul>
 <li><center>
-<span class="math inline">\(0.094 &lt;  0.1309 &lt;  0.1674\)</span>
+<span class="math inline">\(0.0923 &lt;  0.1309 &lt;  0.1584\)</span>
 </center></li>
 </ul></li>
 </ul>
@@ -766,14 +807,14 @@ Jamielee Jimenez Perez
 <tr class="odd">
 <td>(Intercept)</td>
 <td>1183.7273</td>
-<td>192.6677</td>
-<td>185.2595</td>
+<td>-1801.4852</td>
+<td>-1500.0582</td>
 </tr>
 <tr class="even">
 <td>x</td>
 <td>2.4^{-5}</td>
-<td>8^{-6}</td>
-<td>9^{-6}</td>
+<td>1.74^{-4}</td>
+<td>1.54^{-4}</td>
 </tr>
 </tbody>
 </table>
@@ -828,9 +869,6 @@ Jamielee Jimenez Perez
 <div id="ref-worldbank" class="csl-entry" role="doc-biblioentry">
 2022. <a href="https://data.worldbank.org/indicator/SP.POP.TOTL">https://data.worldbank.org/indicator/SP.POP.TOTL</a>.
 </div>
-<div id="ref-lasso" class="csl-entry" role="doc-biblioentry">
-Chatterjee, A., and S. N. Lahiri. 2011. <span>“Bootstrapping Lasso Estimators.”</span> <em>Journal of the American Statistical Association</em> 106 (494): 608–25. <a href="http://www.jstor.org/stable/41416396">http://www.jstor.org/stable/41416396</a>.
-</div>
 <div id="ref-chavez_2022" class="csl-entry" role="doc-biblioentry">
 Chavez, Ivan. 2022. <a href="https://www.kaggle.com/datasets/ivanchvez/causes-of-death-our-world-in-data">https://www.kaggle.com/datasets/ivanchvez/causes-of-death-our-world-in-data</a>.
 </div>
@@ -845,6 +883,9 @@ Efron, Bradley. 1981. <span>“Nonparametric Estimates of Standard Error: The Ja
 </div>
 <div id="ref-introduction" class="csl-entry" role="doc-biblioentry">
 Hossain, Mohammad. 2000. <span>“Bootstrapping – an Introduction and Its Applications in Statistics.”</span> <em>Bangladesh Journal of Scientific Research</em> 18 (January): 75–88.
+</div>
+<div id="ref-bootpic" class="csl-entry" role="doc-biblioentry">
+Joseph, Trist’n. 2020. <span>“Bootstrapping Statistics. What It Is and Why It’s Used.”</span> <em>Medium</em>. Towards Data Science. <a href="https://towardsdatascience.com/bootstrapping-statistics-what-it-is-and-why-its-used-e2fa29577307">https://towardsdatascience.com/bootstrapping-statistics-what-it-is-and-why-its-used-e2fa29577307</a>.
 </div>
 <div id="ref-difficult" class="csl-entry" role="doc-biblioentry">
 MD, MS, PhD MD, Jason Haukoos, and Roger Lewis. 2005. <span>“Advanced Statistics: Bootstrapping Confidence Intervals for Statistics with <span>‘Difficult’</span> Distributions.”</span> <em>Academic Emergency Medicine</em> 12 (April): 360–65. <a href="https://doi.org/10.1197/j.aem.2004.11.018">https://doi.org/10.1197/j.aem.2004.11.018</a>.
