@@ -21,10 +21,11 @@ View presentation [here](/bootstrapping/Bootstrapping-Group-Presentation.html).
 
 ## Introduction
 
-Resampling is the process of creating new samples based on an observed sample to
-gather more information about either the sample or the population the sample
-came from. Resampling techniques like permutation tests, cross validation, and 
-the jackknife have been prevalent in the statistics world for a while. 
+Resampling is a process of statistical inference during which new samples 
+are created from an observed set of samples, which are then used to form 
+conclusions or deductions about the population. Resampling techniques like 
+permutation tests, cross validation, and the jackknife have been prevalent 
+in the statistics world for a while. 
 
 Resampling can come in handy when it's either impossible or unfeasible to 
 retrieve a sample from the entire population. For instance, if you wanted to 
