@@ -45,11 +45,13 @@ some of the pitfalls of the jackknife resampling method.
 The Bootstrap Method was first introduced by Bradley Efron in Bootstrap 
 Methods: Another Look at the Jackknife [@efron1]. He described the Bootstrap
 as a more primitive method, whose applications are more wide and dependable
-than those of the jackknife. The Bootstrap was introduced as a way to estimate
-a sampling distribution based on the observed sample. The Bootstrap is also 
-shown to estimate the variance here, which is an area the jackknife fails at,
-along with being shown to do well as estimated the error rates in certain 
-problems, outperforming other non-parametric estimation methods.
+than those of the jackknife. The jackknife is a cross-validation technique
+that is often used for variance or bias estimation. The Bootstrap was 
+introduced as a way to estimate a sampling distribution based on the observed 
+sample. The Bootstrap is also shown to estimate the variance, which is an 
+area the jackknife fails at, along with being shown to do well as estimated the 
+error rates in certain problems, outperforming other non-parametric estimation 
+methods.
 
 At a very high-level, Bootstrapping is the process of taking a sample and using
 it to create a new sample with replacement. Doing so gives every observation
@@ -90,17 +92,17 @@ Bootstrapping methods [@assumptions].
 
 ### Applications
 
-Bootstrapping has far reaching applications from finding a population mean to
-performing hypothesis testing. Initially, Efron introduced the Bootstrap 
-method to estimate the sampling distribution, estimate the median, error rate 
-estimation in discrimination analysis, Wilcoxon's statistic, and regression 
-models [@efron1]. Another application from Efron was introduced in Nonparametric 
-Estimates of Standard Error: The Jackknife, the Bootstrap, and Other Methods 
-[@efron2]. He introduces the concept of using the Bootstrap to estimate the 
-standard error based on the data. While this is normally done using parametric 
-modeling methods, here it is being done with non-parametric methods, like the 
-Bootstrap. As time has progressed, and computers have become more powerful, the 
-applications of Bootstrapping have increased.
+Bootstrapping has far reaching applications from finding a population mean 
+estimate to performing hypothesis testing. Initially, Efron introduced the 
+Bootstrap method to estimate the sampling distribution, estimate the median, 
+error rate estimation in discrimination analysis, Wilcoxon's statistic, and 
+regression models [@efron1]. Another application from Efron was introduced in 
+Nonparametric Estimates of Standard Error: The Jackknife, the Bootstrap, and 
+Other Methods [@efron2]. He introduces the concept of using the Bootstrap to 
+estimate the standard error based on the data. While this is normally done 
+using parametric modeling methods, here it is being done with non-parametric 
+methods, like the Bootstrap. As time has progressed, and computers have become 
+more powerful, the applications of Bootstrapping have increased.
 
 One popular application is using Bootstrapping to create confidence intervals
 for certain statistics. Due to the nature of Bootstrapping, it creates results
@@ -589,10 +591,10 @@ sample model more closely than the full population model. A graph was presented
 to show the difference between the three models, along with displaying all 
 models created as part of the Bootstrap method. 
 
-These two experiments scratch the surface of demonstrate the usefulness of the 
+These two experiments scratch the surface to demonstrate the usefulness of the 
 Bootstrap method. The population mean, standard deviation, and distribution of 
 the rate of death caused by cardiovascular diseases were able to be successfully 
-estimated. The model of deaths caused by interpersonal violence on population 
-was able to be analyzed to show it has high variability. 
+estimated. The model of deaths caused by interpersonal violence modeled
+against population was able to be analyzed to show it has high variability. 
 
 ## References
